@@ -1,0 +1,97 @@
+name: Workday Extend
+description: Workday Extend is a platform that enables developers to build custom applications that integrate seamlessly with Workday. It provides APIs, development tools, and a runtime environment for creating tailored solutions that extend Workday's core functionality.
+image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+url: https://www.workday.com/en-us/products/platform/extend.html
+type: Index
+created: 2025-03-14 00:00:00+00:00
+modified: 2025-03-14 00:00:00+00:00
+specificationVersion: '0.18'
+apis:
+- name: Workday Extend REST API
+  description: RESTful APIs for building and managing Workday Extend applications, including orchestrations, integrations, and custom objects.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Extensions
+  - Custom Applications
+  - Orchestrations
+  - Integration
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: OpenAPI
+    url: https://api.workday.com/extend/openapi.json
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+- name: Workday Orchestration API
+  description: APIs for creating and managing orchestrations that automate business processes and integrate with external systems.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanURL: https://doc.workday.com/extend/orchestrations/
+  baseURL: https://api.workday.com/orchestrate/v1
+  tags:
+  - Orchestrations
+  - Automation
+  - Workflows
+  - Business Processes
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+- name: Workday Custom Objects API
+  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanURL: https://doc.workday.com/extend/custom-objects/
+  baseURL: https://api.workday.com/customObjects/v1
+  tags:
+  - Custom Objects
+  - Data Model
+  - Schema
+  - Custom Fields
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+common:
+- type: Getting Started
+  url: https://doc.workday.com/extend/getting-started/
+- type: Developer Portal
+  url: https://developer.workday.com/
+- type: API Reference
+  url: https://doc.workday.com/extend/reference/
+- type: SDK
+  url: https://doc.workday.com/extend/sdk/
+- type: Code Samples
+  url: https://github.com/Workday/extend-samples
+- type: Community
+  url: https://community.workday.com/extend
+- type: Support
+  url: https://www.workday.com/en-us/customer-experience/support.html
+- type: Change Log
+  url: https://doc.workday.com/extend/release-notes/
+- type: Status
+  url: https://status.workday.com/
+- type: Terms of Service
+  url: https://www.workday.com/en-us/legal.html
+- type: Privacy Policy
+  url: https://www.workday.com/en-us/privacy.html
+- type: Authentication Guide
+  url: https://doc.workday.com/extend/authentication/
+- type: Rate Limits
+  url: https://doc.workday.com/extend/rate-limits/
+maintainers:
+- FN: Workday Developer Relations
+  email: developer@workday.com
+  url: https://developer.workday.com/
+tags:
+- HCM
+- Human Capital Management
+- Enterprise
+- Integration
+- Extensions
+- Custom Applications
+- Orchestration
+- Automation
+- PaaS
