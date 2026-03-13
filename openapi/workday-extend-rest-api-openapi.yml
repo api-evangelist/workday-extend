@@ -1,0 +1,739 @@
+openapi: 3.1.0
+info:
+  title: Workday Extend REST API
+  description: >-
+    RESTful APIs for building and managing Workday Extend applications, including
+    app registration, deployment, configuration, and lifecycle management. Enables
+    developers to create custom applications that integrate seamlessly with the
+    Workday platform and extend its core functionality.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+externalDocs:
+  description: Workday Extend Documentation
+  url: https://doc.workday.com/extend/
+servers:
+  - url: https://{baseUrl}/api/extend/v1/{tenant}
+    description: Workday Extend API Server
+    variables:
+      baseUrl:
+        default: api.workday.com
+      tenant:
+        default: tenant
+security:
+  - OAuth2:
+      - extend:apps
+tags:
+  - name: Apps
+    description: >-
+      Operations for managing Extend applications including registration,
+      deployment, and configuration.
+  - name: App Versions
+    description: >-
+      Operations for managing application versions and release lifecycle.
+  - name: App Configurations
+    description: >-
+      Operations for managing application configuration settings and
+      environment-specific parameters.
+  - name: App Deployments
+    description: >-
+      Operations for deploying and managing Extend application instances
+      within a tenant.
+paths:
+  /apps:
+    get:
+      operationId: listApps
+      summary: List Extend applications
+      description: >-
+        Returns a collection of Workday Extend applications registered within the
+        tenant. Supports filtering by status, name, and other attributes.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Successful response with a collection of applications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of applications matching the query
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/App'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createApp
+      summary: Register a new Extend application
+      description: >-
+        Registers a new Workday Extend application within the tenant. The app
+        definition includes metadata, permissions, and configuration schema.
+      tags:
+        - Apps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppCreate'
+      responses:
+        '201':
+          description: Application successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /apps/{appId}:
+    get:
+      operationId: getApp
+      summary: Retrieve an Extend application
+      description: >-
+        Returns the details of a specific Workday Extend application including its
+        metadata, configuration, deployment status, and version history.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      responses:
+        '200':
+          description: Successful response with the application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateApp
+      summary: Update an Extend application
+      description: >-
+        Updates the metadata or configuration of an existing Workday Extend
+        application. Only the fields provided in the request body are updated.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppUpdate'
+      responses:
+        '200':
+          description: Application successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteApp
+      summary: Delete an Extend application
+      description: >-
+        Removes a Workday Extend application registration from the tenant. The
+        application must be undeployed before deletion.
+      tags:
+        - Apps
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      responses:
+        '204':
+          description: Application successfully deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apps/{appId}/versions:
+    get:
+      operationId: listAppVersions
+      summary: List application versions
+      description: >-
+        Returns a collection of versions for the specified Extend application,
+        including draft, published, and deprecated versions.
+      tags:
+        - App Versions
+      parameters:
+        - $ref: '#/components/parameters/appId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Successful response with application versions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppVersion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAppVersion
+      summary: Create a new application version
+      description: >-
+        Creates a new version of the specified Extend application. The new version
+        is created in draft status and must be published before deployment.
+      tags:
+        - App Versions
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppVersionCreate'
+      responses:
+        '201':
+          description: Application version successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apps/{appId}/versions/{versionId}:
+    get:
+      operationId: getAppVersion
+      summary: Retrieve a specific application version
+      description: >-
+        Returns the details of a specific version of the Extend application,
+        including its status, configuration schema, and changelog.
+      tags:
+        - App Versions
+      parameters:
+        - $ref: '#/components/parameters/appId'
+        - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          description: Successful response with the version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppVersion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apps/{appId}/configurations:
+    get:
+      operationId: listAppConfigurations
+      summary: List application configurations
+      description: >-
+        Returns the configuration settings for the specified Extend application,
+        including environment-specific parameters and feature flags.
+      tags:
+        - App Configurations
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      responses:
+        '200':
+          description: Successful response with configuration settings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppConfiguration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateAppConfigurations
+      summary: Update application configurations
+      description: >-
+        Updates the configuration settings for the specified Extend application.
+        Replaces all configuration values with the provided settings.
+      tags:
+        - App Configurations
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppConfigurationUpdate'
+      responses:
+        '200':
+          description: Configuration successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppConfiguration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apps/{appId}/deployments:
+    get:
+      operationId: listAppDeployments
+      summary: List application deployments
+      description: >-
+        Returns a collection of deployment records for the specified Extend
+        application, including active and historical deployments.
+      tags:
+        - App Deployments
+      parameters:
+        - $ref: '#/components/parameters/appId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Successful response with deployment records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppDeployment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: deployApp
+      summary: Deploy an Extend application
+      description: >-
+        Initiates a deployment of the specified Extend application version to the
+        target environment. The deployment process provisions resources and
+        activates the application.
+      tags:
+        - App Deployments
+      parameters:
+        - $ref: '#/components/parameters/appId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeploymentCreate'
+      responses:
+        '202':
+          description: Deployment initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeployment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apps/{appId}/deployments/{deploymentId}:
+    get:
+      operationId: getAppDeployment
+      summary: Retrieve a specific deployment
+      description: >-
+        Returns the details of a specific deployment record including its status,
+        deployed version, and deployment timestamp.
+      tags:
+        - App Deployments
+      parameters:
+        - $ref: '#/components/parameters/appId'
+        - $ref: '#/components/parameters/deploymentId'
+      responses:
+        '200':
+          description: Successful response with the deployment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeployment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            extend:apps: Manage Extend applications
+            extend:apps:read: Read Extend application data
+  parameters:
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the Extend application
+      schema:
+        type: string
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: The unique identifier of the application version
+      schema:
+        type: string
+    deploymentId:
+      name: deploymentId
+      in: path
+      required: true
+      description: The unique identifier of the deployment record
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    search:
+      name: search
+      in: query
+      description: Search term to filter results
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
+    App:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the Extend application
+        descriptor:
+          type: string
+          description: Display name of the application
+        name:
+          type: string
+          description: The registered name of the application
+        description:
+          type: string
+          description: Detailed description of the application purpose and functionality
+        status:
+          type: string
+          enum:
+            - draft
+            - published
+            - deployed
+            - deprecated
+          description: Current lifecycle status of the application
+        category:
+          type: string
+          description: The application category within Workday
+        owner:
+          $ref: '#/components/schemas/ResourceReference'
+        currentVersion:
+          $ref: '#/components/schemas/ResourceReference'
+        createdOn:
+          type: string
+          format: date-time
+          description: Timestamp when the application was created
+        lastModified:
+          type: string
+          format: date-time
+          description: Timestamp when the application was last modified
+        href:
+          type: string
+          format: uri
+          description: The API resource URL for this application
+    AppCreate:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          description: The name of the Extend application
+          maxLength: 255
+        description:
+          type: string
+          description: Description of the application
+        category:
+          type: string
+          description: The application category
+    AppUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated application name
+          maxLength: 255
+        description:
+          type: string
+          description: Updated application description
+        category:
+          type: string
+          description: Updated application category
+    AppVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the application version
+        versionNumber:
+          type: string
+          description: Semantic version number of the application
+        status:
+          type: string
+          enum:
+            - draft
+            - published
+            - deprecated
+          description: Current status of this version
+        changelog:
+          type: string
+          description: Description of changes in this version
+        createdOn:
+          type: string
+          format: date-time
+          description: Timestamp when the version was created
+        publishedOn:
+          type: string
+          format: date-time
+          description: Timestamp when the version was published
+        href:
+          type: string
+          format: uri
+    AppVersionCreate:
+      type: object
+      required:
+        - versionNumber
+      properties:
+        versionNumber:
+          type: string
+          description: Semantic version number for the new version
+        changelog:
+          type: string
+          description: Description of changes in this version
+    AppConfiguration:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Configuration identifier
+        key:
+          type: string
+          description: Configuration setting key
+        value:
+          type: string
+          description: Configuration setting value
+        description:
+          type: string
+          description: Description of the configuration setting
+        dataType:
+          type: string
+          enum:
+            - string
+            - number
+            - boolean
+            - json
+          description: Data type of the configuration value
+        isSecret:
+          type: boolean
+          description: Whether the value is stored as a secret
+    AppConfigurationUpdate:
+      type: object
+      properties:
+        configurations:
+          type: array
+          items:
+            type: object
+            required:
+              - key
+              - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+              description:
+                type: string
+              dataType:
+                type: string
+                enum:
+                  - string
+                  - number
+                  - boolean
+                  - json
+    AppDeployment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the deployment
+        app:
+          $ref: '#/components/schemas/ResourceReference'
+        version:
+          $ref: '#/components/schemas/ResourceReference'
+        status:
+          type: string
+          enum:
+            - pending
+            - in_progress
+            - deployed
+            - failed
+            - rolled_back
+          description: Current status of the deployment
+        environment:
+          type: string
+          enum:
+            - sandbox
+            - production
+          description: Target deployment environment
+        deployedOn:
+          type: string
+          format: date-time
+          description: Timestamp when the deployment completed
+        deployedBy:
+          $ref: '#/components/schemas/ResourceReference'
+        href:
+          type: string
+          format: uri
+    AppDeploymentCreate:
+      type: object
+      required:
+        - versionId
+      properties:
+        versionId:
+          type: string
+          description: The ID of the application version to deploy
+        environment:
+          type: string
+          enum:
+            - sandbox
+            - production
+          description: Target deployment environment

@@ -1,0 +1,790 @@
+openapi: 3.1.0
+info:
+  title: Workday Orchestration API
+  description: >-
+    APIs for creating and managing orchestrations that automate business processes
+    and integrate with external systems. Developers visually build orchestrations
+    using the Orchestration Builder to define flows, map data, and perform
+    transformations. Orchestrations can be triggered from Extend apps, business
+    processes, integration systems, or external systems via API triggers.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+externalDocs:
+  description: Workday Orchestrations Documentation
+  url: https://doc.workday.com/extend/orchestrations/
+servers:
+  - url: https://{baseUrl}/api/orchestrate/v1/{tenant}
+    description: Workday Orchestrate API Server
+    variables:
+      baseUrl:
+        default: api.workday.com
+      tenant:
+        default: tenant
+security:
+  - OAuth2:
+      - orchestrate:orchestrations
+tags:
+  - name: Orchestrations
+    description: >-
+      Operations for managing orchestration definitions including creation,
+      configuration, versioning, and lifecycle management.
+  - name: Orchestration Executions
+    description: >-
+      Operations for triggering orchestration runs, monitoring execution status,
+      and retrieving execution results.
+  - name: Orchestration Steps
+    description: >-
+      Operations for managing individual steps within an orchestration flow,
+      including connectors, transformations, and conditions.
+  - name: Orchestration Triggers
+    description: >-
+      Operations for configuring orchestration triggers including event-based,
+      scheduled, and API-triggered orchestrations.
+paths:
+  /orchestrations:
+    get:
+      operationId: listOrchestrations
+      summary: List orchestrations
+      description: >-
+        Returns a collection of orchestration definitions within the tenant.
+        Supports filtering by status, name, and trigger type.
+      tags:
+        - Orchestrations
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/search'
+        - name: status
+          in: query
+          description: Filter by orchestration status
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - draft
+      responses:
+        '200':
+          description: Successful response with orchestration definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of orchestrations
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Orchestration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createOrchestration
+      summary: Create an orchestration
+      description: >-
+        Creates a new orchestration definition in the tenant. The orchestration
+        is created in draft status and must be activated before it can be triggered.
+      tags:
+        - Orchestrations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrchestrationCreate'
+      responses:
+        '201':
+          description: Orchestration successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Orchestration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /orchestrations/{orchestrationId}:
+    get:
+      operationId: getOrchestration
+      summary: Retrieve an orchestration
+      description: >-
+        Returns the details of a specific orchestration definition including its
+        steps, triggers, configuration, and execution history summary.
+      tags:
+        - Orchestrations
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '200':
+          description: Successful response with orchestration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Orchestration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateOrchestration
+      summary: Update an orchestration
+      description: >-
+        Updates the definition of an existing orchestration. Only the fields
+        provided in the request body are updated. Active orchestrations must be
+        deactivated before modification.
+      tags:
+        - Orchestrations
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrchestrationUpdate'
+      responses:
+        '200':
+          description: Orchestration successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Orchestration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteOrchestration
+      summary: Delete an orchestration
+      description: >-
+        Deletes an orchestration definition from the tenant. The orchestration
+        must be inactive and have no pending executions before deletion.
+      tags:
+        - Orchestrations
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '204':
+          description: Orchestration successfully deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orchestrations/{orchestrationId}/activate:
+    post:
+      operationId: activateOrchestration
+      summary: Activate an orchestration
+      description: >-
+        Activates a draft or inactive orchestration, making it available for
+        triggering and execution.
+      tags:
+        - Orchestrations
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '200':
+          description: Orchestration successfully activated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Orchestration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orchestrations/{orchestrationId}/deactivate:
+    post:
+      operationId: deactivateOrchestration
+      summary: Deactivate an orchestration
+      description: >-
+        Deactivates an active orchestration, preventing new executions from being
+        triggered. In-flight executions are allowed to complete.
+      tags:
+        - Orchestrations
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '200':
+          description: Orchestration successfully deactivated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Orchestration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orchestrations/{orchestrationId}/executions:
+    get:
+      operationId: listOrchestrationExecutions
+      summary: List orchestration executions
+      description: >-
+        Returns a collection of execution records for the specified orchestration,
+        including completed, running, and failed executions.
+      tags:
+        - Orchestration Executions
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - name: status
+          in: query
+          description: Filter by execution status
+          schema:
+            type: string
+            enum:
+              - running
+              - completed
+              - failed
+              - cancelled
+      responses:
+        '200':
+          description: Successful response with execution records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrchestrationExecution'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: launchOrchestration
+      summary: Launch an orchestration execution
+      description: >-
+        Triggers a new execution of the specified orchestration. Supports passing
+        input parameters that are mapped to the orchestration's defined inputs.
+        This endpoint can be called from external systems to remotely trigger
+        orchestration workflows.
+      tags:
+        - Orchestration Executions
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrchestrationLaunch'
+      responses:
+        '202':
+          description: Orchestration execution initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrchestrationExecution'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orchestrations/{orchestrationId}/executions/{executionId}:
+    get:
+      operationId: getOrchestrationExecution
+      summary: Retrieve an orchestration execution
+      description: >-
+        Returns the details of a specific orchestration execution including its
+        status, step results, input and output data, and timing information.
+      tags:
+        - Orchestration Executions
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+        - $ref: '#/components/parameters/executionId'
+      responses:
+        '200':
+          description: Successful response with execution details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrchestrationExecution'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orchestrations/{orchestrationId}/executions/{executionId}/cancel:
+    post:
+      operationId: cancelOrchestrationExecution
+      summary: Cancel an orchestration execution
+      description: >-
+        Cancels a running orchestration execution. Steps that are currently
+        in progress may complete before cancellation takes effect.
+      tags:
+        - Orchestration Executions
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+        - $ref: '#/components/parameters/executionId'
+      responses:
+        '200':
+          description: Execution cancellation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrchestrationExecution'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orchestrations/{orchestrationId}/steps:
+    get:
+      operationId: listOrchestrationSteps
+      summary: List orchestration steps
+      description: >-
+        Returns the collection of steps defined within the specified orchestration,
+        including their order, type, and configuration.
+      tags:
+        - Orchestration Steps
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '200':
+          description: Successful response with orchestration steps
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrchestrationStep'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orchestrations/{orchestrationId}/triggers:
+    get:
+      operationId: listOrchestrationTriggers
+      summary: List orchestration triggers
+      description: >-
+        Returns the collection of triggers configured for the specified
+        orchestration, including event-based, scheduled, and API triggers.
+      tags:
+        - Orchestration Triggers
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '200':
+          description: Successful response with orchestration triggers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrchestrationTrigger'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createOrchestrationTrigger
+      summary: Create an orchestration trigger
+      description: >-
+        Adds a new trigger to the specified orchestration. Triggers define how
+        and when the orchestration is executed, including event-based triggers
+        from business processes and scheduled triggers.
+      tags:
+        - Orchestration Triggers
+      parameters:
+        - $ref: '#/components/parameters/orchestrationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrchestrationTriggerCreate'
+      responses:
+        '201':
+          description: Trigger successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrchestrationTrigger'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            orchestrate:orchestrations: Manage orchestrations
+            orchestrate:orchestrations:read: Read orchestration data
+            orchestrate:executions: Execute orchestrations
+  parameters:
+    orchestrationId:
+      name: orchestrationId
+      in: path
+      required: true
+      description: The unique identifier of the orchestration
+      schema:
+        type: string
+    executionId:
+      name: executionId
+      in: path
+      required: true
+      description: The unique identifier of the orchestration execution
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    search:
+      name: search
+      in: query
+      description: Search term to filter results
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
+    Orchestration:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the orchestration
+        descriptor:
+          type: string
+          description: Display name of the orchestration
+        name:
+          type: string
+          description: The registered name of the orchestration
+        description:
+          type: string
+          description: Detailed description of what the orchestration does
+        status:
+          type: string
+          enum:
+            - draft
+            - active
+            - inactive
+          description: Current lifecycle status of the orchestration
+        triggerType:
+          type: string
+          enum:
+            - event
+            - api
+            - schedule
+            - business_process
+          description: The primary trigger type for this orchestration
+        owner:
+          $ref: '#/components/schemas/ResourceReference'
+        app:
+          $ref: '#/components/schemas/ResourceReference'
+        stepCount:
+          type: integer
+          description: Number of steps in the orchestration
+        lastExecutedOn:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent execution
+        createdOn:
+          type: string
+          format: date-time
+          description: Timestamp when the orchestration was created
+        lastModified:
+          type: string
+          format: date-time
+          description: Timestamp when the orchestration was last modified
+        href:
+          type: string
+          format: uri
+    OrchestrationCreate:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          description: Name of the orchestration
+          maxLength: 255
+        description:
+          type: string
+          description: Description of the orchestration
+        triggerType:
+          type: string
+          enum:
+            - event
+            - api
+            - schedule
+            - business_process
+          description: The primary trigger type
+    OrchestrationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated orchestration name
+          maxLength: 255
+        description:
+          type: string
+          description: Updated orchestration description
+    OrchestrationExecution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the execution
+        orchestration:
+          $ref: '#/components/schemas/ResourceReference'
+        status:
+          type: string
+          enum:
+            - running
+            - completed
+            - failed
+            - cancelled
+          description: Current status of the execution
+        triggeredBy:
+          type: string
+          enum:
+            - api
+            - event
+            - schedule
+            - business_process
+            - manual
+          description: How the execution was triggered
+        input:
+          type: object
+          additionalProperties: true
+          description: Input parameters provided to the execution
+        output:
+          type: object
+          additionalProperties: true
+          description: Output data produced by the execution
+        startedOn:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started
+        completedOn:
+          type: string
+          format: date-time
+          description: Timestamp when the execution completed
+        durationMs:
+          type: integer
+          description: Execution duration in milliseconds
+        stepsCompleted:
+          type: integer
+          description: Number of steps completed in this execution
+        stepsTotal:
+          type: integer
+          description: Total number of steps in this execution
+        errorMessage:
+          type: string
+          description: Error message if the execution failed
+        href:
+          type: string
+          format: uri
+    OrchestrationLaunch:
+      type: object
+      properties:
+        input:
+          type: object
+          additionalProperties: true
+          description: >-
+            Input parameters to pass to the orchestration. The keys must match
+            the orchestration's defined input parameter names.
+    OrchestrationStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the step
+        name:
+          type: string
+          description: Name of the orchestration step
+        type:
+          type: string
+          enum:
+            - connector
+            - transformation
+            - condition
+            - loop
+            - subOrchestration
+            - notification
+            - workdayApi
+            - restApi
+            - soapApi
+          description: The type of step
+        order:
+          type: integer
+          description: Position of the step in the orchestration flow
+        description:
+          type: string
+          description: Description of what this step does
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Step-specific configuration parameters
+    OrchestrationTrigger:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the trigger
+        type:
+          type: string
+          enum:
+            - event
+            - api
+            - schedule
+            - business_process
+          description: The type of trigger
+        name:
+          type: string
+          description: Name of the trigger
+        description:
+          type: string
+          description: Description of the trigger
+        isActive:
+          type: boolean
+          description: Whether the trigger is currently active
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Trigger-specific configuration
+    OrchestrationTriggerCreate:
+      type: object
+      required:
+        - type
+        - name
+      properties:
+        type:
+          type: string
+          enum:
+            - event
+            - api
+            - schedule
+            - business_process
+          description: The type of trigger
+        name:
+          type: string
+          description: Name for the trigger
+        description:
+          type: string
+          description: Description of the trigger
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Trigger-specific configuration parameters

@@ -1,0 +1,703 @@
+openapi: 3.1.0
+info:
+  title: Workday Custom Objects API
+  description: >-
+    APIs for defining and managing custom objects that extend Workday's data model
+    to meet specific business needs. When new custom objects and business processes
+    are built, a public REST API is automatically created for other developers and
+    processes to use. Supports both single-instance and multi-instance custom
+    objects attached to standard Workday business objects such as workers and
+    organizations.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+externalDocs:
+  description: Workday Custom Objects Documentation
+  url: https://doc.workday.com/extend/custom-objects/
+servers:
+  - url: https://{baseUrl}/api/customObjects/v1/{tenant}
+    description: Workday Custom Objects API Server
+    variables:
+      baseUrl:
+        default: api.workday.com
+      tenant:
+        default: tenant
+security:
+  - OAuth2:
+      - customObjects:manage
+tags:
+  - name: Custom Object Definitions
+    description: >-
+      Operations for defining and managing custom object types including their
+      schemas, attributes, and relationships to standard Workday objects.
+  - name: Custom Object Instances
+    description: >-
+      Operations for creating, reading, updating, and deleting custom object
+      data instances attached to Workday business objects.
+  - name: Custom Object Fields
+    description: >-
+      Operations for managing the fields and attributes defined within custom
+      object schemas.
+paths:
+  /customObjectDefinitions:
+    get:
+      operationId: listCustomObjectDefinitions
+      summary: List custom object definitions
+      description: >-
+        Returns a collection of custom object type definitions configured in the
+        tenant, including their schemas, field definitions, and parent object
+        associations.
+      tags:
+        - Custom Object Definitions
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Successful response with custom object definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of custom object definitions
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomObjectDefinition'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createCustomObjectDefinition
+      summary: Create a custom object definition
+      description: >-
+        Creates a new custom object type definition with specified fields and
+        attributes. The definition determines the schema for all instances of
+        this custom object type.
+      tags:
+        - Custom Object Definitions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectDefinitionCreate'
+      responses:
+        '201':
+          description: Custom object definition successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectDefinition'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /customObjectDefinitions/{definitionId}:
+    get:
+      operationId: getCustomObjectDefinition
+      summary: Retrieve a custom object definition
+      description: >-
+        Returns the details of a specific custom object type definition including
+        its full field schema, validation rules, and parent object associations.
+      tags:
+        - Custom Object Definitions
+      parameters:
+        - $ref: '#/components/parameters/definitionId'
+      responses:
+        '200':
+          description: Successful response with definition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectDefinition'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateCustomObjectDefinition
+      summary: Update a custom object definition
+      description: >-
+        Updates an existing custom object type definition. Changes to the schema
+        may affect existing custom object instances.
+      tags:
+        - Custom Object Definitions
+      parameters:
+        - $ref: '#/components/parameters/definitionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectDefinitionUpdate'
+      responses:
+        '200':
+          description: Definition successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectDefinition'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCustomObjectDefinition
+      summary: Delete a custom object definition
+      description: >-
+        Deletes a custom object type definition. All instances of this custom
+        object type must be deleted before the definition can be removed.
+      tags:
+        - Custom Object Definitions
+      parameters:
+        - $ref: '#/components/parameters/definitionId'
+      responses:
+        '204':
+          description: Definition successfully deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /customObjectDefinitions/{definitionId}/fields:
+    get:
+      operationId: listCustomObjectFields
+      summary: List custom object fields
+      description: >-
+        Returns the collection of fields defined in the specified custom object
+        definition, including field types, validation rules, and constraints.
+      tags:
+        - Custom Object Fields
+      parameters:
+        - $ref: '#/components/parameters/definitionId'
+      responses:
+        '200':
+          description: Successful response with field definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomObjectField'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addCustomObjectField
+      summary: Add a field to a custom object definition
+      description: >-
+        Adds a new field to the custom object definition. The field will be
+        available on all new and existing instances of this custom object type.
+      tags:
+        - Custom Object Fields
+      parameters:
+        - $ref: '#/components/parameters/definitionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectFieldCreate'
+      responses:
+        '201':
+          description: Field successfully added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectField'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workers/{workerId}/customObjects/{customObjectName}:
+    get:
+      operationId: getWorkerCustomObject
+      summary: Retrieve custom object data for a worker
+      description: >-
+        Returns the custom object instance data attached to the specified worker.
+        Supports both single-instance and multi-instance custom objects. For
+        multi-instance objects, returns a collection of instances.
+      tags:
+        - Custom Object Instances
+      parameters:
+        - $ref: '#/components/parameters/workerId'
+        - $ref: '#/components/parameters/customObjectName'
+      responses:
+        '200':
+          description: Successful response with custom object data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWorkerCustomObject
+      summary: Create or update custom object data for a worker
+      description: >-
+        Creates or updates the custom object instance data attached to the
+        specified worker. If the custom object does not exist for the worker,
+        it is created. Otherwise, the existing data is updated with the
+        provided values.
+      tags:
+        - Custom Object Instances
+      parameters:
+        - $ref: '#/components/parameters/workerId'
+        - $ref: '#/components/parameters/customObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectData'
+      responses:
+        '200':
+          description: Custom object data successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '201':
+          description: Custom object data successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWorkerCustomObject
+      summary: Delete custom object data for a worker
+      description: >-
+        Deletes the custom object instance data attached to the specified worker.
+      tags:
+        - Custom Object Instances
+      parameters:
+        - $ref: '#/components/parameters/workerId'
+        - $ref: '#/components/parameters/customObjectName'
+      responses:
+        '204':
+          description: Custom object data successfully deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/{organizationId}/customObjects/{customObjectName}:
+    get:
+      operationId: getOrganizationCustomObject
+      summary: Retrieve custom object data for an organization
+      description: >-
+        Returns the custom object instance data attached to the specified
+        organization. Supports both single-instance and multi-instance custom
+        objects.
+      tags:
+        - Custom Object Instances
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+        - $ref: '#/components/parameters/customObjectName'
+      responses:
+        '200':
+          description: Successful response with custom object data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateOrganizationCustomObject
+      summary: Create or update custom object data for an organization
+      description: >-
+        Creates or updates the custom object instance data attached to the
+        specified organization.
+      tags:
+        - Custom Object Instances
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+        - $ref: '#/components/parameters/customObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectData'
+      responses:
+        '200':
+          description: Custom object data successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '201':
+          description: Custom object data successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            customObjects:manage: Manage custom object definitions and instances
+            customObjects:read: Read custom object data
+  parameters:
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the custom object definition
+      schema:
+        type: string
+    workerId:
+      name: workerId
+      in: path
+      required: true
+      description: The unique Workday identifier of the worker
+      schema:
+        type: string
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The unique Workday identifier of the organization
+      schema:
+        type: string
+    customObjectName:
+      name: customObjectName
+      in: path
+      required: true
+      description: The name of the custom object type
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    search:
+      name: search
+      in: query
+      description: Search term to filter results
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
+    CustomObjectDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the custom object definition
+        descriptor:
+          type: string
+          description: Display name of the custom object type
+        name:
+          type: string
+          description: The API name of the custom object type
+        description:
+          type: string
+          description: Description of the custom object type
+        instanceType:
+          type: string
+          enum:
+            - single
+            - multi
+          description: Whether this is a single-instance or multi-instance custom object
+        parentObjectType:
+          type: string
+          enum:
+            - worker
+            - organization
+            - position
+            - jobProfile
+          description: The standard Workday object type this custom object extends
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomObjectField'
+          description: The fields defined in this custom object
+        isActive:
+          type: boolean
+          description: Whether the custom object definition is active
+        createdOn:
+          type: string
+          format: date-time
+          description: Timestamp when the definition was created
+        lastModified:
+          type: string
+          format: date-time
+          description: Timestamp when the definition was last modified
+        href:
+          type: string
+          format: uri
+    CustomObjectDefinitionCreate:
+      type: object
+      required:
+        - name
+        - instanceType
+        - parentObjectType
+      properties:
+        name:
+          type: string
+          description: The API name for the custom object type
+          maxLength: 128
+          pattern: '^[a-zA-Z][a-zA-Z0-9_]*$'
+        description:
+          type: string
+          description: Description of the custom object type
+        instanceType:
+          type: string
+          enum:
+            - single
+            - multi
+          description: Whether instances are single or multi per parent object
+        parentObjectType:
+          type: string
+          enum:
+            - worker
+            - organization
+            - position
+            - jobProfile
+          description: The standard Workday object type to extend
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomObjectFieldCreate'
+          description: Initial fields for the custom object
+    CustomObjectDefinitionUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Updated description
+        isActive:
+          type: boolean
+          description: Whether the definition is active
+    CustomObjectField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the field
+        name:
+          type: string
+          description: The API name of the field
+        displayName:
+          type: string
+          description: The display label for the field
+        dataType:
+          type: string
+          enum:
+            - text
+            - number
+            - decimal
+            - boolean
+            - date
+            - dateTime
+            - currency
+            - reference
+            - richText
+          description: The data type of the field
+        isRequired:
+          type: boolean
+          description: Whether the field is required
+        isReadOnly:
+          type: boolean
+          description: Whether the field is read-only
+        maxLength:
+          type: integer
+          description: Maximum length for text fields
+        precision:
+          type: integer
+          description: Decimal precision for numeric fields
+        referenceObjectType:
+          type: string
+          description: The Workday object type for reference fields
+        defaultValue:
+          type: string
+          description: Default value for the field
+    CustomObjectFieldCreate:
+      type: object
+      required:
+        - name
+        - dataType
+      properties:
+        name:
+          type: string
+          description: The API name of the field
+          maxLength: 128
+          pattern: '^[a-zA-Z][a-zA-Z0-9_]*$'
+        displayName:
+          type: string
+          description: The display label for the field
+        dataType:
+          type: string
+          enum:
+            - text
+            - number
+            - decimal
+            - boolean
+            - date
+            - dateTime
+            - currency
+            - reference
+            - richText
+        isRequired:
+          type: boolean
+          default: false
+        maxLength:
+          type: integer
+          description: Maximum length for text fields
+        referenceObjectType:
+          type: string
+          description: Required for reference type fields
+        defaultValue:
+          type: string
+    CustomObjectInstance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the custom object instance
+        definition:
+          $ref: '#/components/schemas/ResourceReference'
+        parentObject:
+          $ref: '#/components/schemas/ResourceReference'
+        data:
+          type: object
+          additionalProperties: true
+          description: >-
+            The custom object field values as key-value pairs where keys are
+            field API names and values match the field data types
+        createdOn:
+          type: string
+          format: date-time
+          description: Timestamp when the instance was created
+        lastModified:
+          type: string
+          format: date-time
+          description: Timestamp when the instance was last modified
+        href:
+          type: string
+          format: uri
+    CustomObjectData:
+      type: object
+      additionalProperties: true
+      description: >-
+        Custom object field values as key-value pairs. Keys must match the
+        field API names defined in the custom object definition. Values must
+        conform to the field data types.
