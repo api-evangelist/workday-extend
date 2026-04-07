@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Workday Custom Objects API
+  title: Workday Extend Workday Custom Objects API
   description: >-
     APIs for defining and managing custom objects that extend Workday's data model
     to meet specific business needs. When new custom objects and business processes
@@ -44,7 +44,7 @@ paths:
   /customObjectDefinitions:
     get:
       operationId: listCustomObjectDefinitions
-      summary: List custom object definitions
+      summary: Workday Extend List custom object definitions
       description: >-
         Returns a collection of custom object type definitions configured in the
         tenant, including their schemas, field definitions, and parent object
@@ -76,7 +76,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createCustomObjectDefinition
-      summary: Create a custom object definition
+      summary: Workday Extend Create a custom object definition
       description: >-
         Creates a new custom object type definition with specified fields and
         attributes. The definition determines the schema for all instances of
@@ -105,7 +105,7 @@ paths:
   /customObjectDefinitions/{definitionId}:
     get:
       operationId: getCustomObjectDefinition
-      summary: Retrieve a custom object definition
+      summary: Workday Extend Retrieve a custom object definition
       description: >-
         Returns the details of a specific custom object type definition including
         its full field schema, validation rules, and parent object associations.
@@ -128,7 +128,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateCustomObjectDefinition
-      summary: Update a custom object definition
+      summary: Workday Extend Update a custom object definition
       description: >-
         Updates an existing custom object type definition. Changes to the schema
         may affect existing custom object instances.
@@ -159,7 +159,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteCustomObjectDefinition
-      summary: Delete a custom object definition
+      summary: Workday Extend Delete a custom object definition
       description: >-
         Deletes a custom object type definition. All instances of this custom
         object type must be deleted before the definition can be removed.
@@ -179,7 +179,7 @@ paths:
   /customObjectDefinitions/{definitionId}/fields:
     get:
       operationId: listCustomObjectFields
-      summary: List custom object fields
+      summary: Workday Extend List custom object fields
       description: >-
         Returns the collection of fields defined in the specified custom object
         definition, including field types, validation rules, and constraints.
@@ -209,7 +209,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: addCustomObjectField
-      summary: Add a field to a custom object definition
+      summary: Workday Extend Add a field to a custom object definition
       description: >-
         Adds a new field to the custom object definition. The field will be
         available on all new and existing instances of this custom object type.
@@ -241,7 +241,7 @@ paths:
   /workers/{workerId}/customObjects/{customObjectName}:
     get:
       operationId: getWorkerCustomObject
-      summary: Retrieve custom object data for a worker
+      summary: Workday Extend Retrieve custom object data for a worker
       description: >-
         Returns the custom object instance data attached to the specified worker.
         Supports both single-instance and multi-instance custom objects. For
@@ -266,7 +266,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateWorkerCustomObject
-      summary: Create or update custom object data for a worker
+      summary: Workday Extend Create or update custom object data for a worker
       description: >-
         Creates or updates the custom object instance data attached to the
         specified worker. If the custom object does not exist for the worker,
@@ -306,7 +306,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteWorkerCustomObject
-      summary: Delete custom object data for a worker
+      summary: Workday Extend Delete custom object data for a worker
       description: >-
         Deletes the custom object instance data attached to the specified worker.
       tags:
@@ -326,7 +326,7 @@ paths:
   /organizations/{organizationId}/customObjects/{customObjectName}:
     get:
       operationId: getOrganizationCustomObject
-      summary: Retrieve custom object data for an organization
+      summary: Workday Extend Retrieve custom object data for an organization
       description: >-
         Returns the custom object instance data attached to the specified
         organization. Supports both single-instance and multi-instance custom
@@ -351,7 +351,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateOrganizationCustomObject
-      summary: Create or update custom object data for an organization
+      summary: Workday Extend Create or update custom object data for an organization
       description: >-
         Creates or updates the custom object instance data attached to the
         specified organization.

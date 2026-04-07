@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Workday Graph API
+  title: Workday Extend Workday Graph API
   description: >-
     Graph API for querying and traversing Workday data using a flexible,
     graph-based approach. Provides a unified query interface for accessing
@@ -45,7 +45,7 @@ paths:
   /query:
     post:
       operationId: executeGraphQuery
-      summary: Execute a graph query
+      summary: Workday Extend Execute a graph query
       description: >-
         Executes a graph query against the Workday data model. Supports field
         selection, filtering, relationship traversal, and pagination. Returns
@@ -74,7 +74,7 @@ paths:
   /wql:
     post:
       operationId: executeWqlQuery
-      summary: Execute a WQL query
+      summary: Workday Extend Execute a WQL query
       description: >-
         Executes a Workday Query Language (WQL) query for complex data retrieval.
         WQL uses SQL-like syntax to query business objects and supports filtering,
@@ -104,7 +104,7 @@ paths:
   /schema:
     get:
       operationId: getSchema
-      summary: Retrieve the graph schema
+      summary: Workday Extend Retrieve the graph schema
       description: >-
         Returns the full graph schema including all available business object
         types, their fields, relationships, and query capabilities. Used for
@@ -125,7 +125,7 @@ paths:
   /schema/types:
     get:
       operationId: listSchemaTypes
-      summary: List available business object types
+      summary: Workday Extend List available business object types
       description: >-
         Returns a collection of available business object types that can be
         queried through the Graph API, including their descriptions and
@@ -157,7 +157,7 @@ paths:
   /schema/types/{typeName}:
     get:
       operationId: getSchemaType
-      summary: Retrieve a specific business object type schema
+      summary: Workday Extend Retrieve a specific business object type schema
       description: >-
         Returns the full schema definition for a specific business object type,
         including all fields, their types, relationships to other objects, and

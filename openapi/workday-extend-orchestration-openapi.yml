@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Workday Orchestration API
+  title: Workday Extend Workday Orchestration API
   description: >-
     APIs for creating and managing orchestrations that automate business processes
     and integrate with external systems. Developers visually build orchestrations
@@ -47,7 +47,7 @@ paths:
   /orchestrations:
     get:
       operationId: listOrchestrations
-      summary: List orchestrations
+      summary: Workday Extend List orchestrations
       description: >-
         Returns a collection of orchestration definitions within the tenant.
         Supports filtering by status, name, and trigger type.
@@ -87,7 +87,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createOrchestration
-      summary: Create an orchestration
+      summary: Workday Extend Create an orchestration
       description: >-
         Creates a new orchestration definition in the tenant. The orchestration
         is created in draft status and must be activated before it can be triggered.
@@ -115,7 +115,7 @@ paths:
   /orchestrations/{orchestrationId}:
     get:
       operationId: getOrchestration
-      summary: Retrieve an orchestration
+      summary: Workday Extend Retrieve an orchestration
       description: >-
         Returns the details of a specific orchestration definition including its
         steps, triggers, configuration, and execution history summary.
@@ -138,7 +138,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateOrchestration
-      summary: Update an orchestration
+      summary: Workday Extend Update an orchestration
       description: >-
         Updates the definition of an existing orchestration. Only the fields
         provided in the request body are updated. Active orchestrations must be
@@ -170,7 +170,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteOrchestration
-      summary: Delete an orchestration
+      summary: Workday Extend Delete an orchestration
       description: >-
         Deletes an orchestration definition from the tenant. The orchestration
         must be inactive and have no pending executions before deletion.
@@ -190,7 +190,7 @@ paths:
   /orchestrations/{orchestrationId}/activate:
     post:
       operationId: activateOrchestration
-      summary: Activate an orchestration
+      summary: Workday Extend Activate an orchestration
       description: >-
         Activates a draft or inactive orchestration, making it available for
         triggering and execution.
@@ -216,7 +216,7 @@ paths:
   /orchestrations/{orchestrationId}/deactivate:
     post:
       operationId: deactivateOrchestration
-      summary: Deactivate an orchestration
+      summary: Workday Extend Deactivate an orchestration
       description: >-
         Deactivates an active orchestration, preventing new executions from being
         triggered. In-flight executions are allowed to complete.
@@ -242,7 +242,7 @@ paths:
   /orchestrations/{orchestrationId}/executions:
     get:
       operationId: listOrchestrationExecutions
-      summary: List orchestration executions
+      summary: Workday Extend List orchestration executions
       description: >-
         Returns a collection of execution records for the specified orchestration,
         including completed, running, and failed executions.
@@ -284,7 +284,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: launchOrchestration
-      summary: Launch an orchestration execution
+      summary: Workday Extend Launch an orchestration execution
       description: >-
         Triggers a new execution of the specified orchestration. Supports passing
         input parameters that are mapped to the orchestration's defined inputs.
@@ -318,7 +318,7 @@ paths:
   /orchestrations/{orchestrationId}/executions/{executionId}:
     get:
       operationId: getOrchestrationExecution
-      summary: Retrieve an orchestration execution
+      summary: Workday Extend Retrieve an orchestration execution
       description: >-
         Returns the details of a specific orchestration execution including its
         status, step results, input and output data, and timing information.
@@ -343,7 +343,7 @@ paths:
   /orchestrations/{orchestrationId}/executions/{executionId}/cancel:
     post:
       operationId: cancelOrchestrationExecution
-      summary: Cancel an orchestration execution
+      summary: Workday Extend Cancel an orchestration execution
       description: >-
         Cancels a running orchestration execution. Steps that are currently
         in progress may complete before cancellation takes effect.
@@ -370,7 +370,7 @@ paths:
   /orchestrations/{orchestrationId}/steps:
     get:
       operationId: listOrchestrationSteps
-      summary: List orchestration steps
+      summary: Workday Extend List orchestration steps
       description: >-
         Returns the collection of steps defined within the specified orchestration,
         including their order, type, and configuration.
@@ -401,7 +401,7 @@ paths:
   /orchestrations/{orchestrationId}/triggers:
     get:
       operationId: listOrchestrationTriggers
-      summary: List orchestration triggers
+      summary: Workday Extend List orchestration triggers
       description: >-
         Returns the collection of triggers configured for the specified
         orchestration, including event-based, scheduled, and API triggers.
@@ -431,7 +431,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createOrchestrationTrigger
-      summary: Create an orchestration trigger
+      summary: Workday Extend Create an orchestration trigger
       description: >-
         Adds a new trigger to the specified orchestration. Triggers define how
         and when the orchestration is executed, including event-based triggers

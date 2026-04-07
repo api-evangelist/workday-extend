@@ -45,7 +45,7 @@ paths:
   /apps:
     get:
       operationId: listApps
-      summary: List Extend applications
+      summary: Workday Extend List Extend applications
       description: >-
         Returns a collection of Workday Extend applications registered within the
         tenant. Supports filtering by status, name, and other attributes.
@@ -76,7 +76,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createApp
-      summary: Register a new Extend application
+      summary: Workday Extend Register a new Extend application
       description: >-
         Registers a new Workday Extend application within the tenant. The app
         definition includes metadata, permissions, and configuration schema.
@@ -104,7 +104,7 @@ paths:
   /apps/{appId}:
     get:
       operationId: getApp
-      summary: Retrieve an Extend application
+      summary: Workday Extend Retrieve an Extend application
       description: >-
         Returns the details of a specific Workday Extend application including its
         metadata, configuration, deployment status, and version history.
@@ -127,7 +127,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateApp
-      summary: Update an Extend application
+      summary: Workday Extend Update an Extend application
       description: >-
         Updates the metadata or configuration of an existing Workday Extend
         application. Only the fields provided in the request body are updated.
@@ -158,7 +158,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteApp
-      summary: Delete an Extend application
+      summary: Workday Extend Delete an Extend application
       description: >-
         Removes a Workday Extend application registration from the tenant. The
         application must be undeployed before deletion.
@@ -178,7 +178,7 @@ paths:
   /apps/{appId}/versions:
     get:
       operationId: listAppVersions
-      summary: List application versions
+      summary: Workday Extend List application versions
       description: >-
         Returns a collection of versions for the specified Extend application,
         including draft, published, and deprecated versions.
@@ -210,7 +210,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createAppVersion
-      summary: Create a new application version
+      summary: Workday Extend Create a new application version
       description: >-
         Creates a new version of the specified Extend application. The new version
         is created in draft status and must be published before deployment.
@@ -242,7 +242,7 @@ paths:
   /apps/{appId}/versions/{versionId}:
     get:
       operationId: getAppVersion
-      summary: Retrieve a specific application version
+      summary: Workday Extend Retrieve a specific application version
       description: >-
         Returns the details of a specific version of the Extend application,
         including its status, configuration schema, and changelog.
@@ -267,7 +267,7 @@ paths:
   /apps/{appId}/configurations:
     get:
       operationId: listAppConfigurations
-      summary: List application configurations
+      summary: Workday Extend List application configurations
       description: >-
         Returns the configuration settings for the specified Extend application,
         including environment-specific parameters and feature flags.
@@ -297,7 +297,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateAppConfigurations
-      summary: Update application configurations
+      summary: Workday Extend Update application configurations
       description: >-
         Updates the configuration settings for the specified Extend application.
         Replaces all configuration values with the provided settings.
@@ -329,7 +329,7 @@ paths:
   /apps/{appId}/deployments:
     get:
       operationId: listAppDeployments
-      summary: List application deployments
+      summary: Workday Extend List application deployments
       description: >-
         Returns a collection of deployment records for the specified Extend
         application, including active and historical deployments.
@@ -361,7 +361,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: deployApp
-      summary: Deploy an Extend application
+      summary: Workday Extend Deploy an Extend application
       description: >-
         Initiates a deployment of the specified Extend application version to the
         target environment. The deployment process provisions resources and
@@ -394,7 +394,7 @@ paths:
   /apps/{appId}/deployments/{deploymentId}:
     get:
       operationId: getAppDeployment
-      summary: Retrieve a specific deployment
+      summary: Workday Extend Retrieve a specific deployment
       description: >-
         Returns the details of a specific deployment record including its status,
         deployed version, and deployment timestamp.
