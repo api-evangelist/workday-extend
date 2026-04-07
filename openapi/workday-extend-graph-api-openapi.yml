@@ -32,15 +32,15 @@ tags:
     description: >-
       Operations for querying Workday business objects using the Graph API.
       Supports flexible field selection and relationship traversal.
+  - name: Schema Introspection
+    description: >-
+      Operations for discovering available business objects, their fields,
+      relationships, and query capabilities through the Graph API.
   - name: WQL Query
     description: >-
       Operations for executing Workday Query Language (WQL) queries against
       the Workday data model. WQL provides SQL-like syntax for complex data
       retrieval across business objects.
-  - name: Schema Introspection
-    description: >-
-      Operations for discovering available business objects, their fields,
-      relationships, and query capabilities through the Graph API.
 paths:
   /query:
     post:

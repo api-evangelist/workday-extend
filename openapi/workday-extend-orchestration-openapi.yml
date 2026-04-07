@@ -27,10 +27,6 @@ security:
   - OAuth2:
       - orchestrate:orchestrations
 tags:
-  - name: Orchestrations
-    description: >-
-      Operations for managing orchestration definitions including creation,
-      configuration, versioning, and lifecycle management.
   - name: Orchestration Executions
     description: >-
       Operations for triggering orchestration runs, monitoring execution status,
@@ -43,6 +39,10 @@ tags:
     description: >-
       Operations for configuring orchestration triggers including event-based,
       scheduled, and API-triggered orchestrations.
+  - name: Orchestrations
+    description: >-
+      Operations for managing orchestration definitions including creation,
+      configuration, versioning, and lifecycle management.
 paths:
   /orchestrations:
     get:

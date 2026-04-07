@@ -26,13 +26,6 @@ security:
   - OAuth2:
       - extend:apps
 tags:
-  - name: Apps
-    description: >-
-      Operations for managing Extend applications including registration,
-      deployment, and configuration.
-  - name: App Versions
-    description: >-
-      Operations for managing application versions and release lifecycle.
   - name: App Configurations
     description: >-
       Operations for managing application configuration settings and
@@ -41,6 +34,13 @@ tags:
     description: >-
       Operations for deploying and managing Extend application instances
       within a tenant.
+  - name: App Versions
+    description: >-
+      Operations for managing application versions and release lifecycle.
+  - name: Apps
+    description: >-
+      Operations for managing Extend applications including registration,
+      deployment, and configuration.
 paths:
   /apps:
     get:

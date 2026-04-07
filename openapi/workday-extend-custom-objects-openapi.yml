@@ -32,14 +32,14 @@ tags:
     description: >-
       Operations for defining and managing custom object types including their
       schemas, attributes, and relationships to standard Workday objects.
-  - name: Custom Object Instances
-    description: >-
-      Operations for creating, reading, updating, and deleting custom object
-      data instances attached to Workday business objects.
   - name: Custom Object Fields
     description: >-
       Operations for managing the fields and attributes defined within custom
       object schemas.
+  - name: Custom Object Instances
+    description: >-
+      Operations for creating, reading, updating, and deleting custom object
+      data instances attached to Workday business objects.
 paths:
   /customObjectDefinitions:
     get:
