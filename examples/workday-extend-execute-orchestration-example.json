@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.workday.com/api/orchestrate/v1/{tenant}/orchestrations/{orchestrationId}/executions",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "inputData": {
+        "workerId": "worker_xyz789",
+        "startDate": "2026-06-01",
+        "department": "Engineering"
+      }
+    }
+  },
+  "response": {
+    "status": 202,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "exec_abc999",
+      "orchestration": {
+        "id": "orch_001",
+        "descriptor": "New Hire Onboarding Flow"
+      },
+      "status": "running",
+      "startedOn": "2026-05-03T12:00:00Z",
+      "completedOn": null,
+      "inputData": {
+        "workerId": "worker_xyz789",
+        "startDate": "2026-06-01",
+        "department": "Engineering"
+      },
+      "href": "https://api.workday.com/api/orchestrate/v1/tenant1/orchestrations/orch_001/executions/exec_abc999"
+    }
+  }
+}

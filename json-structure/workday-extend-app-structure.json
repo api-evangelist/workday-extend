@@ -1,0 +1,34 @@
+{
+  "name": "Workday Extend Application",
+  "description": "Structure of a Workday Extend application resource",
+  "fields": [
+    {"name": "id", "type": "string", "description": "Unique application identifier", "required": true},
+    {"name": "descriptor", "type": "string", "description": "Display name"},
+    {"name": "name", "type": "string", "description": "Registered application name", "required": true},
+    {"name": "description", "type": "string", "description": "Application purpose and functionality"},
+    {"name": "status", "type": "enum", "values": ["draft","published","deployed","deprecated"], "description": "Lifecycle status", "required": true},
+    {"name": "category", "type": "string", "description": "Application category"},
+    {
+      "name": "owner",
+      "type": "object",
+      "description": "Worker who owns the application",
+      "fields": [
+        {"name": "id", "type": "string"},
+        {"name": "descriptor", "type": "string"},
+        {"name": "href", "type": "string", "format": "uri"}
+      ]
+    },
+    {
+      "name": "currentVersion",
+      "type": "object",
+      "description": "Currently active version",
+      "fields": [
+        {"name": "id", "type": "string"},
+        {"name": "descriptor", "type": "string"}
+      ]
+    },
+    {"name": "createdOn", "type": "string", "format": "date-time"},
+    {"name": "lastModified", "type": "string", "format": "date-time"},
+    {"name": "href", "type": "string", "format": "uri"}
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workday-extend/main/json-schema/workday-extend-custom-object-schema.json",
+  "title": "Workday Custom Object Definition",
+  "description": "Schema for a Workday Extend custom object type definition.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the custom object definition"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the custom object type"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the custom object type and its purpose"
+    },
+    "parentObjectType": {
+      "type": "string",
+      "enum": ["worker", "organization", "position", "job_profile"],
+      "description": "The standard Workday object this custom object is attached to"
+    },
+    "instanceType": {
+      "type": "string",
+      "enum": ["single", "multi"],
+      "description": "Whether this is a single-instance or multi-instance custom object"
+    },
+    "fields": {
+      "type": "array",
+      "description": "Fields defined in this custom object schema",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "dataType": {
+            "type": "string",
+            "enum": ["text", "number", "boolean", "date", "datetime", "reference", "richtext"]
+          },
+          "required": {"type": "boolean"},
+          "label": {"type": "string"},
+          "description": {"type": "string"}
+        },
+        "required": ["name", "dataType"]
+      }
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": ["id", "name", "parentObjectType"]
+}

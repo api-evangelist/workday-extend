@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.workday.com/api/extend/v1/{tenant}/apps",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Accept": "application/json"
+    },
+    "parameters": {
+      "limit": 20,
+      "offset": 0
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "total": 2,
+      "data": [
+        {
+          "id": "app_abc123",
+          "descriptor": "Employee Onboarding Portal",
+          "name": "employee-onboarding-portal",
+          "description": "Custom onboarding application for new hires",
+          "status": "deployed",
+          "category": "HR",
+          "owner": {
+            "id": "worker_xyz789",
+            "descriptor": "Jane Smith",
+            "href": "https://api.workday.com/api/extend/v1/tenant1/apps/app_abc123"
+          },
+          "currentVersion": {
+            "id": "ver_001",
+            "descriptor": "1.2.0"
+          },
+          "createdOn": "2025-01-15T10:30:00Z",
+          "lastModified": "2026-03-01T14:00:00Z",
+          "href": "https://api.workday.com/api/extend/v1/tenant1/apps/app_abc123"
+        },
+        {
+          "id": "app_def456",
+          "descriptor": "Time Off Tracker",
+          "name": "time-off-tracker",
+          "description": "Custom time-off management dashboard",
+          "status": "published",
+          "category": "HR",
+          "owner": {
+            "id": "worker_abc111",
+            "descriptor": "Bob Johnson",
+            "href": "https://api.workday.com/api/extend/v1/tenant1/apps/app_def456"
+          },
+          "currentVersion": {
+            "id": "ver_002",
+            "descriptor": "2.0.0"
+          },
+          "createdOn": "2025-06-01T08:00:00Z",
+          "lastModified": "2026-02-15T09:30:00Z",
+          "href": "https://api.workday.com/api/extend/v1/tenant1/apps/app_def456"
+        }
+      ]
+    }
+  }
+}

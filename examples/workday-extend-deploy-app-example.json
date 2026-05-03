@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.workday.com/api/extend/v1/{tenant}/apps/{appId}/deployments",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "versionId": "ver_001",
+      "environment": "production"
+    }
+  },
+  "response": {
+    "status": 202,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "deploy_xyz123",
+      "app": {
+        "id": "app_abc123",
+        "descriptor": "Employee Onboarding Portal",
+        "href": "https://api.workday.com/api/extend/v1/tenant1/apps/app_abc123"
+      },
+      "version": {
+        "id": "ver_001",
+        "descriptor": "1.2.0"
+      },
+      "status": "in_progress",
+      "environment": "production",
+      "deployedOn": null,
+      "deployedBy": {
+        "id": "worker_xyz789",
+        "descriptor": "Jane Smith"
+      },
+      "href": "https://api.workday.com/api/extend/v1/tenant1/apps/app_abc123/deployments/deploy_xyz123"
+    }
+  }
+}

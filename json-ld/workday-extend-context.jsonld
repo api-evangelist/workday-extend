@@ -1,0 +1,46 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "wd": "https://www.workday.com/ontology/extend/",
+    "extend": "https://raw.githubusercontent.com/api-evangelist/workday-extend/main/json-ld/",
+
+    "App": "wd:App",
+    "Orchestration": "wd:Orchestration",
+    "OrchestrationExecution": "wd:OrchestrationExecution",
+    "CustomObjectDefinition": "wd:CustomObjectDefinition",
+    "AppVersion": "wd:AppVersion",
+    "AppDeployment": "wd:AppDeployment",
+
+    "id": "@id",
+    "descriptor": "schema:name",
+    "name": "schema:name",
+    "description": "schema:description",
+    "status": "wd:status",
+    "category": "schema:category",
+    "owner": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+    "currentVersion": {
+      "@id": "wd:currentVersion",
+      "@type": "@id"
+    },
+    "createdOn": "schema:dateCreated",
+    "lastModified": "schema:dateModified",
+    "href": "schema:url",
+    "versionNumber": "wd:versionNumber",
+    "changelog": "wd:changelog",
+    "environment": "wd:environment",
+    "triggerType": "wd:triggerType",
+    "steps": "wd:steps",
+    "inputData": "wd:inputData",
+    "parentObjectType": "wd:parentObjectType",
+    "instanceType": "wd:instanceType",
+    "fields": "wd:fields",
+    "dataType": "wd:dataType",
+    "configurations": "wd:configurations",
+    "key": "wd:key",
+    "value": "schema:value",
+    "isSecret": "wd:isSecret"
+  }
+}

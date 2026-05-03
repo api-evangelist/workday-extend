@@ -1,0 +1,104 @@
+name: Workday Extend Vocabulary
+description: Vocabulary and taxonomy for Workday Extend platform APIs covering application development, orchestration automation, and custom data modeling.
+url: https://raw.githubusercontent.com/api-evangelist/workday-extend/main/vocabulary/workday-extend-vocabulary.yml
+created: '2026-05-03'
+modified: '2026-05-03'
+
+domains:
+  - name: Application Lifecycle
+    description: Concepts related to Workday Extend application development and deployment
+    terms:
+      - name: App
+        description: A Workday Extend custom application built on the Extend platform
+        synonyms: [Application, Custom App, Extend App]
+        related: [AppVersion, AppDeployment, AppConfiguration]
+      - name: App Version
+        description: A specific version of an Extend application, following semantic versioning
+        synonyms: [Version, Release]
+        related: [App, AppDeployment]
+      - name: App Deployment
+        description: An instance of an Extend application version deployed to an environment
+        synonyms: [Deployment, Release Deployment]
+        related: [App, AppVersion, Environment]
+      - name: App Configuration
+        description: Environment-specific configuration key-value settings for an application
+        synonyms: [Configuration, Settings, Config]
+        related: [App, Environment]
+      - name: Environment
+        description: A target runtime environment (sandbox or production) for Extend apps
+        values: [sandbox, production]
+
+  - name: Orchestration
+    description: Concepts related to business process automation and orchestration
+    terms:
+      - name: Orchestration
+        description: A visual workflow definition that automates business processes using connected steps
+        synonyms: [Workflow, Business Process Flow, Orchestration Flow]
+        related: [OrchestrationExecution, OrchestrationStep, OrchestrationTrigger]
+      - name: Orchestration Execution
+        description: A running instance of an orchestration with specific input data
+        synonyms: [Execution, Run, Workflow Instance]
+        related: [Orchestration, OrchestrationStep]
+      - name: Orchestration Step
+        description: An individual action within an orchestration flow (connector, transformation, condition)
+        synonyms: [Step, Flow Step, Action]
+        related: [Orchestration]
+      - name: Orchestration Trigger
+        description: The mechanism by which an orchestration is initiated (API, event, schedule, or business process)
+        synonyms: [Trigger, Activation Trigger]
+        values: [api, event, scheduled, business_process]
+        related: [Orchestration]
+
+  - name: Custom Objects
+    description: Concepts for extending the Workday data model with custom objects
+    terms:
+      - name: Custom Object Definition
+        description: A type definition that extends a standard Workday business object with additional fields
+        synonyms: [Custom Object Type, Object Schema, Custom Data Schema]
+        related: [CustomObjectField, ParentObjectType]
+      - name: Custom Object Field
+        description: An individual data attribute defined within a custom object type
+        synonyms: [Field, Attribute, Custom Field]
+        related: [CustomObjectDefinition]
+      - name: Parent Object Type
+        description: The standard Workday business object a custom object is attached to
+        values: [worker, organization, position, job_profile]
+        related: [CustomObjectDefinition]
+      - name: Instance Type
+        description: Whether a custom object supports a single or multiple instances per parent record
+        values: [single, multi]
+
+  - name: Graph API
+    description: Concepts for querying and traversing Workday data via the Graph API
+    terms:
+      - name: WQL Query
+        description: A Workday Query Language statement providing SQL-like access to business objects
+        synonyms: [Workday Query Language, WQL]
+        related: [BusinessObject, GraphQuery]
+      - name: Business Object Type
+        description: A Workday data entity type discoverable and queryable through the Graph API
+        synonyms: [Entity Type, Object Type]
+        related: [WQLQuery]
+
+  - name: Authentication
+    description: Security and identity concepts for Workday Extend
+    terms:
+      - name: OAuth2 Scope
+        description: A permission scope required to access specific Extend API resources
+        synonyms: [API Scope, Permission Scope]
+        examples: [extend:apps, orchestrate:orchestrations, customObjects:manage, graph:read]
+      - name: Tenant
+        description: An isolated Workday instance identified by a unique tenant name in API URLs
+        synonyms: [Workday Tenant, Customer Instance]
+
+tags:
+  - Automation
+  - Custom Applications
+  - Enterprise
+  - Extensions
+  - HCM
+  - Integration
+  - Orchestration
+  - PaaS
+  - Platform
+  - Workday

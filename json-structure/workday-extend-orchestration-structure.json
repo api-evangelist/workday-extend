@@ -1,0 +1,29 @@
+{
+  "name": "Workday Orchestration",
+  "description": "Structure of a Workday Extend orchestration definition",
+  "fields": [
+    {"name": "id", "type": "string", "description": "Unique orchestration identifier", "required": true},
+    {"name": "descriptor", "type": "string", "description": "Display name"},
+    {"name": "name", "type": "string", "description": "Orchestration name", "required": true},
+    {"name": "description", "type": "string", "description": "What this orchestration does"},
+    {"name": "status", "type": "enum", "values": ["draft","active","inactive","deprecated"], "required": true},
+    {"name": "triggerType", "type": "enum", "values": ["api","event","scheduled","business_process"]},
+    {
+      "name": "steps",
+      "type": "array",
+      "description": "Ordered list of orchestration steps",
+      "items": {
+        "type": "object",
+        "fields": [
+          {"name": "id", "type": "string"},
+          {"name": "name", "type": "string"},
+          {"name": "type", "type": "string"},
+          {"name": "order", "type": "integer"}
+        ]
+      }
+    },
+    {"name": "createdOn", "type": "string", "format": "date-time"},
+    {"name": "lastModified", "type": "string", "format": "date-time"},
+    {"name": "href", "type": "string", "format": "uri"}
+  ]
+}

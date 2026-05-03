@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workday-extend/main/json-schema/workday-extend-app-schema.json",
+  "title": "Workday Extend Application",
+  "description": "Schema for a Workday Extend custom application registration.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the Extend application"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "Display name of the application"
+    },
+    "name": {
+      "type": "string",
+      "description": "The registered name of the application",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the application purpose and functionality"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "deployed", "deprecated"],
+      "description": "Current lifecycle status of the application"
+    },
+    "category": {
+      "type": "string",
+      "description": "The application category within Workday"
+    },
+    "owner": {
+      "$ref": "#/$defs/ResourceReference"
+    },
+    "currentVersion": {
+      "$ref": "#/$defs/ResourceReference"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the application was created"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the application was last modified"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "The API resource URL for this application"
+    }
+  },
+  "required": ["id", "name", "status"],
+  "$defs": {
+    "ResourceReference": {
+      "type": "object",
+      "description": "A reference to a Workday resource",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The Workday ID of the referenced resource"
+        },
+        "descriptor": {
+          "type": "string",
+          "description": "The display name of the referenced resource"
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "The API resource URL"
+        }
+      }
+    }
+  }
+}

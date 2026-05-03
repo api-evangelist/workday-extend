@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workday-extend/main/json-schema/workday-extend-orchestration-schema.json",
+  "title": "Workday Orchestration",
+  "description": "Schema for a Workday Extend orchestration definition.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the orchestration"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "Display name of the orchestration"
+    },
+    "name": {
+      "type": "string",
+      "description": "The registered name of the orchestration"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what this orchestration does"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "inactive", "deprecated"],
+      "description": "Current lifecycle status of the orchestration"
+    },
+    "triggerType": {
+      "type": "string",
+      "enum": ["api", "event", "scheduled", "business_process"],
+      "description": "How this orchestration is triggered"
+    },
+    "steps": {
+      "type": "array",
+      "description": "List of steps in the orchestration flow",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "type": {"type": "string"},
+          "order": {"type": "integer"}
+        }
+      }
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the orchestration was created"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the orchestration was last modified"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "The API resource URL for this orchestration"
+    }
+  },
+  "required": ["id", "name", "status"]
+}
