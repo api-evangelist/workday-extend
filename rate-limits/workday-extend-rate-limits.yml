@@ -4,116 +4,28 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Workday Extend
 providerId: workday-extend
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Automation
+  - Low-Code
   - Custom Applications
-  - Enterprise
-  - Extensions
-  - HCM
-  - Human Capital Management
-  - Integration
-  - Orchestration
-  - PaaS
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Workday Extend API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+description: Workday Extend apps run inside the customer's Workday tenant and inherit tenant-level API throughput and integration concurrency limits. Workday does not publish numeric Extend rate limits on its public marketing site; specifics live in Workday Community / Customer Center documentation behind authentication.
+sources:
+  - https://www.workday.com/en-us/enterprise-resource-planning.html
+notes: No publicly documented per-second or per-minute limits exist for Extend apps; scaffold tier numbers have been removed.
+responseCodes: {}
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Workday Extend REST API
-      - Workday Orchestration API
-      - Workday Custom Objects API
-      - Workday Graph API
-      - Workday Orchestrate Insights API
-      - Workday Illuminate AI API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Workday Extend REST API
-      - Workday Orchestration API
-      - Workday Custom Objects API
-      - Workday Graph API
-      - Workday Orchestrate Insights API
-      - Workday Illuminate AI API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Workday Extend REST API
-      - Workday Orchestration API
-      - Workday Custom Objects API
-      - Workday Graph API
-      - Workday Orchestrate Insights API
-      - Workday Illuminate AI API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Workday Extend REST API
-      - Workday Orchestration API
-      - Workday Custom Objects API
-      - Workday Graph API
-      - Workday Orchestrate Insights API
-      - Workday Illuminate AI API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Workday Extend REST API
-      - Workday Orchestration API
-      - Workday Custom Objects API
-      - Workday Graph API
-      - Workday Orchestrate Insights API
-      - Workday Illuminate AI API
+  - name: Tenant-Inherited Throughput
+    scope: tenant
+    metric: varies
+    limit: governed by the parent Workday tenant; not publicly documented
+    notes: Extend apps consume the same Workday API capacity envelope as native integrations; per-tenant transactional and concurrency limits apply.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Tenant Inheritance
+    description: Extend apps share the underlying Workday tenant's API quotas; throttling, retries, and integration backoff follow the tenant's policies rather than a separate Extend rate-limit surface.
+  - name: Customer Center Documentation
+    description: Operational specifics for Extend throughput, app concurrency, and event handling are published to authenticated Workday customers and partners in Workday Community.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com
