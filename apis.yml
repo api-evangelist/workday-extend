@@ -118,7 +118,7 @@ apis:
       - type: Documentation
         url: https://developer.workday.com/documentation
 common:
-  - type: Getting Started
+  - type: GettingStarted
     url: https://doc.workday.com/extend/getting-started/
   - type: Portal
     url: https://developer.workday.com/
@@ -126,7 +126,7 @@ common:
     url: https://developer.workday.com/documentation
   - type: Reference
     url: https://developer.workday.com/documentation/GUID-04def314-83a7-4edf-b84c-c0a5f005b23c-enHYPHENus
-  - type: API Reference
+  - type: APIReference
     url: https://doc.workday.com/extend/reference/
   - type: SDK
     url: https://doc.workday.com/extend/sdk/
@@ -136,17 +136,17 @@ common:
     url: https://forum.developer.workday.com
   - type: Support
     url: https://support.developer.workday.com/s/
-  - type: Change Log
+  - type: ChangeLog
     url: https://doc.workday.com/extend/release-notes/
-  - type: Status
+  - type: StatusPage
     url: https://status.workday.com/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.workday.com/en-us/legal.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.workday.com/en-us/privacy.html
   - type: Authentication
     url: https://doc.workday.com/extend/authentication/
-  - type: Rate Limits
+  - type: RateLimits
     url: https://doc.workday.com/extend/rate-limits/
   - type: Blog
     url: https://blog.workday.com/en-us/introducing-workday-build-developer-platform-build-future-work-ai.html
@@ -156,7 +156,7 @@ common:
     url: https://developer.workday.com/login
   - type: Console
     url: https://developer.workday.com/about
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/Workday
   - type: Marketplace
     url: https://marketplace.workday.com/en-US/home
@@ -168,7 +168,7 @@ common:
     url: rules/workday-extend-rules.yml
   - type: Naftiko Capabilities
     url: capabilities/app-development.yaml
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/workday-extend-context.jsonld
   - type: JSONSchema
     url: json-schema/workday-extend-app-schema.json
