@@ -1,0 +1,179 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend Workday Orchestration API — Orchestration Executions
+  description: 'Workday Extend Workday Orchestration API — Orchestration Executions. 4 operations. Lead operation: Workday
+    Extend List orchestration executions. Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - Orchestration Executions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-orchestration-executions
+    baseUri: https://{baseUrl}/api/orchestrate/v1/{tenant}
+    description: Workday Extend Workday Orchestration API — Orchestration Executions business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: orchestrations-orchestrationId-executions
+      path: /orchestrations/{orchestrationId}/executions
+      operations:
+      - name: listorchestrationexecutions
+        method: GET
+        description: Workday Extend List orchestration executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by execution status
+      - name: launchorchestration
+        method: POST
+        description: Workday Extend Launch an orchestration execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: orchestrations-orchestrationId-executions-executionId
+      path: /orchestrations/{orchestrationId}/executions/{executionId}
+      operations:
+      - name: getorchestrationexecution
+        method: GET
+        description: Workday Extend Retrieve an orchestration execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: orchestrations-orchestrationId-executions-executionId-cancel
+      path: /orchestrations/{orchestrationId}/executions/{executionId}/cancel
+      operations:
+      - name: cancelorchestrationexecution
+        method: POST
+        description: Workday Extend Cancel an orchestration execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: orchestration-orchestration-executions-rest
+    port: 8080
+    description: REST adapter for Workday Extend Workday Orchestration API — Orchestration Executions. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/orchestrations/{orchestrationid}/executions
+      name: orchestrations-orchestrationid-executions
+      description: REST surface for orchestrations-orchestrationId-executions.
+      operations:
+      - method: GET
+        name: listorchestrationexecutions
+        description: Workday Extend List orchestration executions
+        call: orchestration-orchestration-executions.listorchestrationexecutions
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: launchorchestration
+        description: Workday Extend Launch an orchestration execution
+        call: orchestration-orchestration-executions.launchorchestration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orchestrations/{orchestrationid}/executions/{executionid}
+      name: orchestrations-orchestrationid-executions-executionid
+      description: REST surface for orchestrations-orchestrationId-executions-executionId.
+      operations:
+      - method: GET
+        name: getorchestrationexecution
+        description: Workday Extend Retrieve an orchestration execution
+        call: orchestration-orchestration-executions.getorchestrationexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orchestrations/{orchestrationid}/executions/{executionid}/cancel
+      name: orchestrations-orchestrationid-executions-executionid-cancel
+      description: REST surface for orchestrations-orchestrationId-executions-executionId-cancel.
+      operations:
+      - method: POST
+        name: cancelorchestrationexecution
+        description: Workday Extend Cancel an orchestration execution
+        call: orchestration-orchestration-executions.cancelorchestrationexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: orchestration-orchestration-executions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend Workday Orchestration API — Orchestration Executions. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: workday-extend-list-orchestration-executions
+      description: Workday Extend List orchestration executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: orchestration-orchestration-executions.listorchestrationexecutions
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-launch-orchestration-execution
+      description: Workday Extend Launch an orchestration execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: orchestration-orchestration-executions.launchorchestration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-retrieve-orchestration-execution
+      description: Workday Extend Retrieve an orchestration execution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: orchestration-orchestration-executions.getorchestrationexecution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-cancel-orchestration-execution
+      description: Workday Extend Cancel an orchestration execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: orchestration-orchestration-executions.cancelorchestrationexecution
+      outputParameters:
+      - type: object
+        mapping: $.

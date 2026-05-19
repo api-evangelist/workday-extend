@@ -1,0 +1,137 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend REST API — App Versions
+  description: 'Workday Extend REST API — App Versions. 3 operations. Lead operation: Workday Extend List application versions.
+    Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - App Versions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-app-versions
+    baseUri: https://{baseUrl}/api/extend/v1/{tenant}
+    description: Workday Extend REST API — App Versions business capability. Self-contained, no shared references.
+    resources:
+    - name: apps-appId-versions
+      path: /apps/{appId}/versions
+      operations:
+      - name: listappversions
+        method: GET
+        description: Workday Extend List application versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createappversion
+        method: POST
+        description: Workday Extend Create a new application version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: apps-appId-versions-versionId
+      path: /apps/{appId}/versions/{versionId}
+      operations:
+      - name: getappversion
+        method: GET
+        description: Workday Extend Retrieve a specific application version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-app-versions-rest
+    port: 8080
+    description: REST adapter for Workday Extend REST API — App Versions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/apps/{appid}/versions
+      name: apps-appid-versions
+      description: REST surface for apps-appId-versions.
+      operations:
+      - method: GET
+        name: listappversions
+        description: Workday Extend List application versions
+        call: rest-app-versions.listappversions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createappversion
+        description: Workday Extend Create a new application version
+        call: rest-app-versions.createappversion
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apps/{appid}/versions/{versionid}
+      name: apps-appid-versions-versionid
+      description: REST surface for apps-appId-versions-versionId.
+      operations:
+      - method: GET
+        name: getappversion
+        description: Workday Extend Retrieve a specific application version
+        call: rest-app-versions.getappversion
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-app-versions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend REST API — App Versions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: workday-extend-list-application-versions
+      description: Workday Extend List application versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-app-versions.listappversions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-create-new-application
+      description: Workday Extend Create a new application version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-app-versions.createappversion
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-retrieve-specific-application
+      description: Workday Extend Retrieve a specific application version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-app-versions.getappversion
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend Workday Graph API — Schema Introspection
+  description: 'Workday Extend Workday Graph API — Schema Introspection. 3 operations. Lead operation: Workday Extend Retrieve
+    the graph schema. Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - Schema Introspection
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: graph-schema-introspection
+    baseUri: https://{baseUrl}/api/graphql/v1/{tenant}
+    description: Workday Extend Workday Graph API — Schema Introspection business capability. Self-contained, no shared references.
+    resources:
+    - name: schema
+      path: /schema
+      operations:
+      - name: getschema
+        method: GET
+        description: Workday Extend Retrieve the graph schema
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schema-types
+      path: /schema/types
+      operations:
+      - name: listschematypes
+        method: GET
+        description: Workday Extend List available business object types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schema-types-typeName
+      path: /schema/types/{typeName}
+      operations:
+      - name: getschematype
+        method: GET
+        description: Workday Extend Retrieve a specific business object type schema
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: typeName
+          in: path
+          type: string
+          description: The name of the business object type
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: graph-schema-introspection-rest
+    port: 8080
+    description: REST adapter for Workday Extend Workday Graph API — Schema Introspection. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/schema
+      name: schema
+      description: REST surface for schema.
+      operations:
+      - method: GET
+        name: getschema
+        description: Workday Extend Retrieve the graph schema
+        call: graph-schema-introspection.getschema
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/schema/types
+      name: schema-types
+      description: REST surface for schema-types.
+      operations:
+      - method: GET
+        name: listschematypes
+        description: Workday Extend List available business object types
+        call: graph-schema-introspection.listschematypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/schema/types/{typename}
+      name: schema-types-typename
+      description: REST surface for schema-types-typeName.
+      operations:
+      - method: GET
+        name: getschematype
+        description: Workday Extend Retrieve a specific business object type schema
+        call: graph-schema-introspection.getschematype
+        with:
+          typeName: rest.typeName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: graph-schema-introspection-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend Workday Graph API — Schema Introspection. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: workday-extend-retrieve-graph-schema
+      description: Workday Extend Retrieve the graph schema
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: graph-schema-introspection.getschema
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-list-available-business
+      description: Workday Extend List available business object types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: graph-schema-introspection.listschematypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-retrieve-specific-business
+      description: Workday Extend Retrieve a specific business object type schema
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: graph-schema-introspection.getschematype
+      with:
+        typeName: tools.typeName
+      outputParameters:
+      - type: object
+        mapping: $.

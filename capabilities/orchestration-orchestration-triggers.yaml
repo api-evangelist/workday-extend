@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend Workday Orchestration API — Orchestration Triggers
+  description: 'Workday Extend Workday Orchestration API — Orchestration Triggers. 2 operations. Lead operation: Workday Extend
+    List orchestration triggers. Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - Orchestration Triggers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-orchestration-triggers
+    baseUri: https://{baseUrl}/api/orchestrate/v1/{tenant}
+    description: Workday Extend Workday Orchestration API — Orchestration Triggers business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: orchestrations-orchestrationId-triggers
+      path: /orchestrations/{orchestrationId}/triggers
+      operations:
+      - name: listorchestrationtriggers
+        method: GET
+        description: Workday Extend List orchestration triggers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorchestrationtrigger
+        method: POST
+        description: Workday Extend Create an orchestration trigger
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: orchestration-orchestration-triggers-rest
+    port: 8080
+    description: REST adapter for Workday Extend Workday Orchestration API — Orchestration Triggers. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/orchestrations/{orchestrationid}/triggers
+      name: orchestrations-orchestrationid-triggers
+      description: REST surface for orchestrations-orchestrationId-triggers.
+      operations:
+      - method: GET
+        name: listorchestrationtriggers
+        description: Workday Extend List orchestration triggers
+        call: orchestration-orchestration-triggers.listorchestrationtriggers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createorchestrationtrigger
+        description: Workday Extend Create an orchestration trigger
+        call: orchestration-orchestration-triggers.createorchestrationtrigger
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: orchestration-orchestration-triggers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend Workday Orchestration API — Orchestration Triggers. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: workday-extend-list-orchestration-triggers
+      description: Workday Extend List orchestration triggers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: orchestration-orchestration-triggers.listorchestrationtriggers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-create-orchestration-trigger
+      description: Workday Extend Create an orchestration trigger
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: orchestration-orchestration-triggers.createorchestrationtrigger
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

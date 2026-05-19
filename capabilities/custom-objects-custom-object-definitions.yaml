@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend Workday Custom Objects API — Custom Object Definitions
+  description: 'Workday Extend Workday Custom Objects API — Custom Object Definitions. 5 operations. Lead operation: Workday
+    Extend List custom object definitions. Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - Custom Object Definitions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: custom-objects-custom-object-definitions
+    baseUri: https://{baseUrl}/api/customObjects/v1/{tenant}
+    description: Workday Extend Workday Custom Objects API — Custom Object Definitions business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: customObjectDefinitions
+      path: /customObjectDefinitions
+      operations:
+      - name: listcustomobjectdefinitions
+        method: GET
+        description: Workday Extend List custom object definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcustomobjectdefinition
+        method: POST
+        description: Workday Extend Create a custom object definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: customObjectDefinitions-definitionId
+      path: /customObjectDefinitions/{definitionId}
+      operations:
+      - name: getcustomobjectdefinition
+        method: GET
+        description: Workday Extend Retrieve a custom object definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecustomobjectdefinition
+        method: PATCH
+        description: Workday Extend Update a custom object definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecustomobjectdefinition
+        method: DELETE
+        description: Workday Extend Delete a custom object definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: custom-objects-custom-object-definitions-rest
+    port: 8080
+    description: REST adapter for Workday Extend Workday Custom Objects API — Custom Object Definitions. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/customobjectdefinitions
+      name: customobjectdefinitions
+      description: REST surface for customObjectDefinitions.
+      operations:
+      - method: GET
+        name: listcustomobjectdefinitions
+        description: Workday Extend List custom object definitions
+        call: custom-objects-custom-object-definitions.listcustomobjectdefinitions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustomobjectdefinition
+        description: Workday Extend Create a custom object definition
+        call: custom-objects-custom-object-definitions.createcustomobjectdefinition
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customobjectdefinitions/{definitionid}
+      name: customobjectdefinitions-definitionid
+      description: REST surface for customObjectDefinitions-definitionId.
+      operations:
+      - method: GET
+        name: getcustomobjectdefinition
+        description: Workday Extend Retrieve a custom object definition
+        call: custom-objects-custom-object-definitions.getcustomobjectdefinition
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecustomobjectdefinition
+        description: Workday Extend Update a custom object definition
+        call: custom-objects-custom-object-definitions.updatecustomobjectdefinition
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecustomobjectdefinition
+        description: Workday Extend Delete a custom object definition
+        call: custom-objects-custom-object-definitions.deletecustomobjectdefinition
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: custom-objects-custom-object-definitions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend Workday Custom Objects API — Custom Object Definitions. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: workday-extend-list-custom-object
+      description: Workday Extend List custom object definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-definitions.listcustomobjectdefinitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-create-custom-object
+      description: Workday Extend Create a custom object definition
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: custom-objects-custom-object-definitions.createcustomobjectdefinition
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-retrieve-custom-object
+      description: Workday Extend Retrieve a custom object definition
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-definitions.getcustomobjectdefinition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-update-custom-object
+      description: Workday Extend Update a custom object definition
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-definitions.updatecustomobjectdefinition
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-delete-custom-object
+      description: Workday Extend Delete a custom object definition
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: custom-objects-custom-object-definitions.deletecustomobjectdefinition
+      outputParameters:
+      - type: object
+        mapping: $.

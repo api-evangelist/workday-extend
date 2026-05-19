@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend Workday Orchestration API — Orchestration Steps
+  description: 'Workday Extend Workday Orchestration API — Orchestration Steps. 1 operations. Lead operation: Workday Extend
+    List orchestration steps. Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - Orchestration Steps
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: orchestration-orchestration-steps
+    baseUri: https://{baseUrl}/api/orchestrate/v1/{tenant}
+    description: Workday Extend Workday Orchestration API — Orchestration Steps business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: orchestrations-orchestrationId-steps
+      path: /orchestrations/{orchestrationId}/steps
+      operations:
+      - name: listorchestrationsteps
+        method: GET
+        description: Workday Extend List orchestration steps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: orchestration-orchestration-steps-rest
+    port: 8080
+    description: REST adapter for Workday Extend Workday Orchestration API — Orchestration Steps. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/orchestrations/{orchestrationid}/steps
+      name: orchestrations-orchestrationid-steps
+      description: REST surface for orchestrations-orchestrationId-steps.
+      operations:
+      - method: GET
+        name: listorchestrationsteps
+        description: Workday Extend List orchestration steps
+        call: orchestration-orchestration-steps.listorchestrationsteps
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: orchestration-orchestration-steps-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend Workday Orchestration API — Orchestration Steps. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: workday-extend-list-orchestration-steps
+      description: Workday Extend List orchestration steps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: orchestration-orchestration-steps.listorchestrationsteps
+      outputParameters:
+      - type: object
+        mapping: $.

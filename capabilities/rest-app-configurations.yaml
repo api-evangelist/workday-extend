@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend REST API — App Configurations
+  description: 'Workday Extend REST API — App Configurations. 2 operations. Lead operation: Workday Extend List application
+    configurations. Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - App Configurations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-app-configurations
+    baseUri: https://{baseUrl}/api/extend/v1/{tenant}
+    description: Workday Extend REST API — App Configurations business capability. Self-contained, no shared references.
+    resources:
+    - name: apps-appId-configurations
+      path: /apps/{appId}/configurations
+      operations:
+      - name: listappconfigurations
+        method: GET
+        description: Workday Extend List application configurations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateappconfigurations
+        method: PUT
+        description: Workday Extend Update application configurations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-app-configurations-rest
+    port: 8080
+    description: REST adapter for Workday Extend REST API — App Configurations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/apps/{appid}/configurations
+      name: apps-appid-configurations
+      description: REST surface for apps-appId-configurations.
+      operations:
+      - method: GET
+        name: listappconfigurations
+        description: Workday Extend List application configurations
+        call: rest-app-configurations.listappconfigurations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateappconfigurations
+        description: Workday Extend Update application configurations
+        call: rest-app-configurations.updateappconfigurations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-app-configurations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend REST API — App Configurations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: workday-extend-list-application-configurations
+      description: Workday Extend List application configurations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-app-configurations.listappconfigurations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-update-application-configurations
+      description: Workday Extend Update application configurations
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-app-configurations.updateappconfigurations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

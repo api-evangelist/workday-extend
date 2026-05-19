@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend Workday Custom Objects API — Custom Object Instances
+  description: 'Workday Extend Workday Custom Objects API — Custom Object Instances. 5 operations. Lead operation: Workday
+    Extend Retrieve custom object data for an organization. Self-contained Naftiko capability covering one Workday Extend
+    business surface.'
+  tags:
+  - Workday Extend
+  - Custom Object Instances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: custom-objects-custom-object-instances
+    baseUri: https://{baseUrl}/api/customObjects/v1/{tenant}
+    description: Workday Extend Workday Custom Objects API — Custom Object Instances business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: organizations-organizationId-customObjects-customObjectName
+      path: /organizations/{organizationId}/customObjects/{customObjectName}
+      operations:
+      - name: getorganizationcustomobject
+        method: GET
+        description: Workday Extend Retrieve custom object data for an organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateorganizationcustomobject
+        method: PUT
+        description: Workday Extend Create or update custom object data for an organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workers-workerId-customObjects-customObjectName
+      path: /workers/{workerId}/customObjects/{customObjectName}
+      operations:
+      - name: getworkercustomobject
+        method: GET
+        description: Workday Extend Retrieve custom object data for a worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateworkercustomobject
+        method: PUT
+        description: Workday Extend Create or update custom object data for a worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworkercustomobject
+        method: DELETE
+        description: Workday Extend Delete custom object data for a worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: custom-objects-custom-object-instances-rest
+    port: 8080
+    description: REST adapter for Workday Extend Workday Custom Objects API — Custom Object Instances. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/organizations/{organizationid}/customobjects/{customobjectname}
+      name: organizations-organizationid-customobjects-customobjectname
+      description: REST surface for organizations-organizationId-customObjects-customObjectName.
+      operations:
+      - method: GET
+        name: getorganizationcustomobject
+        description: Workday Extend Retrieve custom object data for an organization
+        call: custom-objects-custom-object-instances.getorganizationcustomobject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateorganizationcustomobject
+        description: Workday Extend Create or update custom object data for an organization
+        call: custom-objects-custom-object-instances.updateorganizationcustomobject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workers/{workerid}/customobjects/{customobjectname}
+      name: workers-workerid-customobjects-customobjectname
+      description: REST surface for workers-workerId-customObjects-customObjectName.
+      operations:
+      - method: GET
+        name: getworkercustomobject
+        description: Workday Extend Retrieve custom object data for a worker
+        call: custom-objects-custom-object-instances.getworkercustomobject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateworkercustomobject
+        description: Workday Extend Create or update custom object data for a worker
+        call: custom-objects-custom-object-instances.updateworkercustomobject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkercustomobject
+        description: Workday Extend Delete custom object data for a worker
+        call: custom-objects-custom-object-instances.deleteworkercustomobject
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: custom-objects-custom-object-instances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend Workday Custom Objects API — Custom Object Instances. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: workday-extend-retrieve-custom-object
+      description: Workday Extend Retrieve custom object data for an organization
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-instances.getorganizationcustomobject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-create-update-custom
+      description: Workday Extend Create or update custom object data for an organization
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-instances.updateorganizationcustomobject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-retrieve-custom-object-2
+      description: Workday Extend Retrieve custom object data for a worker
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-instances.getworkercustomobject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-create-update-custom-2
+      description: Workday Extend Create or update custom object data for a worker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-instances.updateworkercustomobject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-delete-custom-object
+      description: Workday Extend Delete custom object data for a worker
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: custom-objects-custom-object-instances.deleteworkercustomobject
+      outputParameters:
+      - type: object
+        mapping: $.

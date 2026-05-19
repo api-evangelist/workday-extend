@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Extend Workday Custom Objects API — Custom Object Fields
+  description: 'Workday Extend Workday Custom Objects API — Custom Object Fields. 2 operations. Lead operation: Workday Extend
+    List custom object fields. Self-contained Naftiko capability covering one Workday Extend business surface.'
+  tags:
+  - Workday Extend
+  - Custom Object Fields
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_EXTEND_API_KEY: WORKDAY_EXTEND_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: custom-objects-custom-object-fields
+    baseUri: https://{baseUrl}/api/customObjects/v1/{tenant}
+    description: Workday Extend Workday Custom Objects API — Custom Object Fields business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: customObjectDefinitions-definitionId-fields
+      path: /customObjectDefinitions/{definitionId}/fields
+      operations:
+      - name: listcustomobjectfields
+        method: GET
+        description: Workday Extend List custom object fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addcustomobjectfield
+        method: POST
+        description: Workday Extend Add a field to a custom object definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_EXTEND_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: custom-objects-custom-object-fields-rest
+    port: 8080
+    description: REST adapter for Workday Extend Workday Custom Objects API — Custom Object Fields. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/customobjectdefinitions/{definitionid}/fields
+      name: customobjectdefinitions-definitionid-fields
+      description: REST surface for customObjectDefinitions-definitionId-fields.
+      operations:
+      - method: GET
+        name: listcustomobjectfields
+        description: Workday Extend List custom object fields
+        call: custom-objects-custom-object-fields.listcustomobjectfields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addcustomobjectfield
+        description: Workday Extend Add a field to a custom object definition
+        call: custom-objects-custom-object-fields.addcustomobjectfield
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: custom-objects-custom-object-fields-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Extend Workday Custom Objects API — Custom Object Fields. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: workday-extend-list-custom-object
+      description: Workday Extend List custom object fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: custom-objects-custom-object-fields.listcustomobjectfields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: workday-extend-add-field-custom
+      description: Workday Extend Add a field to a custom object definition
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: custom-objects-custom-object-fields.addcustomobjectfield
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
