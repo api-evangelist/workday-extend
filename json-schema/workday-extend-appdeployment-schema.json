@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppDeployment",
+  "title": "AppDeployment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the deployment"
+    },
+    "app": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "version": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "deployed",
+        "failed",
+        "rolled_back"
+      ],
+      "description": "Current status of the deployment"
+    },
+    "environment": {
+      "type": "string",
+      "enum": [
+        "sandbox",
+        "production"
+      ],
+      "description": "Target deployment environment"
+    },
+    "deployedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the deployment completed"
+    },
+    "deployedBy": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

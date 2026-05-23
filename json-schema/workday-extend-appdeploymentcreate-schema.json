@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppDeploymentCreate",
+  "title": "AppDeploymentCreate",
+  "type": "object",
+  "required": [
+    "versionId"
+  ],
+  "properties": {
+    "versionId": {
+      "type": "string",
+      "description": "The ID of the application version to deploy"
+    },
+    "environment": {
+      "type": "string",
+      "enum": [
+        "sandbox",
+        "production"
+      ],
+      "description": "Target deployment environment"
+    }
+  }
+}

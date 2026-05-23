@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectDefinitionUpdate",
+  "title": "CustomObjectDefinitionUpdate",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Updated description"
+    },
+    "isActive": {
+      "type": "boolean",
+      "description": "Whether the definition is active"
+    }
+  }
+}

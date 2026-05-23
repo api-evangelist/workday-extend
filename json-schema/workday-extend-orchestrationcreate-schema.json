@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrchestrationCreate",
+  "title": "OrchestrationCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "description"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the orchestration",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the orchestration"
+    },
+    "triggerType": {
+      "type": "string",
+      "enum": [
+        "event",
+        "api",
+        "schedule",
+        "business_process"
+      ],
+      "description": "The primary trigger type"
+    }
+  }
+}

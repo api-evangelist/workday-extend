@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppUpdate",
+  "title": "AppUpdate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated application name",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated application description"
+    },
+    "category": {
+      "type": "string",
+      "description": "Updated application category"
+    }
+  }
+}

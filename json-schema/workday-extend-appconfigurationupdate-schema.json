@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppConfigurationUpdate",
+  "title": "AppConfigurationUpdate",
+  "type": "object",
+  "properties": {
+    "configurations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "json"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

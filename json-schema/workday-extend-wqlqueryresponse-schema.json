@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WqlQueryResponse",
+  "title": "WqlQueryResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "Array of result rows matching the WQL query"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of matching records"
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Column name from the query"
+          },
+          "dataType": {
+            "type": "string",
+            "description": "Data type of the column values"
+          }
+        }
+      },
+      "description": "Metadata about the result columns"
+    }
+  }
+}

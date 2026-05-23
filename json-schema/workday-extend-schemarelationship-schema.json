@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchemaRelationship",
+  "title": "SchemaRelationship",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Relationship name"
+    },
+    "targetType": {
+      "type": "string",
+      "description": "The related business object type"
+    },
+    "cardinality": {
+      "type": "string",
+      "enum": [
+        "one-to-one",
+        "one-to-many",
+        "many-to-many"
+      ],
+      "description": "Relationship cardinality"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the relationship"
+    }
+  }
+}

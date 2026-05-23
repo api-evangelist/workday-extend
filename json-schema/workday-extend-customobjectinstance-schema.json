@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectInstance",
+  "title": "CustomObjectInstance",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the custom object instance"
+    },
+    "definition": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "parentObject": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The custom object field values as key-value pairs where keys are field API names and values match the field data types"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the instance was created"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the instance was last modified"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

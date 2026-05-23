@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectFieldCreate",
+  "title": "CustomObjectFieldCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "dataType"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The API name of the field",
+      "maxLength": 128,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The display label for the field"
+    },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "number",
+        "decimal",
+        "boolean",
+        "date",
+        "dateTime",
+        "currency",
+        "reference",
+        "richText"
+      ]
+    },
+    "isRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "maxLength": {
+      "type": "integer",
+      "description": "Maximum length for text fields"
+    },
+    "referenceObjectType": {
+      "type": "string",
+      "description": "Required for reference type fields"
+    },
+    "defaultValue": {
+      "type": "string"
+    }
+  }
+}

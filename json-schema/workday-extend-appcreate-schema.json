@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppCreate",
+  "title": "AppCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "description"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the Extend application",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the application"
+    },
+    "category": {
+      "type": "string",
+      "description": "The application category"
+    }
+  }
+}

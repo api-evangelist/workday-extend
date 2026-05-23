@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WqlQueryRequest",
+  "title": "WqlQueryRequest",
+  "type": "object",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The WQL query string using SQL-like syntax. Example: SELECT worker, fullName, businessTitle FROM workers WHERE isActive = true LIMIT 50 OFFSET 0"
+    }
+  }
+}

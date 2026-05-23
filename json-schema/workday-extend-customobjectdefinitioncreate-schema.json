@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectDefinitionCreate",
+  "title": "CustomObjectDefinitionCreate",
+  "type": "object",
+  "required": [
+    "name",
+    "instanceType",
+    "parentObjectType"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The API name for the custom object type",
+      "maxLength": 128,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the custom object type"
+    },
+    "instanceType": {
+      "type": "string",
+      "enum": [
+        "single",
+        "multi"
+      ],
+      "description": "Whether instances are single or multi per parent object"
+    },
+    "parentObjectType": {
+      "type": "string",
+      "enum": [
+        "worker",
+        "organization",
+        "position",
+        "jobProfile"
+      ],
+      "description": "The standard Workday object type to extend"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomObjectFieldCreate"
+      },
+      "description": "Initial fields for the custom object"
+    }
+  }
+}

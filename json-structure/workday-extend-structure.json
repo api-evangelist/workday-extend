@@ -1,0 +1,204 @@
+{
+  "provider": "Workday Extend",
+  "providerId": "workday-extend",
+  "kind": "json-structure",
+  "description": "Structural overview of the Workday Extend API surface; extracted from openapi/.",
+  "schemaCount": 10,
+  "operationCount": 14,
+  "schemas": [
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ResourceReference",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Orchestration",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "OrchestrationCreate",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "description"
+      ]
+    },
+    {
+      "name": "OrchestrationUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "OrchestrationExecution",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "OrchestrationLaunch",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "OrchestrationStep",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "OrchestrationTrigger",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "OrchestrationTriggerCreate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type",
+        "name"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/orchestrations",
+      "operationId": "listOrchestrations",
+      "summary": "Workday Extend List orchestrations",
+      "tags": [
+        "Orchestrations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestrations",
+      "operationId": "createOrchestration",
+      "summary": "Workday Extend Create an orchestration",
+      "tags": [
+        "Orchestrations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestrations/{orchestrationId}",
+      "operationId": "getOrchestration",
+      "summary": "Workday Extend Retrieve an orchestration",
+      "tags": [
+        "Orchestrations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/orchestrations/{orchestrationId}",
+      "operationId": "deleteOrchestration",
+      "summary": "Workday Extend Delete an orchestration",
+      "tags": [
+        "Orchestrations"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/orchestrations/{orchestrationId}",
+      "operationId": "updateOrchestration",
+      "summary": "Workday Extend Update an orchestration",
+      "tags": [
+        "Orchestrations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestrations/{orchestrationId}/activate",
+      "operationId": "activateOrchestration",
+      "summary": "Workday Extend Activate an orchestration",
+      "tags": [
+        "Orchestrations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestrations/{orchestrationId}/deactivate",
+      "operationId": "deactivateOrchestration",
+      "summary": "Workday Extend Deactivate an orchestration",
+      "tags": [
+        "Orchestrations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestrations/{orchestrationId}/executions",
+      "operationId": "listOrchestrationExecutions",
+      "summary": "Workday Extend List orchestration executions",
+      "tags": [
+        "Orchestration Executions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestrations/{orchestrationId}/executions",
+      "operationId": "launchOrchestration",
+      "summary": "Workday Extend Launch an orchestration execution",
+      "tags": [
+        "Orchestration Executions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestrations/{orchestrationId}/executions/{executionId}",
+      "operationId": "getOrchestrationExecution",
+      "summary": "Workday Extend Retrieve an orchestration execution",
+      "tags": [
+        "Orchestration Executions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestrations/{orchestrationId}/executions/{executionId}/cancel",
+      "operationId": "cancelOrchestrationExecution",
+      "summary": "Workday Extend Cancel an orchestration execution",
+      "tags": [
+        "Orchestration Executions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestrations/{orchestrationId}/steps",
+      "operationId": "listOrchestrationSteps",
+      "summary": "Workday Extend List orchestration steps",
+      "tags": [
+        "Orchestration Steps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orchestrations/{orchestrationId}/triggers",
+      "operationId": "listOrchestrationTriggers",
+      "summary": "Workday Extend List orchestration triggers",
+      "tags": [
+        "Orchestration Triggers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orchestrations/{orchestrationId}/triggers",
+      "operationId": "createOrchestrationTrigger",
+      "summary": "Workday Extend Create an orchestration trigger",
+      "tags": [
+        "Orchestration Triggers"
+      ]
+    }
+  ]
+}

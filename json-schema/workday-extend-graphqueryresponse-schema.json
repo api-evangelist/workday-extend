@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GraphQueryResponse",
+  "title": "GraphQueryResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The query result data organized by the queried business object types"
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of matching records"
+    },
+    "hasMore": {
+      "type": "boolean",
+      "description": "Whether additional results are available beyond the current page"
+    }
+  }
+}

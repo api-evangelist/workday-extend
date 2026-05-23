@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrchestrationTriggerCreate",
+  "title": "OrchestrationTriggerCreate",
+  "type": "object",
+  "required": [
+    "type",
+    "name"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "event",
+        "api",
+        "schedule",
+        "business_process"
+      ],
+      "description": "The type of trigger"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name for the trigger"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the trigger"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Trigger-specific configuration parameters"
+    }
+  }
+}

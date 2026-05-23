@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppConfiguration",
+  "title": "AppConfiguration",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Configuration identifier"
+    },
+    "key": {
+      "type": "string",
+      "description": "Configuration setting key"
+    },
+    "value": {
+      "type": "string",
+      "description": "Configuration setting value"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the configuration setting"
+    },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "string",
+        "number",
+        "boolean",
+        "json"
+      ],
+      "description": "Data type of the configuration value"
+    },
+    "isSecret": {
+      "type": "boolean",
+      "description": "Whether the value is stored as a secret"
+    }
+  }
+}

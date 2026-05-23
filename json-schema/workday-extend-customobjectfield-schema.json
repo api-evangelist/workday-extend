@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectField",
+  "title": "CustomObjectField",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the field"
+    },
+    "name": {
+      "type": "string",
+      "description": "The API name of the field"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The display label for the field"
+    },
+    "dataType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "number",
+        "decimal",
+        "boolean",
+        "date",
+        "dateTime",
+        "currency",
+        "reference",
+        "richText"
+      ],
+      "description": "The data type of the field"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "description": "Whether the field is required"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "description": "Whether the field is read-only"
+    },
+    "maxLength": {
+      "type": "integer",
+      "description": "Maximum length for text fields"
+    },
+    "precision": {
+      "type": "integer",
+      "description": "Decimal precision for numeric fields"
+    },
+    "referenceObjectType": {
+      "type": "string",
+      "description": "The Workday object type for reference fields"
+    },
+    "defaultValue": {
+      "type": "string",
+      "description": "Default value for the field"
+    }
+  }
+}

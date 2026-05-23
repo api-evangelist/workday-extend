@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GraphQueryRequest",
+  "title": "GraphQueryRequest",
+  "type": "object",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The graph query string specifying the business objects, fields, filters, and relationships to retrieve"
+    },
+    "variables": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Variables to substitute into the query. Referenced in the query using the $variableName syntax."
+    },
+    "limit": {
+      "type": "integer",
+      "default": 20,
+      "maximum": 100,
+      "description": "Maximum number of results to return"
+    },
+    "offset": {
+      "type": "integer",
+      "default": 0,
+      "description": "Number of results to skip for pagination"
+    }
+  }
+}

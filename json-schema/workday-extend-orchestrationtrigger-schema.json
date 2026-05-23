@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrchestrationTrigger",
+  "title": "OrchestrationTrigger",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the trigger"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "event",
+        "api",
+        "schedule",
+        "business_process"
+      ],
+      "description": "The type of trigger"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the trigger"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the trigger"
+    },
+    "isActive": {
+      "type": "boolean",
+      "description": "Whether the trigger is currently active"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Trigger-specific configuration"
+    }
+  }
+}

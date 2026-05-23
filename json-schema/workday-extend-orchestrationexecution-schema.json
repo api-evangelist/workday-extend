@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrchestrationExecution",
+  "title": "OrchestrationExecution",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the execution"
+    },
+    "orchestration": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "running",
+        "completed",
+        "failed",
+        "cancelled"
+      ],
+      "description": "Current status of the execution"
+    },
+    "triggeredBy": {
+      "type": "string",
+      "enum": [
+        "api",
+        "event",
+        "schedule",
+        "business_process",
+        "manual"
+      ],
+      "description": "How the execution was triggered"
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Input parameters provided to the execution"
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Output data produced by the execution"
+    },
+    "startedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the execution started"
+    },
+    "completedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the execution completed"
+    },
+    "durationMs": {
+      "type": "integer",
+      "description": "Execution duration in milliseconds"
+    },
+    "stepsCompleted": {
+      "type": "integer",
+      "description": "Number of steps completed in this execution"
+    },
+    "stepsTotal": {
+      "type": "integer",
+      "description": "Total number of steps in this execution"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message if the execution failed"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

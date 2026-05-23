@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrchestrationUpdate",
+  "title": "OrchestrationUpdate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated orchestration name",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated orchestration description"
+    }
+  }
+}

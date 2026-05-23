@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppVersion",
+  "title": "AppVersion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the application version"
+    },
+    "versionNumber": {
+      "type": "string",
+      "description": "Semantic version number of the application"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "deprecated"
+      ],
+      "description": "Current status of this version"
+    },
+    "changelog": {
+      "type": "string",
+      "description": "Description of changes in this version"
+    },
+    "createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the version was created"
+    },
+    "publishedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the version was published"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

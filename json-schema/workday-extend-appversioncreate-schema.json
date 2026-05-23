@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppVersionCreate",
+  "title": "AppVersionCreate",
+  "type": "object",
+  "required": [
+    "versionNumber"
+  ],
+  "properties": {
+    "versionNumber": {
+      "type": "string",
+      "description": "Semantic version number for the new version"
+    },
+    "changelog": {
+      "type": "string",
+      "description": "Description of changes in this version"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectData",
+  "title": "CustomObjectData",
+  "type": "object",
+  "additionalProperties": true,
+  "description": "Custom object field values as key-value pairs. Keys must match the field API names defined in the custom object definition. Values must conform to the field data types."
+}

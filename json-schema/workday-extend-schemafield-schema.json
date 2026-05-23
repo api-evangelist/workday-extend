@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchemaField",
+  "title": "SchemaField",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Field name"
+    },
+    "dataType": {
+      "type": "string",
+      "description": "Data type of the field"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the field"
+    },
+    "isFilterable": {
+      "type": "boolean",
+      "description": "Whether this field can be used in filters"
+    },
+    "isSortable": {
+      "type": "boolean",
+      "description": "Whether results can be sorted by this field"
+    }
+  }
+}

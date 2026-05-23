@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrchestrationLaunch",
+  "title": "OrchestrationLaunch",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Input parameters to pass to the orchestration. The keys must match the orchestration's defined input parameter names."
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrchestrationStep",
+  "title": "OrchestrationStep",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the step"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the orchestration step"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "connector",
+        "transformation",
+        "condition",
+        "loop",
+        "subOrchestration",
+        "notification",
+        "workdayApi",
+        "restApi",
+        "soapApi"
+      ],
+      "description": "The type of step"
+    },
+    "order": {
+      "type": "integer",
+      "description": "Position of the step in the orchestration flow"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what this step does"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Step-specific configuration parameters"
+    }
+  }
+}
