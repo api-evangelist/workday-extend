@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Discover Schema and Run a Graph Query
+  summary: Find a queryable business object type, inspect its schema, then run a graph query against it.
+  description: >-
+    A discovery-driven path for querying Workday data through the Graph API. The
+    workflow searches the available business object types, retrieves the full
+    schema for the chosen type so its fields are known, and then executes a graph
+    query to return the requested records. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: graphApi
+  url: ../openapi/workday-extend-graph-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: discover-schema-and-query
+  summary: Search business object types, fetch a type schema, and execute a graph query.
+  description: >-
+    Lists queryable business object types matching a search term, retrieves the
+    full schema for a named type, and executes a graph query returning the
+    selected fields.
+  inputs:
+    type: object
+    required:
+    - typeName
+    - query
+    properties:
+      search:
+        type: string
+        description: Search term to filter the list of business object types.
+      typeName:
+        type: string
+        description: The name of the business object type to inspect.
+      query:
+        type: string
+        description: The graph query string specifying objects, fields, filters, and relationships.
+      variables:
+        type: object
+        description: Variables to substitute into the query using the $variableName syntax.
+      limit:
+        type: integer
+        description: Maximum number of results to return.
+  steps:
+  - stepId: listTypes
+    description: >-
+      List the available business object types, optionally filtered by a search
+      term, to discover what can be queried.
+    operationId: listSchemaTypes
+    parameters:
+    - name: search
+      in: query
+      value: $inputs.search
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      types: $response.body#/data
+      typeCount: $response.body#/total
+  - stepId: getType
+    description: >-
+      Retrieve the full schema for the named business object type, including its
+      fields and relationships, so the query can reference valid fields.
+    operationId: getSchemaType
+    parameters:
+    - name: typeName
+      in: path
+      value: $inputs.typeName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      typeName: $response.body#/name
+      isQueryable: $response.body#/isQueryable
+      fields: $response.body#/fields
+  - stepId: runQuery
+    description: >-
+      Execute the graph query against the Workday data model, returning the
+      requested business objects with only the selected fields.
+    operationId: executeGraphQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+        variables: $inputs.variables
+        limit: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      data: $response.body#/data
+      total: $response.body#/total
+      hasMore: $response.body#/hasMore
+  outputs:
+    typeName: $steps.getType.outputs.typeName
+    data: $steps.runQuery.outputs.data
+    total: $steps.runQuery.outputs.total

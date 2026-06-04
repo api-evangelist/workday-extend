@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Inspect an Orchestration
+  summary: Resolve an orchestration by search, then list its steps and triggers to build a full picture.
+  description: >-
+    A read-only audit path for a Workday Extend orchestration. The workflow finds
+    an orchestration by search term, then lists the steps that make up its flow and
+    the triggers that invoke it, producing a consolidated view of the
+    orchestration's definition. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: orchestrationApi
+  url: ../openapi/workday-extend-orchestration-openapi.yml
+  type: openapi
+workflows:
+- workflowId: inspect-orchestration
+  summary: Find an orchestration, then list its steps and triggers.
+  description: >-
+    Searches for an orchestration, and when one is found lists its steps and its
+    triggers to assemble a complete inspection of the orchestration definition.
+  inputs:
+    type: object
+    required:
+    - search
+    properties:
+      search:
+        type: string
+        description: Search term used to locate the orchestration by name.
+  steps:
+  - stepId: findOrchestration
+    description: >-
+      Search the orchestration definitions and take the first match as the
+      inspection target.
+    operationId: listOrchestrations
+    parameters:
+    - name: search
+      in: query
+      value: $inputs.search
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orchestrationId: $response.body#/data/0/id
+    onSuccess:
+    - name: found
+      type: goto
+      stepId: getSteps
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: notFound
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: getSteps
+    description: >-
+      List the steps that make up the orchestration flow, including their order
+      and type.
+    operationId: listOrchestrationSteps
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.findOrchestration.outputs.orchestrationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      steps: $response.body#/data
+      stepCount: $response.body#/total
+  - stepId: getTriggers
+    description: >-
+      List the triggers configured for the orchestration, including event-based,
+      scheduled, and API triggers.
+    operationId: listOrchestrationTriggers
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.findOrchestration.outputs.orchestrationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      triggers: $response.body#/data
+      triggerCount: $response.body#/total
+  outputs:
+    orchestrationId: $steps.findOrchestration.outputs.orchestrationId
+    stepCount: $steps.getSteps.outputs.stepCount
+    triggerCount: $steps.getTriggers.outputs.triggerCount

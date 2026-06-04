@@ -1,0 +1,139 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Register and Deploy Application
+  summary: Register an Extend app, publish a version, deploy it, and poll until the deployment settles.
+  description: >-
+    The end-to-end onboarding path for a Workday Extend application. The workflow
+    registers a new app, creates an initial version, kicks off a deployment to the
+    target environment, and then polls the deployment record until it reaches a
+    terminal status. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/workday-extend-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-and-deploy-app
+  summary: Create an Extend app, version it, deploy it, and wait for the deployment to finish.
+  description: >-
+    Registers a new Workday Extend application, creates its first version, deploys
+    that version to the requested environment, and polls the deployment record
+    until it is deployed, failed, or rolled back.
+  inputs:
+    type: object
+    required:
+    - name
+    - description
+    - versionNumber
+    - environment
+    properties:
+      name:
+        type: string
+        description: The name of the new Extend application.
+      description:
+        type: string
+        description: Description of the application purpose and functionality.
+      category:
+        type: string
+        description: Optional application category within Workday.
+      versionNumber:
+        type: string
+        description: Semantic version number for the first version (e.g. 1.0.0).
+      changelog:
+        type: string
+        description: Optional description of changes in this version.
+      environment:
+        type: string
+        description: Target deployment environment (sandbox or production).
+  steps:
+  - stepId: registerApp
+    description: >-
+      Register the new Extend application in the tenant. The app is created in
+      draft status with the supplied metadata.
+    operationId: createApp
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        description: $inputs.description
+        category: $inputs.category
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      appId: $response.body#/id
+      appStatus: $response.body#/status
+  - stepId: createVersion
+    description: >-
+      Create the first version of the application. The version is created in draft
+      status and identifies the artifact that will be deployed.
+    operationId: createAppVersion
+    parameters:
+    - name: appId
+      in: path
+      value: $steps.registerApp.outputs.appId
+    requestBody:
+      contentType: application/json
+      payload:
+        versionNumber: $inputs.versionNumber
+        changelog: $inputs.changelog
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      versionId: $response.body#/id
+      versionStatus: $response.body#/status
+  - stepId: deployApp
+    description: >-
+      Deploy the newly created version to the target environment. The API accepts
+      the request and returns a deployment record with a 202 Accepted status.
+    operationId: deployApp
+    parameters:
+    - name: appId
+      in: path
+      value: $steps.registerApp.outputs.appId
+    requestBody:
+      contentType: application/json
+      payload:
+        versionId: $steps.createVersion.outputs.versionId
+        environment: $inputs.environment
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      deploymentId: $response.body#/id
+      deploymentStatus: $response.body#/status
+  - stepId: pollDeployment
+    description: >-
+      Poll the deployment record until it reaches a terminal status. Repeats while
+      the deployment is still pending or in progress.
+    operationId: getAppDeployment
+    parameters:
+    - name: appId
+      in: path
+      value: $steps.registerApp.outputs.appId
+    - name: deploymentId
+      in: path
+      value: $steps.deployApp.outputs.deploymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+      deployedOn: $response.body#/deployedOn
+    onSuccess:
+    - name: deploymentSettled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'deployed' || $.status == 'failed' || $.status == 'rolled_back'
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollDeployment
+      criteria:
+      - context: $response.body
+        condition: $.status == 'pending' || $.status == 'in_progress'
+        type: jsonpath
+  outputs:
+    appId: $steps.registerApp.outputs.appId
+    versionId: $steps.createVersion.outputs.versionId
+    deploymentId: $steps.deployApp.outputs.deploymentId
+    deploymentStatus: $steps.pollDeployment.outputs.finalStatus

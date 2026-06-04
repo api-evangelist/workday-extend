@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Safely Update an Orchestration
+  summary: Deactivate an active orchestration, apply changes, and reactivate it.
+  description: >-
+    Active Workday Extend orchestrations must be deactivated before they can be
+    modified. This workflow reads the current orchestration, deactivates it,
+    applies the requested changes, and reactivates it so it returns to service.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: orchestrationApi
+  url: ../openapi/workday-extend-orchestration-openapi.yml
+  type: openapi
+workflows:
+- workflowId: safe-update-orchestration
+  summary: Deactivate, update, and reactivate an orchestration in a safe sequence.
+  description: >-
+    Retrieves an orchestration, deactivates it so it can be modified, applies the
+    supplied name and description changes, and reactivates it.
+  inputs:
+    type: object
+    required:
+    - orchestrationId
+    properties:
+      orchestrationId:
+        type: string
+        description: The unique identifier of the orchestration to update.
+      name:
+        type: string
+        description: Updated orchestration name.
+      description:
+        type: string
+        description: Updated orchestration description.
+  steps:
+  - stepId: resolveOrchestration
+    description: >-
+      Retrieve the orchestration to confirm it exists and capture its current
+      status before making changes.
+    operationId: getOrchestration
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $inputs.orchestrationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orchestrationId: $response.body#/id
+      currentStatus: $response.body#/status
+  - stepId: deactivate
+    description: >-
+      Deactivate the orchestration so it can be modified. In-flight executions are
+      allowed to complete.
+    operationId: deactivateOrchestration
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.resolveOrchestration.outputs.orchestrationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: applyChanges
+    description: >-
+      Update the orchestration definition with the supplied name and description.
+      Only the fields provided are changed.
+    operationId: updateOrchestration
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.resolveOrchestration.outputs.orchestrationId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      lastModified: $response.body#/lastModified
+  - stepId: reactivate
+    description: >-
+      Reactivate the orchestration so it returns to service and can be triggered
+      again.
+    operationId: activateOrchestration
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.resolveOrchestration.outputs.orchestrationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+  outputs:
+    orchestrationId: $steps.resolveOrchestration.outputs.orchestrationId
+    finalStatus: $steps.reactivate.outputs.finalStatus

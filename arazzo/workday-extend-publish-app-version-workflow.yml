@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Publish a New Application Version
+  summary: Confirm an app, create a new version, and verify the version was recorded.
+  description: >-
+    Cuts a new release of an existing Workday Extend application. The workflow
+    confirms the app exists, creates a new draft version with a changelog, and
+    retrieves that version to verify it was recorded with the expected version
+    number. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/workday-extend-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: publish-app-version
+  summary: Resolve an app, create a new version, and confirm it by retrieval.
+  description: >-
+    Retrieves an Extend application, creates a new version with the supplied
+    version number and changelog, and reads the created version back to confirm
+    it was recorded.
+  inputs:
+    type: object
+    required:
+    - appId
+    - versionNumber
+    properties:
+      appId:
+        type: string
+        description: The unique identifier of the Extend application.
+      versionNumber:
+        type: string
+        description: Semantic version number for the new version.
+      changelog:
+        type: string
+        description: Description of changes in this version.
+  steps:
+  - stepId: resolveApp
+    description: >-
+      Retrieve the application to confirm it exists before creating a new version.
+    operationId: getApp
+    parameters:
+    - name: appId
+      in: path
+      value: $inputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appId: $response.body#/id
+      appStatus: $response.body#/status
+  - stepId: createVersion
+    description: >-
+      Create a new draft version of the application with the supplied version
+      number and changelog.
+    operationId: createAppVersion
+    parameters:
+    - name: appId
+      in: path
+      value: $steps.resolveApp.outputs.appId
+    requestBody:
+      contentType: application/json
+      payload:
+        versionNumber: $inputs.versionNumber
+        changelog: $inputs.changelog
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      versionId: $response.body#/id
+      versionStatus: $response.body#/status
+  - stepId: confirmVersion
+    description: >-
+      Retrieve the newly created version to confirm it was recorded with the
+      expected version number and status.
+    operationId: getAppVersion
+    parameters:
+    - name: appId
+      in: path
+      value: $steps.resolveApp.outputs.appId
+    - name: versionId
+      in: path
+      value: $steps.createVersion.outputs.versionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      confirmedNumber: $response.body#/versionNumber
+      confirmedStatus: $response.body#/status
+  outputs:
+    appId: $steps.resolveApp.outputs.appId
+    versionId: $steps.createVersion.outputs.versionId
+    versionNumber: $steps.confirmVersion.outputs.confirmedNumber

@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Cancel a Running Orchestration Execution
+  summary: Find the most recent running execution of an orchestration, cancel it, and confirm cancellation.
+  description: >-
+    Stops a runaway or unwanted Workday Extend orchestration run. The workflow
+    lists the orchestration's executions filtered to the running state, branches
+    on whether one was found, cancels the running execution, and polls until the
+    cancellation takes effect. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: orchestrationApi
+  url: ../openapi/workday-extend-orchestration-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cancel-running-execution
+  summary: Locate a running execution, cancel it, and poll until cancellation completes.
+  description: >-
+    Lists running executions for an orchestration, and when one exists cancels it
+    and polls the execution record until it leaves the running state.
+  inputs:
+    type: object
+    required:
+    - orchestrationId
+    properties:
+      orchestrationId:
+        type: string
+        description: The unique identifier of the orchestration whose run should be cancelled.
+  steps:
+  - stepId: findRunning
+    description: >-
+      List executions filtered to the running status, taking the most recent one
+      as the cancellation target.
+    operationId: listOrchestrationExecutions
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $inputs.orchestrationId
+    - name: status
+      in: query
+      value: running
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runningExecutionId: $response.body#/data/0/id
+    onSuccess:
+    - name: hasRunning
+      type: goto
+      stepId: cancel
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: noneRunning
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: cancel
+    description: >-
+      Cancel the running execution. Steps currently in progress may complete
+      before cancellation takes effect.
+    operationId: cancelOrchestrationExecution
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $inputs.orchestrationId
+    - name: executionId
+      in: path
+      value: $steps.findRunning.outputs.runningExecutionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelStatus: $response.body#/status
+  - stepId: confirmCancelled
+    description: >-
+      Poll the execution record until it leaves the running state, confirming the
+      cancellation has taken effect.
+    operationId: getOrchestrationExecution
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $inputs.orchestrationId
+    - name: executionId
+      in: path
+      value: $steps.findRunning.outputs.runningExecutionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: confirmCancelled
+      criteria:
+      - context: $response.body
+        condition: $.status == 'running'
+        type: jsonpath
+    - name: settled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'cancelled' || $.status == 'completed' || $.status == 'failed'
+        type: jsonpath
+  outputs:
+    executionId: $steps.findRunning.outputs.runningExecutionId
+    finalStatus: $steps.confirmCancelled.outputs.finalStatus

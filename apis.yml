@@ -147,6 +147,45 @@ apis:
   - type: Documentation
     url: https://developer.workday.com/documentation
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/workday-extend-app-configuration-update-workflow.yml
+    name: Workday Extend Update Application Configuration
+    summary: Confirm an Extend app exists, read its current configuration, then replace the configuration values.
+  - url: arazzo/workday-extend-cancel-running-execution-workflow.yml
+    name: Workday Extend Cancel a Running Orchestration Execution
+    summary: Find the most recent running execution of an orchestration, cancel it, and confirm cancellation.
+  - url: arazzo/workday-extend-create-and-activate-orchestration-workflow.yml
+    name: Workday Extend Create and Activate Orchestration
+    summary: Create an orchestration, attach a trigger, and activate it for execution.
+  - url: arazzo/workday-extend-define-custom-object-with-fields-workflow.yml
+    name: Workday Extend Define a Custom Object With Fields
+    summary: Create a custom object definition, add a field to it, and list the resulting field schema.
+  - url: arazzo/workday-extend-discover-schema-and-query-workflow.yml
+    name: Workday Extend Discover Schema and Run a Graph Query
+    summary: Find a queryable business object type, inspect its schema, then run a graph query against it.
+  - url: arazzo/workday-extend-inspect-orchestration-workflow.yml
+    name: Workday Extend Inspect an Orchestration
+    summary: Resolve an orchestration by search, then list its steps and triggers to build a full picture.
+  - url: arazzo/workday-extend-launch-orchestration-and-poll-workflow.yml
+    name: Workday Extend Launch Orchestration and Poll Execution
+    summary: Confirm an orchestration, launch an execution with inputs, and poll until it completes.
+  - url: arazzo/workday-extend-publish-app-version-workflow.yml
+    name: Workday Extend Publish a New Application Version
+    summary: Confirm an app, create a new version, and verify the version was recorded.
+  - url: arazzo/workday-extend-register-and-deploy-app-workflow.yml
+    name: Workday Extend Register and Deploy Application
+    summary: Register an Extend app, publish a version, deploy it, and poll until the deployment settles.
+  - url: arazzo/workday-extend-safe-update-orchestration-workflow.yml
+    name: Workday Extend Safely Update an Orchestration
+    summary: Deactivate an active orchestration, apply changes, and reactivate it.
+  - url: arazzo/workday-extend-upsert-worker-custom-object-workflow.yml
+    name: Workday Extend Upsert Worker Custom Object Data
+    summary: Confirm a custom object definition, check whether a worker already has data, then create or update it.
+  - url: arazzo/workday-extend-wql-query-to-worker-custom-object-workflow.yml
+    name: Workday Extend WQL Query Into a Worker Custom Object
+    summary: Run a WQL query to retrieve worker data, then write the result into a worker's custom object.
 - type: GettingStarted
   url: https://doc.workday.com/extend/getting-started/
 - type: Portal

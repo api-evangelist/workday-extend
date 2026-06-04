@@ -1,0 +1,133 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Upsert Worker Custom Object Data
+  summary: Confirm a custom object definition, check whether a worker already has data, then create or update it.
+  description: >-
+    Writes custom object data onto a worker, choosing the right messaging based on
+    whether the data already exists. The workflow resolves the custom object
+    definition, reads any existing instance for the worker, and then writes the
+    data via the create-or-update endpoint, branching to label the outcome as a
+    create or an update. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: customObjectsApi
+  url: ../openapi/workday-extend-custom-objects-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-worker-custom-object
+  summary: Read a worker's custom object data and create or update it via the upsert endpoint.
+  description: >-
+    Resolves the custom object definition, checks whether the worker already has
+    an instance, and writes the supplied data with the create-or-update endpoint,
+    branching on whether the prior read found existing data.
+  inputs:
+    type: object
+    required:
+    - definitionId
+    - workerId
+    - customObjectName
+    - data
+    properties:
+      definitionId:
+        type: string
+        description: The unique identifier of the custom object definition to validate against.
+      workerId:
+        type: string
+        description: The unique Workday identifier of the worker.
+      customObjectName:
+        type: string
+        description: The name of the custom object type.
+      data:
+        type: object
+        description: Custom object field values keyed by field API name.
+  steps:
+  - stepId: resolveDefinition
+    description: >-
+      Retrieve the custom object definition to confirm the target custom object
+      type exists before reading or writing instance data.
+    operationId: getCustomObjectDefinition
+    parameters:
+    - name: definitionId
+      in: path
+      value: $inputs.definitionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      definitionName: $response.body#/name
+      instanceType: $response.body#/instanceType
+  - stepId: readExisting
+    description: >-
+      Retrieve the worker's current custom object data. A 200 indicates existing
+      data; a 404 indicates none exists yet. Both outcomes are accepted so the
+      flow can branch on the result.
+    operationId: getWorkerCustomObject
+    parameters:
+    - name: workerId
+      in: path
+      value: $inputs.workerId
+    - name: customObjectName
+      in: path
+      value: $inputs.customObjectName
+    successCriteria:
+    - condition: $statusCode == 200 || $statusCode == 404
+    outputs:
+      existingStatus: $statusCode
+      existingId: $response.body#/id
+    onSuccess:
+    - name: dataExists
+      type: goto
+      stepId: writeUpdate
+      criteria:
+      - condition: $statusCode == 200
+    - name: dataMissing
+      type: goto
+      stepId: writeCreate
+      criteria:
+      - condition: $statusCode == 404
+  - stepId: writeUpdate
+    description: >-
+      Update the worker's existing custom object data with the supplied values.
+      Returns 200 when the instance already existed.
+    operationId: updateWorkerCustomObject
+    parameters:
+    - name: workerId
+      in: path
+      value: $inputs.workerId
+    - name: customObjectName
+      in: path
+      value: $inputs.customObjectName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.data
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      instanceId: $response.body#/id
+      lastModified: $response.body#/lastModified
+    onSuccess:
+    - name: updated
+      type: end
+  - stepId: writeCreate
+    description: >-
+      Create new custom object data on the worker using the supplied values.
+      Returns 201 when the instance did not previously exist.
+    operationId: updateWorkerCustomObject
+    parameters:
+    - name: workerId
+      in: path
+      value: $inputs.workerId
+    - name: customObjectName
+      in: path
+      value: $inputs.customObjectName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.data
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      instanceId: $response.body#/id
+      createdOn: $response.body#/createdOn
+  outputs:
+    updatedInstanceId: $steps.writeUpdate.outputs.instanceId
+    createdInstanceId: $steps.writeCreate.outputs.instanceId

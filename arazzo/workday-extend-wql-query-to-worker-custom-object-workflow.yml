@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend WQL Query Into a Worker Custom Object
+  summary: Run a WQL query to retrieve worker data, then write the result into a worker's custom object.
+  description: >-
+    Bridges the Graph API and the Custom Objects API. The workflow runs a Workday
+    Query Language (WQL) query to retrieve data from the Workday data model and
+    then writes the supplied custom object data onto a worker, enriching the worker
+    record with the queried context. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: graphApi
+  url: ../openapi/workday-extend-graph-api-openapi.yml
+  type: openapi
+- name: customObjectsApi
+  url: ../openapi/workday-extend-custom-objects-openapi.yml
+  type: openapi
+workflows:
+- workflowId: wql-query-to-worker-custom-object
+  summary: Execute a WQL query and persist the chosen data into a worker's custom object.
+  description: >-
+    Runs a WQL query against the Workday data model and writes the supplied data
+    payload onto a worker's custom object via the create-or-update endpoint.
+  inputs:
+    type: object
+    required:
+    - query
+    - workerId
+    - customObjectName
+    - data
+    properties:
+      query:
+        type: string
+        description: The WQL query string using SQL-like syntax.
+      workerId:
+        type: string
+        description: The unique Workday identifier of the worker to write to.
+      customObjectName:
+        type: string
+        description: The name of the custom object type on the worker.
+      data:
+        type: object
+        description: Custom object field values keyed by field API name.
+  steps:
+  - stepId: runWql
+    description: >-
+      Execute the WQL query against the Workday data model and capture the result
+      rows so they can inform the custom object write.
+    operationId: executeWqlQuery
+    requestBody:
+      contentType: application/json
+      payload:
+        query: $inputs.query
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      rows: $response.body#/data
+      total: $response.body#/total
+  - stepId: writeCustomObject
+    description: >-
+      Create or update the worker's custom object data with the supplied values.
+      Returns 200 when updating existing data or 201 when creating new data.
+    operationId: updateWorkerCustomObject
+    parameters:
+    - name: workerId
+      in: path
+      value: $inputs.workerId
+    - name: customObjectName
+      in: path
+      value: $inputs.customObjectName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.data
+    successCriteria:
+    - condition: $statusCode == 200 || $statusCode == 201
+    outputs:
+      instanceId: $response.body#/id
+      lastModified: $response.body#/lastModified
+  outputs:
+    queriedTotal: $steps.runWql.outputs.total
+    instanceId: $steps.writeCustomObject.outputs.instanceId

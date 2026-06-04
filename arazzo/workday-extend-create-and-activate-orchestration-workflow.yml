@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Create and Activate Orchestration
+  summary: Create an orchestration, attach a trigger, and activate it for execution.
+  description: >-
+    Stands up a new Workday Extend orchestration end to end. The workflow creates
+    a draft orchestration, adds a trigger that defines how it will be invoked, and
+    then activates it so it can be executed. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: orchestrationApi
+  url: ../openapi/workday-extend-orchestration-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-activate-orchestration
+  summary: Create a draft orchestration, add a trigger, and activate it.
+  description: >-
+    Creates a new orchestration in draft status, configures a trigger that defines
+    how the orchestration is invoked, and activates the orchestration so it is
+    available for execution.
+  inputs:
+    type: object
+    required:
+    - name
+    - description
+    - triggerType
+    - triggerName
+    properties:
+      name:
+        type: string
+        description: Name of the orchestration.
+      description:
+        type: string
+        description: Description of what the orchestration does.
+      triggerType:
+        type: string
+        description: The trigger type (event, api, schedule, or business_process).
+      triggerName:
+        type: string
+        description: Name for the trigger to add.
+      triggerDescription:
+        type: string
+        description: Optional description of the trigger.
+      triggerConfiguration:
+        type: object
+        description: Optional trigger-specific configuration parameters.
+  steps:
+  - stepId: createOrchestration
+    description: >-
+      Create the orchestration definition in draft status with the supplied name,
+      description, and primary trigger type.
+    operationId: createOrchestration
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        description: $inputs.description
+        triggerType: $inputs.triggerType
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      orchestrationId: $response.body#/id
+      orchestrationStatus: $response.body#/status
+  - stepId: addTrigger
+    description: >-
+      Add a trigger to the orchestration that defines how and when it is executed.
+    operationId: createOrchestrationTrigger
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.createOrchestration.outputs.orchestrationId
+    requestBody:
+      contentType: application/json
+      payload:
+        type: $inputs.triggerType
+        name: $inputs.triggerName
+        description: $inputs.triggerDescription
+        configuration: $inputs.triggerConfiguration
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      triggerId: $response.body#/id
+      triggerActive: $response.body#/isActive
+  - stepId: activate
+    description: >-
+      Activate the orchestration, moving it out of draft so it can be triggered
+      and executed.
+    operationId: activateOrchestration
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.createOrchestration.outputs.orchestrationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      activeStatus: $response.body#/status
+  outputs:
+    orchestrationId: $steps.createOrchestration.outputs.orchestrationId
+    triggerId: $steps.addTrigger.outputs.triggerId
+    orchestrationStatus: $steps.activate.outputs.activeStatus

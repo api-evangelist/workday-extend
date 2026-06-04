@@ -1,0 +1,105 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Launch Orchestration and Poll Execution
+  summary: Confirm an orchestration, launch an execution with inputs, and poll until it completes.
+  description: >-
+    Remotely triggers a Workday Extend orchestration and waits for the result. The
+    workflow confirms the orchestration exists, launches a new execution with the
+    supplied input parameters, and polls the execution record until it reaches a
+    terminal status, branching to capture either the output or the error. Every
+    step spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: orchestrationApi
+  url: ../openapi/workday-extend-orchestration-openapi.yml
+  type: openapi
+workflows:
+- workflowId: launch-orchestration-and-poll
+  summary: Launch an orchestration execution and poll until it completes, fails, or is cancelled.
+  description: >-
+    Resolves an orchestration, launches a new execution with the supplied input,
+    and polls the execution record until it finishes, then branches on the final
+    status to surface the output or the error message.
+  inputs:
+    type: object
+    required:
+    - orchestrationId
+    properties:
+      orchestrationId:
+        type: string
+        description: The unique identifier of the orchestration to launch.
+      input:
+        type: object
+        description: Input parameters whose keys match the orchestration's defined inputs.
+  steps:
+  - stepId: resolveOrchestration
+    description: >-
+      Retrieve the orchestration to confirm it exists and is active before
+      launching an execution.
+    operationId: getOrchestration
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $inputs.orchestrationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orchestrationId: $response.body#/id
+      orchestrationStatus: $response.body#/status
+  - stepId: launch
+    description: >-
+      Launch a new execution of the orchestration, passing the supplied input
+      parameters. The API accepts the request and returns an execution record
+      with a 202 Accepted status.
+    operationId: launchOrchestration
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.resolveOrchestration.outputs.orchestrationId
+    requestBody:
+      contentType: application/json
+      payload:
+        input: $inputs.input
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      executionId: $response.body#/id
+      executionStatus: $response.body#/status
+  - stepId: pollExecution
+    description: >-
+      Poll the execution record until it reaches a terminal status. Repeats while
+      the execution is still running.
+    operationId: getOrchestrationExecution
+    parameters:
+    - name: orchestrationId
+      in: path
+      value: $steps.resolveOrchestration.outputs.orchestrationId
+    - name: executionId
+      in: path
+      value: $steps.launch.outputs.executionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      executionStatus: $response.body#/status
+      executionOutput: $response.body#/output
+      errorMessage: $response.body#/errorMessage
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollExecution
+      criteria:
+      - context: $response.body
+        condition: $.status == 'running'
+        type: jsonpath
+    - name: finished
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == 'completed' || $.status == 'failed' || $.status == 'cancelled'
+        type: jsonpath
+  outputs:
+    executionId: $steps.launch.outputs.executionId
+    executionStatus: $steps.pollExecution.outputs.executionStatus
+    executionOutput: $steps.pollExecution.outputs.executionOutput
+    errorMessage: $steps.pollExecution.outputs.errorMessage

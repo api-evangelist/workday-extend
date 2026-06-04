@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Update Application Configuration
+  summary: Confirm an Extend app exists, read its current configuration, then replace the configuration values.
+  description: >-
+    Updates the configuration settings of an existing Workday Extend application.
+    The workflow first confirms the app exists and is in a workable state, reads
+    the current configuration so the existing keys are known, and then writes the
+    new configuration values in a single replace. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/workday-extend-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-app-configuration
+  summary: Resolve an Extend app, read its configuration, and replace it with new values.
+  description: >-
+    Retrieves an Extend application, lists its current configuration settings, and
+    replaces the configuration with the supplied key/value pairs.
+  inputs:
+    type: object
+    required:
+    - appId
+    - configurations
+    properties:
+      appId:
+        type: string
+        description: The unique identifier of the Extend application to configure.
+      configurations:
+        type: array
+        description: The list of configuration entries (key, value, optional description and dataType) to write.
+        items:
+          type: object
+          properties:
+            key:
+              type: string
+            value:
+              type: string
+            description:
+              type: string
+            dataType:
+              type: string
+  steps:
+  - stepId: resolveApp
+    description: >-
+      Retrieve the application to confirm it exists before reading or replacing
+      its configuration.
+    operationId: getApp
+    parameters:
+    - name: appId
+      in: path
+      value: $inputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appId: $response.body#/id
+      appStatus: $response.body#/status
+  - stepId: readConfiguration
+    description: >-
+      List the current configuration settings so the existing keys and values are
+      known before they are replaced.
+    operationId: listAppConfigurations
+    parameters:
+    - name: appId
+      in: path
+      value: $steps.resolveApp.outputs.appId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentConfig: $response.body#/data
+      currentCount: $response.body#/total
+  - stepId: writeConfiguration
+    description: >-
+      Replace the application configuration with the supplied set of key/value
+      entries. This overwrites all configuration values.
+    operationId: updateAppConfigurations
+    parameters:
+    - name: appId
+      in: path
+      value: $steps.resolveApp.outputs.appId
+    requestBody:
+      contentType: application/json
+      payload:
+        configurations: $inputs.configurations
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      configId: $response.body#/id
+      configKey: $response.body#/key
+  outputs:
+    appId: $steps.resolveApp.outputs.appId
+    configId: $steps.writeConfiguration.outputs.configId

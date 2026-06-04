@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: Workday Extend Define a Custom Object With Fields
+  summary: Create a custom object definition, add a field to it, and list the resulting field schema.
+  description: >-
+    Extends the Workday data model with a new custom object. The workflow creates
+    a custom object type definition attached to a standard Workday object, adds an
+    additional field to that definition, and lists the full field schema to
+    confirm the result. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: customObjectsApi
+  url: ../openapi/workday-extend-custom-objects-openapi.yml
+  type: openapi
+workflows:
+- workflowId: define-custom-object-with-fields
+  summary: Create a custom object definition, add a field, and list the fields.
+  description: >-
+    Creates a custom object type definition, adds a field to it, and lists the
+    fields defined on the new custom object so the resulting schema is confirmed.
+  inputs:
+    type: object
+    required:
+    - name
+    - instanceType
+    - parentObjectType
+    - fieldName
+    - fieldDataType
+    properties:
+      name:
+        type: string
+        description: The API name for the custom object type.
+      description:
+        type: string
+        description: Description of the custom object type.
+      instanceType:
+        type: string
+        description: Whether instances are single or multi per parent object.
+      parentObjectType:
+        type: string
+        description: The standard Workday object type to extend (worker, organization, position, jobProfile).
+      fieldName:
+        type: string
+        description: The API name of the field to add.
+      fieldDisplayName:
+        type: string
+        description: The display label for the field.
+      fieldDataType:
+        type: string
+        description: The data type of the field (text, number, decimal, boolean, date, dateTime, currency, reference, richText).
+      fieldIsRequired:
+        type: boolean
+        description: Whether the field is required.
+  steps:
+  - stepId: createDefinition
+    description: >-
+      Create the custom object type definition attached to the chosen parent
+      Workday object.
+    operationId: createCustomObjectDefinition
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        description: $inputs.description
+        instanceType: $inputs.instanceType
+        parentObjectType: $inputs.parentObjectType
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      definitionId: $response.body#/id
+      definitionName: $response.body#/name
+  - stepId: addField
+    description: >-
+      Add a field to the custom object definition. The field becomes available on
+      all new and existing instances of this custom object type.
+    operationId: addCustomObjectField
+    parameters:
+    - name: definitionId
+      in: path
+      value: $steps.createDefinition.outputs.definitionId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.fieldName
+        displayName: $inputs.fieldDisplayName
+        dataType: $inputs.fieldDataType
+        isRequired: $inputs.fieldIsRequired
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      fieldId: $response.body#/id
+      fieldName: $response.body#/name
+  - stepId: listFields
+    description: >-
+      List the fields defined on the custom object to confirm the new field is
+      present in the schema.
+    operationId: listCustomObjectFields
+    parameters:
+    - name: definitionId
+      in: path
+      value: $steps.createDefinition.outputs.definitionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fields: $response.body#/data
+      fieldCount: $response.body#/total
+  outputs:
+    definitionId: $steps.createDefinition.outputs.definitionId
+    fieldId: $steps.addField.outputs.fieldId
+    fieldCount: $steps.listFields.outputs.fieldCount
