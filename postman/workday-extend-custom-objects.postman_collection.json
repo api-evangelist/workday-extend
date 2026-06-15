@@ -1,0 +1,3767 @@
+{
+  "info": {
+    "_postman_id": "c5b58439-1ec5-4f2c-a519-65174d2a09ed",
+    "name": "Workday Extend Workday Custom Objects API",
+    "description": "APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.\n\nContact Support:\n Name: Workday Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:21:34.000Z",
+    "updatedAt": "2026-06-05T15:21:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c5b58439-1ec5-4f2c-a519-65174d2a09ed"
+  },
+  "item": [
+    {
+      "name": "customObjectDefinitions",
+      "item": [
+        {
+          "name": "{definitionId}",
+          "item": [
+            {
+              "name": "fields",
+              "item": [
+                {
+                  "name": "Workday Extend List custom object fields",
+                  "id": "4b1cf01b-fab4-4b1a-9958-1592ebbee168",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId",
+                        "fields"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3f638f3d-5052-41d2-870f-0c03b723e3b2",
+                          "key": "definitionId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the custom object definition"
+                        }
+                      ]
+                    },
+                    "description": "Returns the collection of fields defined in the specified custom object definition, including field types, validation rules, and constraints."
+                  },
+                  "response": [
+                    {
+                      "id": "35ed79af-6a5b-411b-9ede-4159c701dadf",
+                      "name": "Successful response with field definitions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"dateTime\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"number\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-35ed79af-6a5b-411b-9ede-4159c701dadf"
+                    },
+                    {
+                      "id": "390a9048-f0c2-4477-af61-3b971d532e78",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-390a9048-f0c2-4477-af61-3b971d532e78"
+                    },
+                    {
+                      "id": "900eae3b-0b50-4f31-8bc5-2df29a746512",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-900eae3b-0b50-4f31-8bc5-2df29a746512"
+                    },
+                    {
+                      "id": "9e5b7c52-bcd6-413d-b73d-ed2945ba1702",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-9e5b7c52-bcd6-413d-b73d-ed2945ba1702"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-4b1cf01b-fab4-4b1a-9958-1592ebbee168"
+                },
+                {
+                  "name": "Workday Extend Add a field to a custom object definition",
+                  "id": "31d29a79-a247-49d2-8200-b4a1c4282df1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"mb5k6nydPX\",\n  \"dataType\": \"boolean\",\n  \"displayName\": \"<string>\",\n  \"isRequired\": false,\n  \"maxLength\": \"<integer>\",\n  \"referenceObjectType\": \"<string>\",\n  \"defaultValue\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId",
+                        "fields"
+                      ],
+                      "variable": [
+                        {
+                          "id": "681a3c57-a538-4c75-952a-d4a8000b9c00",
+                          "key": "definitionId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the custom object definition"
+                        }
+                      ]
+                    },
+                    "description": "Adds a new field to the custom object definition. The field will be available on all new and existing instances of this custom object type."
+                  },
+                  "response": [
+                    {
+                      "id": "74e66763-872e-4e03-8e6c-123a49ebdb80",
+                      "name": "Field successfully added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"mb5k6nydPX\",\n  \"dataType\": \"boolean\",\n  \"displayName\": \"<string>\",\n  \"isRequired\": false,\n  \"maxLength\": \"<integer>\",\n  \"referenceObjectType\": \"<string>\",\n  \"defaultValue\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dataType\": \"richText\",\n  \"isRequired\": \"<boolean>\",\n  \"isReadOnly\": \"<boolean>\",\n  \"maxLength\": \"<integer>\",\n  \"precision\": \"<integer>\",\n  \"referenceObjectType\": \"<string>\",\n  \"defaultValue\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-74e66763-872e-4e03-8e6c-123a49ebdb80"
+                    },
+                    {
+                      "id": "c4730e4c-44ac-480d-a6da-fb7ace47af0c",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"mb5k6nydPX\",\n  \"dataType\": \"boolean\",\n  \"displayName\": \"<string>\",\n  \"isRequired\": false,\n  \"maxLength\": \"<integer>\",\n  \"referenceObjectType\": \"<string>\",\n  \"defaultValue\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-c4730e4c-44ac-480d-a6da-fb7ace47af0c"
+                    },
+                    {
+                      "id": "48f71dbf-3604-4f3c-a2ba-be3c08013891",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"mb5k6nydPX\",\n  \"dataType\": \"boolean\",\n  \"displayName\": \"<string>\",\n  \"isRequired\": false,\n  \"maxLength\": \"<integer>\",\n  \"referenceObjectType\": \"<string>\",\n  \"defaultValue\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-48f71dbf-3604-4f3c-a2ba-be3c08013891"
+                    },
+                    {
+                      "id": "d4f5925b-9b1b-4489-a096-e61c4fcc9933",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"mb5k6nydPX\",\n  \"dataType\": \"boolean\",\n  \"displayName\": \"<string>\",\n  \"isRequired\": false,\n  \"maxLength\": \"<integer>\",\n  \"referenceObjectType\": \"<string>\",\n  \"defaultValue\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-d4f5925b-9b1b-4489-a096-e61c4fcc9933"
+                    },
+                    {
+                      "id": "8660ec00-3b4a-4022-9182-38b3a3f3765f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"mb5k6nydPX\",\n  \"dataType\": \"boolean\",\n  \"displayName\": \"<string>\",\n  \"isRequired\": false,\n  \"maxLength\": \"<integer>\",\n  \"referenceObjectType\": \"<string>\",\n  \"defaultValue\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId/fields",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customObjectDefinitions",
+                            ":definitionId",
+                            "fields"
+                          ],
+                          "variable": [
+                            {
+                              "key": "definitionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-8660ec00-3b4a-4022-9182-38b3a3f3765f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-31d29a79-a247-49d2-8200-b4a1c4282df1"
+                }
+              ],
+              "id": "b377fca2-6af8-40fc-a853-ff95728f14fb",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-b377fca2-6af8-40fc-a853-ff95728f14fb"
+            },
+            {
+              "name": "Workday Extend Retrieve a custom object definition",
+              "id": "e6320140-0b1b-4659-a147-3ca8e4a57eed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions",
+                    ":definitionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6966ec5f-23de-4061-8a85-64fb08a7f572",
+                      "key": "definitionId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the custom object definition"
+                    }
+                  ]
+                },
+                "description": "Returns the details of a specific custom object type definition including its full field schema, validation rules, and parent object associations."
+              },
+              "response": [
+                {
+                  "id": "15bad897-0d3b-42dc-86e5-fd6369ba6711",
+                  "name": "Successful response with definition details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"instanceType\": \"single\",\n  \"parentObjectType\": \"jobProfile\",\n  \"fields\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"currency\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"decimal\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ],\n  \"isActive\": \"<boolean>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-15bad897-0d3b-42dc-86e5-fd6369ba6711"
+                },
+                {
+                  "id": "f959409e-cace-4126-8d08-59bc0eab1a35",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-f959409e-cace-4126-8d08-59bc0eab1a35"
+                },
+                {
+                  "id": "34ccf2bb-b760-4633-90d8-680069f8b496",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-34ccf2bb-b760-4633-90d8-680069f8b496"
+                },
+                {
+                  "id": "81e4a5c9-3754-42de-97d0-d4bbce17b57a",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-81e4a5c9-3754-42de-97d0-d4bbce17b57a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-e6320140-0b1b-4659-a147-3ca8e4a57eed"
+            },
+            {
+              "name": "Workday Extend Update a custom object definition",
+              "id": "c6f16c20-caa9-4cac-8c67-b7330905b0a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions",
+                    ":definitionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b8000d40-00c2-42da-be9c-df6a52739068",
+                      "key": "definitionId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the custom object definition"
+                    }
+                  ]
+                },
+                "description": "Updates an existing custom object type definition. Changes to the schema may affect existing custom object instances."
+              },
+              "response": [
+                {
+                  "id": "267b4612-0bdf-4ae8-94f9-90cc8948cdbf",
+                  "name": "Definition successfully updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"instanceType\": \"single\",\n  \"parentObjectType\": \"jobProfile\",\n  \"fields\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"currency\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"decimal\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ],\n  \"isActive\": \"<boolean>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-267b4612-0bdf-4ae8-94f9-90cc8948cdbf"
+                },
+                {
+                  "id": "c416e20d-1d27-4d22-a7ce-bf7bc4e004f4",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-c416e20d-1d27-4d22-a7ce-bf7bc4e004f4"
+                },
+                {
+                  "id": "7c6d6eb4-3eb7-4e12-b737-a3557048ac7b",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-7c6d6eb4-3eb7-4e12-b737-a3557048ac7b"
+                },
+                {
+                  "id": "dab627e1-0022-4f2e-b2e7-a4a57086bc7c",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-dab627e1-0022-4f2e-b2e7-a4a57086bc7c"
+                },
+                {
+                  "id": "1c69667a-244d-4e5a-9c51-0b5752977b45",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-1c69667a-244d-4e5a-9c51-0b5752977b45"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-c6f16c20-caa9-4cac-8c67-b7330905b0a4"
+            },
+            {
+              "name": "Workday Extend Delete a custom object definition",
+              "id": "4d0746f4-9a86-4d04-abf3-d3f9736b61dc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions",
+                    ":definitionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a484197f-427f-414a-9327-8da4a8d7624e",
+                      "key": "definitionId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the custom object definition"
+                    }
+                  ]
+                },
+                "description": "Deletes a custom object type definition. All instances of this custom object type must be deleted before the definition can be removed."
+              },
+              "response": [
+                {
+                  "id": "9d3d56fe-dc54-488f-b960-587b4b9be031",
+                  "name": "Definition successfully deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-9d3d56fe-dc54-488f-b960-587b4b9be031"
+                },
+                {
+                  "id": "4623cb79-90dc-4078-9036-0a12e03447eb",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-4623cb79-90dc-4078-9036-0a12e03447eb"
+                },
+                {
+                  "id": "dd37e40e-7ad2-4329-8658-34f2d778685c",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-dd37e40e-7ad2-4329-8658-34f2d778685c"
+                },
+                {
+                  "id": "fe924edc-a8e4-4dde-b37e-8eefc2f2a57f",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customObjectDefinitions/:definitionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customObjectDefinitions",
+                        ":definitionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "definitionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-fe924edc-a8e4-4dde-b37e-8eefc2f2a57f"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-4d0746f4-9a86-4d04-abf3-d3f9736b61dc"
+            }
+          ],
+          "id": "981d6c5d-4d51-49ae-80e6-6474ca601fa8",
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-981d6c5d-4d51-49ae-80e6-6474ca601fa8"
+        },
+        {
+          "name": "Workday Extend List custom object definitions",
+          "id": "1a6e0ccc-90d8-4e35-a8da-9484ef29c8bf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customObjectDefinitions?limit=20&offset=0&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customObjectDefinitions"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Search term to filter results",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of custom object type definitions configured in the tenant, including their schemas, field definitions, and parent object associations."
+          },
+          "response": [
+            {
+              "id": "33a25125-7635-42b9-8f5a-966217f75362",
+              "name": "Successful response with custom object definitions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"instanceType\": \"multi\",\n      \"parentObjectType\": \"position\",\n      \"fields\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"dataType\": \"dateTime\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\",\n          \"maxLength\": \"<integer>\",\n          \"precision\": \"<integer>\",\n          \"referenceObjectType\": \"<string>\",\n          \"defaultValue\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"dataType\": \"date\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\",\n          \"maxLength\": \"<integer>\",\n          \"precision\": \"<integer>\",\n          \"referenceObjectType\": \"<string>\",\n          \"defaultValue\": \"<string>\"\n        }\n      ],\n      \"isActive\": \"<boolean>\",\n      \"createdOn\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"instanceType\": \"multi\",\n      \"parentObjectType\": \"worker\",\n      \"fields\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"dataType\": \"date\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\",\n          \"maxLength\": \"<integer>\",\n          \"precision\": \"<integer>\",\n          \"referenceObjectType\": \"<string>\",\n          \"defaultValue\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"dataType\": \"date\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\",\n          \"maxLength\": \"<integer>\",\n          \"precision\": \"<integer>\",\n          \"referenceObjectType\": \"<string>\",\n          \"defaultValue\": \"<string>\"\n        }\n      ],\n      \"isActive\": \"<boolean>\",\n      \"createdOn\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-33a25125-7635-42b9-8f5a-966217f75362"
+            },
+            {
+              "id": "807257ac-d900-422b-ade8-fefdef0e823a",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-807257ac-d900-422b-ade8-fefdef0e823a"
+            },
+            {
+              "id": "c7d71bee-7afa-450b-b7e2-38417e099175",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-c7d71bee-7afa-450b-b7e2-38417e099175"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-1a6e0ccc-90d8-4e35-a8da-9484ef29c8bf"
+        },
+        {
+          "name": "Workday Extend Create a custom object definition",
+          "id": "528a3f8a-0cd1-415d-aaea-555309d6f35e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ObkL7DRKc\",\n  \"instanceType\": \"multi\",\n  \"parentObjectType\": \"organization\",\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"oN5hJWwU11\",\n      \"dataType\": \"boolean\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"name\": \"HBYMSmZ\",\n      \"dataType\": \"dateTime\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customObjectDefinitions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customObjectDefinitions"
+              ]
+            },
+            "description": "Creates a new custom object type definition with specified fields and attributes. The definition determines the schema for all instances of this custom object type."
+          },
+          "response": [
+            {
+              "id": "7daa05bf-cc97-4c0f-a1cd-d5b583ead802",
+              "name": "Custom object definition successfully created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ObkL7DRKc\",\n  \"instanceType\": \"multi\",\n  \"parentObjectType\": \"organization\",\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"oN5hJWwU11\",\n      \"dataType\": \"boolean\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"name\": \"HBYMSmZ\",\n      \"dataType\": \"dateTime\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"instanceType\": \"single\",\n  \"parentObjectType\": \"jobProfile\",\n  \"fields\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"currency\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"dataType\": \"decimal\",\n      \"isRequired\": \"<boolean>\",\n      \"isReadOnly\": \"<boolean>\",\n      \"maxLength\": \"<integer>\",\n      \"precision\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ],\n  \"isActive\": \"<boolean>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-7daa05bf-cc97-4c0f-a1cd-d5b583ead802"
+            },
+            {
+              "id": "36f84083-b8d8-48a1-9dc4-592cc5820658",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ObkL7DRKc\",\n  \"instanceType\": \"multi\",\n  \"parentObjectType\": \"organization\",\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"oN5hJWwU11\",\n      \"dataType\": \"boolean\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"name\": \"HBYMSmZ\",\n      \"dataType\": \"dateTime\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-36f84083-b8d8-48a1-9dc4-592cc5820658"
+            },
+            {
+              "id": "a8131582-9e0c-4383-841e-2295b88ef388",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ObkL7DRKc\",\n  \"instanceType\": \"multi\",\n  \"parentObjectType\": \"organization\",\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"oN5hJWwU11\",\n      \"dataType\": \"boolean\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"name\": \"HBYMSmZ\",\n      \"dataType\": \"dateTime\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-a8131582-9e0c-4383-841e-2295b88ef388"
+            },
+            {
+              "id": "d1ead5ea-10c1-4a1f-bbea-12522e8ea939",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ObkL7DRKc\",\n  \"instanceType\": \"multi\",\n  \"parentObjectType\": \"organization\",\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"oN5hJWwU11\",\n      \"dataType\": \"boolean\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    },\n    {\n      \"name\": \"HBYMSmZ\",\n      \"dataType\": \"dateTime\",\n      \"displayName\": \"<string>\",\n      \"isRequired\": false,\n      \"maxLength\": \"<integer>\",\n      \"referenceObjectType\": \"<string>\",\n      \"defaultValue\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customObjectDefinitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customObjectDefinitions"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-d1ead5ea-10c1-4a1f-bbea-12522e8ea939"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-528a3f8a-0cd1-415d-aaea-555309d6f35e"
+        }
+      ],
+      "id": "6a2a8ab1-f192-4d81-b48a-438a745fc558",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-6a2a8ab1-f192-4d81-b48a-438a745fc558"
+    },
+    {
+      "name": "workers",
+      "item": [
+        {
+          "name": "{workerId}",
+          "item": [
+            {
+              "name": "customObjects",
+              "item": [
+                {
+                  "name": "{customObjectName}",
+                  "item": [
+                    {
+                      "name": "Workday Extend Retrieve custom object data for a worker",
+                      "id": "5d125434-7fc1-4fc6-94b7-7609305afe8c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workers",
+                            ":workerId",
+                            "customObjects",
+                            ":customObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "92a36d50-0321-4681-aea7-3c017c42d9d2",
+                              "key": "workerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique Workday identifier of the worker"
+                            },
+                            {
+                              "id": "73f8bcef-7a96-4399-9470-d9971d239943",
+                              "key": "customObjectName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the custom object type"
+                            }
+                          ]
+                        },
+                        "description": "Returns the custom object instance data attached to the specified worker. Supports both single-instance and multi-instance custom objects. For multi-instance objects, returns a collection of instances."
+                      },
+                      "response": [
+                        {
+                          "id": "a84e9b36-4eae-4590-aeb7-d8ef6ef4e7fa",
+                          "name": "Successful response with custom object data",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"definition\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"parentObject\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"data\": {\n    \"voluptate_9_\": \"quis velit\",\n    \"ut_e2\": \"fugiat eiusmod proident pariatur anim\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-a84e9b36-4eae-4590-aeb7-d8ef6ef4e7fa"
+                        },
+                        {
+                          "id": "83016db9-5543-4b46-8a8c-5af507233642",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-83016db9-5543-4b46-8a8c-5af507233642"
+                        },
+                        {
+                          "id": "ddd05725-8bd3-491d-b1b5-b496a6dfb856",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-ddd05725-8bd3-491d-b1b5-b496a6dfb856"
+                        },
+                        {
+                          "id": "9a542fe7-247e-4f86-908c-0b11f4a22657",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-9a542fe7-247e-4f86-908c-0b11f4a22657"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-5d125434-7fc1-4fc6-94b7-7609305afe8c"
+                    },
+                    {
+                      "name": "Workday Extend Create or update custom object data for a worker",
+                      "id": "2121e63c-c2a4-41a8-8b6a-1a86172da760",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workers",
+                            ":workerId",
+                            "customObjects",
+                            ":customObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e4fb9a4d-408b-46fc-99b1-5573230ce0d5",
+                              "key": "workerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique Workday identifier of the worker"
+                            },
+                            {
+                              "id": "3829bf91-56d9-48a1-99a8-565247e2dc17",
+                              "key": "customObjectName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the custom object type"
+                            }
+                          ]
+                        },
+                        "description": "Creates or updates the custom object instance data attached to the specified worker. If the custom object does not exist for the worker, it is created. Otherwise, the existing data is updated with the provided values."
+                      },
+                      "response": [
+                        {
+                          "id": "d4947e95-ecc5-4483-ae07-4fa2f5fb76d3",
+                          "name": "Custom object data successfully updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"definition\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"parentObject\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"data\": {\n    \"voluptate_9_\": \"quis velit\",\n    \"ut_e2\": \"fugiat eiusmod proident pariatur anim\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-d4947e95-ecc5-4483-ae07-4fa2f5fb76d3"
+                        },
+                        {
+                          "id": "ff4c0151-577f-4c93-9fb7-2196cef492b9",
+                          "name": "Custom object data successfully created",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"definition\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"parentObject\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"data\": {\n    \"voluptate_9_\": \"quis velit\",\n    \"ut_e2\": \"fugiat eiusmod proident pariatur anim\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-ff4c0151-577f-4c93-9fb7-2196cef492b9"
+                        },
+                        {
+                          "id": "d201bac5-7c03-4988-a95d-f6205762fa9d",
+                          "name": "Invalid request parameters",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-d201bac5-7c03-4988-a95d-f6205762fa9d"
+                        },
+                        {
+                          "id": "21c894f1-82f3-4e9e-959a-a8f0b7652a4e",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-21c894f1-82f3-4e9e-959a-a8f0b7652a4e"
+                        },
+                        {
+                          "id": "31d521c1-d202-4823-80b7-8648878c1f73",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-31d521c1-d202-4823-80b7-8648878c1f73"
+                        },
+                        {
+                          "id": "9177848e-91df-487f-a09c-bd753a24a6a5",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-9177848e-91df-487f-a09c-bd753a24a6a5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-2121e63c-c2a4-41a8-8b6a-1a86172da760"
+                    },
+                    {
+                      "name": "Workday Extend Delete custom object data for a worker",
+                      "id": "c8e90cb0-fd47-4a67-bde7-308aee88830d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workers",
+                            ":workerId",
+                            "customObjects",
+                            ":customObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ab315b06-ceaf-4a02-abb9-9fa23ae87b3d",
+                              "key": "workerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique Workday identifier of the worker"
+                            },
+                            {
+                              "id": "496b5eed-9b81-424c-a075-874e1d718d4a",
+                              "key": "customObjectName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the custom object type"
+                            }
+                          ]
+                        },
+                        "description": "Deletes the custom object instance data attached to the specified worker."
+                      },
+                      "response": [
+                        {
+                          "id": "025a8561-22c1-4e14-90c7-2e4f7e922fd4",
+                          "name": "Custom object data successfully deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-025a8561-22c1-4e14-90c7-2e4f7e922fd4"
+                        },
+                        {
+                          "id": "2ac99c48-fdc2-4a8f-8352-88df1722c6b7",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-2ac99c48-fdc2-4a8f-8352-88df1722c6b7"
+                        },
+                        {
+                          "id": "9836b90d-6e56-4c3a-8627-701cfaa328c5",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-9836b90d-6e56-4c3a-8627-701cfaa328c5"
+                        },
+                        {
+                          "id": "167d1e48-f799-40c8-94e4-21913f8c73f1",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workers/:workerId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workers",
+                                ":workerId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-167d1e48-f799-40c8-94e4-21913f8c73f1"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-c8e90cb0-fd47-4a67-bde7-308aee88830d"
+                    }
+                  ],
+                  "id": "bfeaadfd-6e73-40d8-b675-fa7d4505cfba",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-bfeaadfd-6e73-40d8-b675-fa7d4505cfba"
+                }
+              ],
+              "id": "b0abc8cd-e319-46cd-92a3-d0b11950846a",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-b0abc8cd-e319-46cd-92a3-d0b11950846a"
+            }
+          ],
+          "id": "4221e89d-bdc0-4aa4-82d6-30608d868172",
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-4221e89d-bdc0-4aa4-82d6-30608d868172"
+        }
+      ],
+      "id": "05012ea8-c8f3-428e-8914-57165c35d757",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-05012ea8-c8f3-428e-8914-57165c35d757"
+    },
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organizationId}",
+          "item": [
+            {
+              "name": "customObjects",
+              "item": [
+                {
+                  "name": "{customObjectName}",
+                  "item": [
+                    {
+                      "name": "Workday Extend Retrieve custom object data for an organization",
+                      "id": "51c4cf30-e72c-4ac5-8c68-a838e4df72c2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "customObjects",
+                            ":customObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f74a73e9-6775-466e-9a89-b4228c56d74f",
+                              "key": "organizationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique Workday identifier of the organization"
+                            },
+                            {
+                              "id": "8695fb80-a5f8-4ab5-99d4-79858a28e5b2",
+                              "key": "customObjectName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the custom object type"
+                            }
+                          ]
+                        },
+                        "description": "Returns the custom object instance data attached to the specified organization. Supports both single-instance and multi-instance custom objects."
+                      },
+                      "response": [
+                        {
+                          "id": "f7f5f317-71e9-4efc-b3e8-2cb9e4f43ea6",
+                          "name": "Successful response with custom object data",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"definition\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"parentObject\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"data\": {\n    \"voluptate_9_\": \"quis velit\",\n    \"ut_e2\": \"fugiat eiusmod proident pariatur anim\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-f7f5f317-71e9-4efc-b3e8-2cb9e4f43ea6"
+                        },
+                        {
+                          "id": "c0043488-d5a3-41c5-9b85-2eece22c7c31",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-c0043488-d5a3-41c5-9b85-2eece22c7c31"
+                        },
+                        {
+                          "id": "90655af5-275e-4a58-a6b5-a9695978f822",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-90655af5-275e-4a58-a6b5-a9695978f822"
+                        },
+                        {
+                          "id": "6f0ac680-1d19-49b5-974f-5509688102ca",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-6f0ac680-1d19-49b5-974f-5509688102ca"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-51c4cf30-e72c-4ac5-8c68-a838e4df72c2"
+                    },
+                    {
+                      "name": "Workday Extend Create or update custom object data for an organization",
+                      "id": "dff8daa3-bd83-495b-b099-a3c8c0190796",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "customObjects",
+                            ":customObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "aa571c1f-83dc-476f-9ea6-58a9957f2846",
+                              "key": "organizationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique Workday identifier of the organization"
+                            },
+                            {
+                              "id": "3d9d6bd2-b94d-4756-a2c8-017c9a9d6f8b",
+                              "key": "customObjectName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the custom object type"
+                            }
+                          ]
+                        },
+                        "description": "Creates or updates the custom object instance data attached to the specified organization."
+                      },
+                      "response": [
+                        {
+                          "id": "96778b1b-2e25-4680-ae0e-548dc4b50ff5",
+                          "name": "Custom object data successfully updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"definition\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"parentObject\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"data\": {\n    \"voluptate_9_\": \"quis velit\",\n    \"ut_e2\": \"fugiat eiusmod proident pariatur anim\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-96778b1b-2e25-4680-ae0e-548dc4b50ff5"
+                        },
+                        {
+                          "id": "b9631aa6-a5c6-4328-8260-498fa9cb4c46",
+                          "name": "Custom object data successfully created",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"definition\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"parentObject\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"data\": {\n    \"voluptate_9_\": \"quis velit\",\n    \"ut_e2\": \"fugiat eiusmod proident pariatur anim\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-b9631aa6-a5c6-4328-8260-498fa9cb4c46"
+                        },
+                        {
+                          "id": "bc48cdfe-1576-4828-baf8-58126c1f7ac3",
+                          "name": "Invalid request parameters",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-bc48cdfe-1576-4828-baf8-58126c1f7ac3"
+                        },
+                        {
+                          "id": "08036b0d-fe58-4d8e-9745-62fecb5c5449",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-08036b0d-fe58-4d8e-9745-62fecb5c5449"
+                        },
+                        {
+                          "id": "747f725a-3026-4504-8a3d-cd1d812766d1",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-747f725a-3026-4504-8a3d-cd1d812766d1"
+                        },
+                        {
+                          "id": "6ac3c6aa-cce6-475d-94f4-30e1e1649f3e",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"eu0_\": 576424,\n  \"aute1\": \"minim commodo in\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/customObjects/:customObjectName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "customObjects",
+                                ":customObjectName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "customObjectName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:35.000Z",
+                          "updatedAt": "2026-06-05T15:21:35.000Z",
+                          "uid": "35240-6ac3c6aa-cce6-475d-94f4-30e1e1649f3e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:35.000Z",
+                      "updatedAt": "2026-06-05T15:21:35.000Z",
+                      "uid": "35240-dff8daa3-bd83-495b-b099-a3c8c0190796"
+                    }
+                  ],
+                  "id": "b166996d-61f1-4b76-8604-05e7b60580a6",
+                  "createdAt": "2026-06-05T15:21:35.000Z",
+                  "updatedAt": "2026-06-05T15:21:35.000Z",
+                  "uid": "35240-b166996d-61f1-4b76-8604-05e7b60580a6"
+                }
+              ],
+              "id": "cdf75636-9f53-4f2c-955d-16c7dcc76309",
+              "createdAt": "2026-06-05T15:21:35.000Z",
+              "updatedAt": "2026-06-05T15:21:35.000Z",
+              "uid": "35240-cdf75636-9f53-4f2c-955d-16c7dcc76309"
+            }
+          ],
+          "id": "e5d765ff-3122-4e88-84db-88f84a2c4fe0",
+          "createdAt": "2026-06-05T15:21:35.000Z",
+          "updatedAt": "2026-06-05T15:21:35.000Z",
+          "uid": "35240-e5d765ff-3122-4e88-84db-88f84a2c4fe0"
+        }
+      ],
+      "id": "885c0054-a15c-4edc-9d6b-89fa1a7af5a3",
+      "createdAt": "2026-06-05T15:21:35.000Z",
+      "updatedAt": "2026-06-05T15:21:35.000Z",
+      "uid": "35240-885c0054-a15c-4edc-9d6b-89fa1a7af5a3"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "customObjects:manage customObjects:read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "api.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

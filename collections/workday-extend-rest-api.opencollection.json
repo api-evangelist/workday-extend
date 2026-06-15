@@ -1,0 +1,361 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Extend REST API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List Extend applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term to filter results"
+              }
+            ]
+          },
+          "docs": "Returns a collection of Workday Extend applications registered within the tenant. Supports filtering by status, name, and other attributes."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Register a new Extend application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new Workday Extend application within the tenant. The app definition includes metadata, permissions, and configuration schema."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Retrieve an Extend application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific Workday Extend application including its metadata, configuration, deployment status, and version history."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Update an Extend application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the metadata or configuration of an existing Workday Extend application. Only the fields provided in the request body are updated."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Delete an Extend application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              }
+            ]
+          },
+          "docs": "Removes a Workday Extend application registration from the tenant. The application must be undeployed before deletion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List application versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/versions",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a collection of versions for the specified Extend application, including draft, published, and deprecated versions."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Create a new application version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/versions",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new version of the specified Extend application. The new version is created in draft status and must be published before deployment."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Retrieve a specific application version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/versions/:versionId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              },
+              {
+                "name": "versionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the application version"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific version of the Extend application, including its status, configuration schema, and changelog."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List application configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/configurations",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              }
+            ]
+          },
+          "docs": "Returns the configuration settings for the specified Extend application, including environment-specific parameters and feature flags."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Update application configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/configurations",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration settings for the specified Extend application. Replaces all configuration values with the provided settings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "App Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List application deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/deployments",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a collection of deployment records for the specified Extend application, including active and historical deployments."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Deploy an Extend application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/deployments",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a deployment of the specified Extend application version to the target environment. The deployment process provisions resources and activates the application."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Retrieve a specific deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/extend/v1/{tenant}/apps/:appId/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Extend application"
+              },
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the deployment record"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific deployment record including its status, deployed version, and deployment timestamp."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

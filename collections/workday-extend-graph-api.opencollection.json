@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Extend Workday Graph API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Graph Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend Execute a graph query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/graphql/v1/{tenant}/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a graph query against the Workday data model. Supports field selection, filtering, relationship traversal, and pagination. Returns the requested business objects with only the selected fields."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "WQL Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend Execute a WQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/graphql/v1/{tenant}/wql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Workday Query Language (WQL) query for complex data retrieval. WQL uses SQL-like syntax to query business objects and supports filtering, sorting, aggregation, and relationship traversal. Results can be paginated using limit and offset parameters within the query."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schema Introspection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend Retrieve the graph schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/graphql/v1/{tenant}/schema"
+          },
+          "docs": "Returns the full graph schema including all available business object types, their fields, relationships, and query capabilities. Used for introspection and discovery of the data model."
+        },
+        {
+          "info": {
+            "name": "Workday Extend List available business object types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/graphql/v1/{tenant}/schema/types",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term to filter results"
+              }
+            ]
+          },
+          "docs": "Returns a collection of available business object types that can be queried through the Graph API, including their descriptions and available fields."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Retrieve a specific business object type schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/graphql/v1/{tenant}/schema/types/:typeName",
+            "params": [
+              {
+                "name": "typeName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the business object type"
+              }
+            ]
+          },
+          "docs": "Returns the full schema definition for a specific business object type, including all fields, their types, relationships to other objects, and available query operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

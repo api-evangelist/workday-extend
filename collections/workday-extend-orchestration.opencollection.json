@@ -1,0 +1,376 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Extend Workday Orchestration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orchestrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List orchestrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term to filter results"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by orchestration status"
+              }
+            ]
+          },
+          "docs": "Returns a collection of orchestration definitions within the tenant. Supports filtering by status, name, and trigger type."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Create an orchestration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new orchestration definition in the tenant. The orchestration is created in draft status and must be activated before it can be triggered."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Retrieve an orchestration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific orchestration definition including its steps, triggers, configuration, and execution history summary."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Update an orchestration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the definition of an existing orchestration. Only the fields provided in the request body are updated. Active orchestrations must be deactivated before modification."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Delete an orchestration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ]
+          },
+          "docs": "Deletes an orchestration definition from the tenant. The orchestration must be inactive and have no pending executions before deletion."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Activate an orchestration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/activate",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ]
+          },
+          "docs": "Activates a draft or inactive orchestration, making it available for triggering and execution."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Deactivate an orchestration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/deactivate",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ]
+          },
+          "docs": "Deactivates an active orchestration, preventing new executions from being triggered. In-flight executions are allowed to complete."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orchestration Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List orchestration executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/executions",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by execution status"
+              }
+            ]
+          },
+          "docs": "Returns a collection of execution records for the specified orchestration, including completed, running, and failed executions."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Launch an orchestration execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/executions",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers a new execution of the specified orchestration. Supports passing input parameters that are mapped to the orchestration's defined inputs. This endpoint can be called from external systems to remotely trigger orchestration workflows."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Retrieve an orchestration execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/executions/:executionId",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              },
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration execution"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific orchestration execution including its status, step results, input and output data, and timing information."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Cancel an orchestration execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/executions/:executionId/cancel",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              },
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration execution"
+              }
+            ]
+          },
+          "docs": "Cancels a running orchestration execution. Steps that are currently in progress may complete before cancellation takes effect."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orchestration Steps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List orchestration steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/steps",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ]
+          },
+          "docs": "Returns the collection of steps defined within the specified orchestration, including their order, type, and configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orchestration Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List orchestration triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/triggers",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ]
+          },
+          "docs": "Returns the collection of triggers configured for the specified orchestration, including event-based, scheduled, and API triggers."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Create an orchestration trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/orchestrate/v1/{tenant}/orchestrations/:orchestrationId/triggers",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new trigger to the specified orchestration. Triggers define how and when the orchestration is executed, including event-based triggers from business processes and scheduled triggers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

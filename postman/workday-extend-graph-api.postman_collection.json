@@ -1,0 +1,1255 @@
+{
+  "info": {
+    "_postman_id": "ef3b3df9-6d22-45b8-91af-a46d6622d15d",
+    "name": "Workday Extend Workday Graph API",
+    "description": "Graph API for querying and traversing Workday data using a flexible, graph-based approach. Provides a unified query interface for accessing interconnected Workday business objects and their relationships. Supports Workday Query Language (WQL) for complex data retrieval and GraphQL-style queries across the Workday platform, enabling developers to efficiently access workers, organizations, positions, and other business objects.\n\nContact Support:\n Name: Workday Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:21:35.000Z",
+    "updatedAt": "2026-06-05T15:21:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ef3b3df9-6d22-45b8-91af-a46d6622d15d"
+  },
+  "item": [
+    {
+      "name": "query",
+      "item": [
+        {
+          "name": "Workday Extend Execute a graph query",
+          "id": "989a6236-b768-4ab5-8878-31b603f6c5f4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"sint8aa\": -81551531\n  },\n  \"limit\": 20,\n  \"offset\": 0\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/query",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "query"
+              ]
+            },
+            "description": "Executes a graph query against the Workday data model. Supports field selection, filtering, relationship traversal, and pagination. Returns the requested business objects with only the selected fields."
+          },
+          "response": [
+            {
+              "id": "41c2284a-871d-471a-bca8-3bd07e191de8",
+              "name": "Successful query response with matching data",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"sint8aa\": -81551531\n  },\n  \"limit\": 20,\n  \"offset\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"sit_a70\": \"eu\"\n  },\n  \"total\": \"<integer>\",\n  \"hasMore\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-41c2284a-871d-471a-bca8-3bd07e191de8"
+            },
+            {
+              "id": "8fb9b1fe-17e1-42cb-b365-2760c8e2bb4f",
+              "name": "Invalid request or query syntax error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"sint8aa\": -81551531\n  },\n  \"limit\": 20,\n  \"offset\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-8fb9b1fe-17e1-42cb-b365-2760c8e2bb4f"
+            },
+            {
+              "id": "590f676d-231e-4def-a4f5-3e61a84926b3",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"sint8aa\": -81551531\n  },\n  \"limit\": 20,\n  \"offset\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-590f676d-231e-4def-a4f5-3e61a84926b3"
+            },
+            {
+              "id": "b75b879a-f5ad-49b4-9911-c05307dfe850",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"sint8aa\": -81551531\n  },\n  \"limit\": 20,\n  \"offset\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-b75b879a-f5ad-49b4-9911-c05307dfe850"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-989a6236-b768-4ab5-8878-31b603f6c5f4"
+        }
+      ],
+      "id": "1e1ebd29-c624-4e12-9d5e-25ffaeac72e8",
+      "createdAt": "2026-06-05T15:21:36.000Z",
+      "updatedAt": "2026-06-05T15:21:36.000Z",
+      "uid": "35240-1e1ebd29-c624-4e12-9d5e-25ffaeac72e8"
+    },
+    {
+      "name": "wql",
+      "item": [
+        {
+          "name": "Workday Extend Execute a WQL query",
+          "id": "6fb180ed-5263-4190-a826-7a7be637db87",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/wql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "wql"
+              ]
+            },
+            "description": "Executes a Workday Query Language (WQL) query for complex data retrieval. WQL uses SQL-like syntax to query business objects and supports filtering, sorting, aggregation, and relationship traversal. Results can be paginated using limit and offset parameters within the query."
+          },
+          "response": [
+            {
+              "id": "424f52b9-bf69-45da-8982-eddefc1c7d58",
+              "name": "Successful WQL query response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/wql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wql"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"fugiat_1\": false,\n      \"ipsum53\": \"velit ut elit\"\n    },\n    {\n      \"estb\": true,\n      \"Duis_46\": 55397545.56131041\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-424f52b9-bf69-45da-8982-eddefc1c7d58"
+            },
+            {
+              "id": "fabca7e8-43c7-4943-bdc0-ae01f12f883d",
+              "name": "Invalid request or query syntax error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/wql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wql"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-fabca7e8-43c7-4943-bdc0-ae01f12f883d"
+            },
+            {
+              "id": "2549fd53-4b60-46ec-a1dc-997107e69460",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/wql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wql"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-2549fd53-4b60-46ec-a1dc-997107e69460"
+            },
+            {
+              "id": "6a1df5ea-0c41-4b0e-9ead-943e9e586320",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/wql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "wql"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-6a1df5ea-0c41-4b0e-9ead-943e9e586320"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-6fb180ed-5263-4190-a826-7a7be637db87"
+        }
+      ],
+      "id": "2d168538-3845-4414-b193-d4cbac4ba7ad",
+      "createdAt": "2026-06-05T15:21:36.000Z",
+      "updatedAt": "2026-06-05T15:21:36.000Z",
+      "uid": "35240-2d168538-3845-4414-b193-d4cbac4ba7ad"
+    },
+    {
+      "name": "schema",
+      "item": [
+        {
+          "name": "types",
+          "item": [
+            {
+              "name": "{typeName}",
+              "item": [
+                {
+                  "name": "Workday Extend Retrieve a specific business object type schema",
+                  "id": "f852ed1e-f6e5-480d-9509-4a013f5cf069",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/schema/types/:typeName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schema",
+                        "types",
+                        ":typeName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5dfbbd14-4f6d-4214-970d-915205468ad0",
+                          "key": "typeName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the business object type"
+                        }
+                      ]
+                    },
+                    "description": "Returns the full schema definition for a specific business object type, including all fields, their types, relationships to other objects, and available query operations."
+                  },
+                  "response": [
+                    {
+                      "id": "3753e104-f1fe-4966-82b5-4852385b799e",
+                      "name": "Successful response with type schema",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/schema/types/:typeName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "schema",
+                            "types",
+                            ":typeName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typeName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isFilterable\": \"<boolean>\",\n      \"isSortable\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"dataType\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isFilterable\": \"<boolean>\",\n      \"isSortable\": \"<boolean>\"\n    }\n  ],\n  \"relationships\": [\n    {\n      \"name\": \"<string>\",\n      \"targetType\": \"<string>\",\n      \"cardinality\": \"many-to-many\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"targetType\": \"<string>\",\n      \"cardinality\": \"one-to-many\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"isQueryable\": \"<boolean>\"\n}",
+                      "createdAt": "2026-06-05T15:21:36.000Z",
+                      "updatedAt": "2026-06-05T15:21:36.000Z",
+                      "uid": "35240-3753e104-f1fe-4966-82b5-4852385b799e"
+                    },
+                    {
+                      "id": "46beea00-1e2e-44b2-a850-2f1e2a82e0f7",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/schema/types/:typeName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "schema",
+                            "types",
+                            ":typeName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typeName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:21:36.000Z",
+                      "updatedAt": "2026-06-05T15:21:36.000Z",
+                      "uid": "35240-46beea00-1e2e-44b2-a850-2f1e2a82e0f7"
+                    },
+                    {
+                      "id": "3a87b896-28f3-4150-a022-0819c4198510",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/schema/types/:typeName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "schema",
+                            "types",
+                            ":typeName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typeName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:21:36.000Z",
+                      "updatedAt": "2026-06-05T15:21:36.000Z",
+                      "uid": "35240-3a87b896-28f3-4150-a022-0819c4198510"
+                    },
+                    {
+                      "id": "5ec9fe38-dfc4-448c-b8a0-3edcf6ee23c8",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/schema/types/:typeName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "schema",
+                            "types",
+                            ":typeName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "typeName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-06-05T15:21:36.000Z",
+                      "updatedAt": "2026-06-05T15:21:36.000Z",
+                      "uid": "35240-5ec9fe38-dfc4-448c-b8a0-3edcf6ee23c8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-f852ed1e-f6e5-480d-9509-4a013f5cf069"
+                }
+              ],
+              "id": "3717379b-124c-42a3-a52e-9372cf87ba7a",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-3717379b-124c-42a3-a52e-9372cf87ba7a"
+            },
+            {
+              "name": "Workday Extend List available business object types",
+              "id": "6bf13af9-42c1-44c7-91a4-4ed3edbbd77f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/schema/types?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schema",
+                    "types"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a collection of available business object types that can be queried through the Graph API, including their descriptions and available fields."
+              },
+              "response": [
+                {
+                  "id": "8a975c6f-6981-4c13-bd15-ff244ae02bba",
+                  "name": "Successful response with business object types",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/schema/types?limit=20&offset=0&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schema",
+                        "types"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Search term to filter results",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"many-to-many\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"many-to-many\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"isQueryable\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"one-to-many\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"many-to-many\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"isQueryable\": \"<boolean>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-8a975c6f-6981-4c13-bd15-ff244ae02bba"
+                },
+                {
+                  "id": "c68c578f-58b1-4865-9d16-46627443aabb",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/schema/types?limit=20&offset=0&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schema",
+                        "types"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Search term to filter results",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-c68c578f-58b1-4865-9d16-46627443aabb"
+                },
+                {
+                  "id": "668d2021-ad0b-47ee-a6e8-2f625ea3dee5",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/schema/types?limit=20&offset=0&search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schema",
+                        "types"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Search term to filter results",
+                          "key": "search",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:21:36.000Z",
+                  "updatedAt": "2026-06-05T15:21:36.000Z",
+                  "uid": "35240-668d2021-ad0b-47ee-a6e8-2f625ea3dee5"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-6bf13af9-42c1-44c7-91a4-4ed3edbbd77f"
+            }
+          ],
+          "id": "63f356b5-d28e-43d2-89fe-9712c4ab71ed",
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-63f356b5-d28e-43d2-89fe-9712c4ab71ed"
+        },
+        {
+          "name": "Workday Extend Retrieve the graph schema",
+          "id": "a79b324d-13c7-4b4e-a5e6-e7cd4352f6b3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/schema",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "schema"
+              ]
+            },
+            "description": "Returns the full graph schema including all available business object types, their fields, relationships, and query capabilities. Used for introspection and discovery of the data model."
+          },
+          "response": [
+            {
+              "id": "b9ae7589-62db-4c28-9a9a-983f818a1c2a",
+              "name": "Successful response with schema information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/schema",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schema"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"many-to-many\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"one-to-many\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"isQueryable\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"isFilterable\": \"<boolean>\",\n          \"isSortable\": \"<boolean>\"\n        }\n      ],\n      \"relationships\": [\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"many-to-many\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"targetType\": \"<string>\",\n          \"cardinality\": \"one-to-many\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"isQueryable\": \"<boolean>\"\n    }\n  ],\n  \"version\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-b9ae7589-62db-4c28-9a9a-983f818a1c2a"
+            },
+            {
+              "id": "0320362c-d3ca-4648-816c-57fd117e7a3f",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/schema",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schema"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-0320362c-d3ca-4648-816c-57fd117e7a3f"
+            },
+            {
+              "id": "2f64843e-c5eb-464b-9a05-4c598db80656",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/schema",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schema"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"location\": {\n    \"line\": \"<integer>\",\n    \"column\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:21:36.000Z",
+              "updatedAt": "2026-06-05T15:21:36.000Z",
+              "uid": "35240-2f64843e-c5eb-464b-9a05-4c598db80656"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:36.000Z",
+          "updatedAt": "2026-06-05T15:21:36.000Z",
+          "uid": "35240-a79b324d-13c7-4b4e-a5e6-e7cd4352f6b3"
+        }
+      ],
+      "id": "1590df09-94b0-4e48-8578-66f71f286660",
+      "createdAt": "2026-06-05T15:21:36.000Z",
+      "updatedAt": "2026-06-05T15:21:36.000Z",
+      "uid": "35240-1590df09-94b0-4e48-8578-66f71f286660"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "graph:read graph:schema",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "api.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

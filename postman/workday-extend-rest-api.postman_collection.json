@@ -1,0 +1,3886 @@
+{
+  "info": {
+    "_postman_id": "5530a57b-8e3c-49f5-b7d6-33b1f179e1c6",
+    "name": "Workday Extend REST API",
+    "description": "RESTful APIs for building and managing Workday Extend applications, including app registration, deployment, configuration, and lifecycle management. Enables developers to create custom applications that integrate seamlessly with the Workday platform and extend its core functionality.\n\nContact Support:\n Name: Workday Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:21:31.000Z",
+    "updatedAt": "2026-06-05T15:21:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5530a57b-8e3c-49f5-b7d6-33b1f179e1c6"
+  },
+  "item": [
+    {
+      "name": "apps",
+      "item": [
+        {
+          "name": "{appId}",
+          "item": [
+            {
+              "name": "versions",
+              "item": [
+                {
+                  "name": "{versionId}",
+                  "item": [
+                    {
+                      "name": "Workday Extend Retrieve a specific application version",
+                      "id": "c0629311-631e-41d4-8dfa-f114042ba6db",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions/:versionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions",
+                            ":versionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "721946b0-b1be-4ff4-8023-4c25e4a9c58e",
+                              "key": "appId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the Extend application"
+                            },
+                            {
+                              "id": "b5030475-bdaf-4024-b783-4043836884fd",
+                              "key": "versionId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the application version"
+                            }
+                          ]
+                        },
+                        "description": "Returns the details of a specific version of the Extend application, including its status, configuration schema, and changelog."
+                      },
+                      "response": [
+                        {
+                          "id": "95c028e1-3ff8-457d-86d1-daaeddef3e3d",
+                          "name": "Successful response with the version details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"versionNumber\": \"<string>\",\n  \"status\": \"published\",\n  \"changelog\": \"<string>\",\n  \"createdOn\": \"<dateTime>\",\n  \"publishedOn\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-95c028e1-3ff8-457d-86d1-daaeddef3e3d"
+                        },
+                        {
+                          "id": "3d3c1899-73d7-4690-ab75-1a2696213e84",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-3d3c1899-73d7-4690-ab75-1a2696213e84"
+                        },
+                        {
+                          "id": "ba165e5a-300d-4886-96bd-70906539968d",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-ba165e5a-300d-4886-96bd-70906539968d"
+                        },
+                        {
+                          "id": "0ca1e262-7e63-4ec7-a92b-64e4f4b3c5c6",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-0ca1e262-7e63-4ec7-a92b-64e4f4b3c5c6"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-c0629311-631e-41d4-8dfa-f114042ba6db"
+                    }
+                  ],
+                  "id": "f0a5689d-8739-49e6-925f-7bee27a10833",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-f0a5689d-8739-49e6-925f-7bee27a10833"
+                },
+                {
+                  "name": "Workday Extend List application versions",
+                  "id": "6bde48c4-3162-4569-bd66-3b5fdd207102",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId/versions?limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId",
+                        "versions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e0909ceb-fd36-48f9-a064-c93153b703f2",
+                          "key": "appId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Extend application"
+                        }
+                      ]
+                    },
+                    "description": "Returns a collection of versions for the specified Extend application, including draft, published, and deprecated versions."
+                  },
+                  "response": [
+                    {
+                      "id": "a2e43f7f-5907-46ef-b5f9-0f36cbc4b886",
+                      "name": "Successful response with application versions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"versionNumber\": \"<string>\",\n      \"status\": \"published\",\n      \"changelog\": \"<string>\",\n      \"createdOn\": \"<dateTime>\",\n      \"publishedOn\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"versionNumber\": \"<string>\",\n      \"status\": \"deprecated\",\n      \"changelog\": \"<string>\",\n      \"createdOn\": \"<dateTime>\",\n      \"publishedOn\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-a2e43f7f-5907-46ef-b5f9-0f36cbc4b886"
+                    },
+                    {
+                      "id": "6d6d13fe-c756-4ab6-9df6-5c15d6696bbd",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-6d6d13fe-c756-4ab6-9df6-5c15d6696bbd"
+                    },
+                    {
+                      "id": "ccbe0619-e31b-4048-b815-2de7bff3c955",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-ccbe0619-e31b-4048-b815-2de7bff3c955"
+                    },
+                    {
+                      "id": "5af704fd-41b4-4409-90b3-b056e70817a5",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-5af704fd-41b4-4409-90b3-b056e70817a5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-6bde48c4-3162-4569-bd66-3b5fdd207102"
+                },
+                {
+                  "name": "Workday Extend Create a new application version",
+                  "id": "ae64c2da-6cc1-4d94-965a-3cb9a593f9d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"versionNumber\": \"<string>\",\n  \"changelog\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId/versions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId",
+                        "versions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "09387598-8473-4a8f-9574-23d083d02775",
+                          "key": "appId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Extend application"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new version of the specified Extend application. The new version is created in draft status and must be published before deployment."
+                  },
+                  "response": [
+                    {
+                      "id": "c7361365-2e56-4b1f-855c-f96f8a1cdc98",
+                      "name": "Application version successfully created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionNumber\": \"<string>\",\n  \"changelog\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"versionNumber\": \"<string>\",\n  \"status\": \"published\",\n  \"changelog\": \"<string>\",\n  \"createdOn\": \"<dateTime>\",\n  \"publishedOn\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-c7361365-2e56-4b1f-855c-f96f8a1cdc98"
+                    },
+                    {
+                      "id": "859b88b3-ee0c-4bed-9a6e-eba72de35554",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionNumber\": \"<string>\",\n  \"changelog\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-859b88b3-ee0c-4bed-9a6e-eba72de35554"
+                    },
+                    {
+                      "id": "38b62f2b-bfea-4190-9336-821616a49925",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionNumber\": \"<string>\",\n  \"changelog\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-38b62f2b-bfea-4190-9336-821616a49925"
+                    },
+                    {
+                      "id": "77c8bfb4-4b87-4d39-8001-32d2d3b9c1bb",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionNumber\": \"<string>\",\n  \"changelog\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-77c8bfb4-4b87-4d39-8001-32d2d3b9c1bb"
+                    },
+                    {
+                      "id": "fc166683-1d82-418f-b043-0f187177832c",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionNumber\": \"<string>\",\n  \"changelog\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-fc166683-1d82-418f-b043-0f187177832c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-ae64c2da-6cc1-4d94-965a-3cb9a593f9d6"
+                }
+              ],
+              "id": "03edb437-6307-436c-8f15-bf8db375b781",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-03edb437-6307-436c-8f15-bf8db375b781"
+            },
+            {
+              "name": "configurations",
+              "item": [
+                {
+                  "name": "Workday Extend List application configurations",
+                  "id": "36b35655-2585-4527-b3df-57a729d41904",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId/configurations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId",
+                        "configurations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3da1a862-0702-4f6b-87f4-81a654af4f6b",
+                          "key": "appId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Extend application"
+                        }
+                      ]
+                    },
+                    "description": "Returns the configuration settings for the specified Extend application, including environment-specific parameters and feature flags."
+                  },
+                  "response": [
+                    {
+                      "id": "029e6ff0-6eca-4056-b71e-29ddb71d58c6",
+                      "name": "Successful response with configuration settings",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\",\n      \"isSecret\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"number\",\n      \"isSecret\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-029e6ff0-6eca-4056-b71e-29ddb71d58c6"
+                    },
+                    {
+                      "id": "3c4f1d36-f986-4576-a348-d53fbb8ed51c",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-3c4f1d36-f986-4576-a348-d53fbb8ed51c"
+                    },
+                    {
+                      "id": "de6680e9-45a9-42d8-aab8-a22cf49824a2",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-de6680e9-45a9-42d8-aab8-a22cf49824a2"
+                    },
+                    {
+                      "id": "b31a41c9-9f9f-4638-ba54-d6354bbb3339",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-b31a41c9-9f9f-4638-ba54-d6354bbb3339"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-36b35655-2585-4527-b3df-57a729d41904"
+                },
+                {
+                  "name": "Workday Extend Update application configurations",
+                  "id": "58b55031-aa99-4dfc-b8af-fc601715ed5f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"configurations\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId/configurations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId",
+                        "configurations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fb3f3408-e9b8-435b-a190-4c4832f91a7e",
+                          "key": "appId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Extend application"
+                        }
+                      ]
+                    },
+                    "description": "Updates the configuration settings for the specified Extend application. Replaces all configuration values with the provided settings."
+                  },
+                  "response": [
+                    {
+                      "id": "45832419-e913-4317-84ee-3fabfa2380c2",
+                      "name": "Configuration successfully updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"configurations\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"key\": \"<string>\",\n  \"value\": \"<string>\",\n  \"description\": \"<string>\",\n  \"dataType\": \"string\",\n  \"isSecret\": \"<boolean>\"\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-45832419-e913-4317-84ee-3fabfa2380c2"
+                    },
+                    {
+                      "id": "cf3ba4f1-ff83-461c-b4e4-47f131da8ffe",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"configurations\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-cf3ba4f1-ff83-461c-b4e4-47f131da8ffe"
+                    },
+                    {
+                      "id": "7ef9c1e9-725c-47a7-ae56-7879dcf05ec2",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"configurations\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-7ef9c1e9-725c-47a7-ae56-7879dcf05ec2"
+                    },
+                    {
+                      "id": "cc3af865-f792-42eb-8557-00f0c786e8b9",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"configurations\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-cc3af865-f792-42eb-8557-00f0c786e8b9"
+                    },
+                    {
+                      "id": "4e8bb16e-39ad-463e-a370-e90b45d0b134",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"configurations\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"description\": \"<string>\",\n      \"dataType\": \"json\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-4e8bb16e-39ad-463e-a370-e90b45d0b134"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-58b55031-aa99-4dfc-b8af-fc601715ed5f"
+                }
+              ],
+              "id": "3e5a7365-5324-40eb-b66c-af0fb59fdccd",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-3e5a7365-5324-40eb-b66c-af0fb59fdccd"
+            },
+            {
+              "name": "deployments",
+              "item": [
+                {
+                  "name": "{deploymentId}",
+                  "item": [
+                    {
+                      "name": "Workday Extend Retrieve a specific deployment",
+                      "id": "52f9db91-2bb0-454d-9bfb-2803ced06ca4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments/:deploymentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments",
+                            ":deploymentId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2f862731-1d6e-4b54-926e-fcaa9c2047b8",
+                              "key": "appId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the Extend application"
+                            },
+                            {
+                              "id": "be134005-ae6b-4481-bc16-ab618fe1ff03",
+                              "key": "deploymentId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the deployment record"
+                            }
+                          ]
+                        },
+                        "description": "Returns the details of a specific deployment record including its status, deployed version, and deployment timestamp."
+                      },
+                      "response": [
+                        {
+                          "id": "0c2d11f7-cf12-4327-b056-c80cd9aaff29",
+                          "name": "Successful response with the deployment details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/deployments/:deploymentId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "deployments",
+                                ":deploymentId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "deploymentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"app\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"status\": \"failed\",\n  \"environment\": \"sandbox\",\n  \"deployedOn\": \"<dateTime>\",\n  \"deployedBy\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-0c2d11f7-cf12-4327-b056-c80cd9aaff29"
+                        },
+                        {
+                          "id": "c589d093-2901-47bf-a621-6faa9c796046",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/deployments/:deploymentId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "deployments",
+                                ":deploymentId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "deploymentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-c589d093-2901-47bf-a621-6faa9c796046"
+                        },
+                        {
+                          "id": "a50d6208-895d-4e08-a345-1426083f3eb9",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/deployments/:deploymentId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "deployments",
+                                ":deploymentId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "deploymentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-a50d6208-895d-4e08-a345-1426083f3eb9"
+                        },
+                        {
+                          "id": "6123476e-ff4d-433f-b687-c5f72b163d5d",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apps/:appId/deployments/:deploymentId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apps",
+                                ":appId",
+                                "deployments",
+                                ":deploymentId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appId"
+                                },
+                                {
+                                  "key": "deploymentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:21:32.000Z",
+                          "updatedAt": "2026-06-05T15:21:32.000Z",
+                          "uid": "35240-6123476e-ff4d-433f-b687-c5f72b163d5d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-52f9db91-2bb0-454d-9bfb-2803ced06ca4"
+                    }
+                  ],
+                  "id": "ffc6dd34-6dc6-4fb6-9374-0c1d370b95af",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-ffc6dd34-6dc6-4fb6-9374-0c1d370b95af"
+                },
+                {
+                  "name": "Workday Extend List application deployments",
+                  "id": "5dbcafb5-9850-415a-93b1-2cfc59e4f006",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId/deployments?limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId",
+                        "deployments"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b61305ff-17c1-4db1-b554-54e7cce382b5",
+                          "key": "appId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Extend application"
+                        }
+                      ]
+                    },
+                    "description": "Returns a collection of deployment records for the specified Extend application, including active and historical deployments."
+                  },
+                  "response": [
+                    {
+                      "id": "072e4354-8876-4c20-a4a5-92934df8079d",
+                      "name": "Successful response with deployment records",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"app\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"version\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"status\": \"in_progress\",\n      \"environment\": \"production\",\n      \"deployedOn\": \"<dateTime>\",\n      \"deployedBy\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"app\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"version\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"status\": \"deployed\",\n      \"environment\": \"production\",\n      \"deployedOn\": \"<dateTime>\",\n      \"deployedBy\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-072e4354-8876-4c20-a4a5-92934df8079d"
+                    },
+                    {
+                      "id": "062cb215-9e88-4572-8d41-1b0106f4b339",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-062cb215-9e88-4572-8d41-1b0106f4b339"
+                    },
+                    {
+                      "id": "cf5e5943-942f-41d8-8eaf-4151780ffa61",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-cf5e5943-942f-41d8-8eaf-4151780ffa61"
+                    },
+                    {
+                      "id": "429ce294-d05f-4c8a-8320-10b520fc1f19",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-429ce294-d05f-4c8a-8320-10b520fc1f19"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-5dbcafb5-9850-415a-93b1-2cfc59e4f006"
+                },
+                {
+                  "name": "Workday Extend Deploy an Extend application",
+                  "id": "968bdc95-933f-4a07-995e-86c29c08b9e3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"versionId\": \"<string>\",\n  \"environment\": \"sandbox\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId/deployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId",
+                        "deployments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a3b58d2c-d107-40cd-a834-e17ca543d808",
+                          "key": "appId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Extend application"
+                        }
+                      ]
+                    },
+                    "description": "Initiates a deployment of the specified Extend application version to the target environment. The deployment process provisions resources and activates the application."
+                  },
+                  "response": [
+                    {
+                      "id": "1d33babe-8118-4c1a-9023-8d522d45f5a1",
+                      "name": "Deployment initiated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionId\": \"<string>\",\n  \"environment\": \"sandbox\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"app\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"version\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"status\": \"failed\",\n  \"environment\": \"sandbox\",\n  \"deployedOn\": \"<dateTime>\",\n  \"deployedBy\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"href\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-1d33babe-8118-4c1a-9023-8d522d45f5a1"
+                    },
+                    {
+                      "id": "bf835f26-8c7a-4dd7-a066-86ad03389a61",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionId\": \"<string>\",\n  \"environment\": \"sandbox\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-bf835f26-8c7a-4dd7-a066-86ad03389a61"
+                    },
+                    {
+                      "id": "43fc29d8-e0ca-454a-8241-9c2a44a935d3",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionId\": \"<string>\",\n  \"environment\": \"sandbox\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-43fc29d8-e0ca-454a-8241-9c2a44a935d3"
+                    },
+                    {
+                      "id": "f78f134e-dd9b-44f8-973f-9ba24ea4ebe5",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionId\": \"<string>\",\n  \"environment\": \"sandbox\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-f78f134e-dd9b-44f8-973f-9ba24ea4ebe5"
+                    },
+                    {
+                      "id": "b27379ca-4229-4021-86f5-3a2541bd3b39",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"versionId\": \"<string>\",\n  \"environment\": \"sandbox\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apps/:appId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apps",
+                            ":appId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:32.000Z",
+                      "updatedAt": "2026-06-05T15:21:32.000Z",
+                      "uid": "35240-b27379ca-4229-4021-86f5-3a2541bd3b39"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-968bdc95-933f-4a07-995e-86c29c08b9e3"
+                }
+              ],
+              "id": "30ced4dd-6921-4416-94e1-04b857ec1d51",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-30ced4dd-6921-4416-94e1-04b857ec1d51"
+            },
+            {
+              "name": "Workday Extend Retrieve an Extend application",
+              "id": "fb49a944-684e-4870-b7df-94eeb0dba06c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:appId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":appId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "534e6b84-5db9-4637-bd97-7833f14caabb",
+                      "key": "appId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the Extend application"
+                    }
+                  ]
+                },
+                "description": "Returns the details of a specific Workday Extend application including its metadata, configuration, deployment status, and version history."
+              },
+              "response": [
+                {
+                  "id": "b569a8e8-adc7-42e5-b5c9-e59ce94922e2",
+                  "name": "Successful response with the application details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"published\",\n  \"category\": \"<string>\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"currentVersion\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-b569a8e8-adc7-42e5-b5c9-e59ce94922e2"
+                },
+                {
+                  "id": "38d0e4c9-cebd-4bce-9009-1fbecc915156",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-38d0e4c9-cebd-4bce-9009-1fbecc915156"
+                },
+                {
+                  "id": "55026b31-97af-4886-8ec9-6aee42ab2c82",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-55026b31-97af-4886-8ec9-6aee42ab2c82"
+                },
+                {
+                  "id": "35fa7789-8cc7-4866-a9fd-24ef02d32789",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-35fa7789-8cc7-4866-a9fd-24ef02d32789"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-fb49a944-684e-4870-b7df-94eeb0dba06c"
+            },
+            {
+              "name": "Workday Extend Update an Extend application",
+              "id": "4c5a3a4d-d325-46e9-9d9e-3d102da06246",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:appId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":appId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c50679a2-609d-4722-ad23-17033c387807",
+                      "key": "appId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the Extend application"
+                    }
+                  ]
+                },
+                "description": "Updates the metadata or configuration of an existing Workday Extend application. Only the fields provided in the request body are updated."
+              },
+              "response": [
+                {
+                  "id": "78e6fc72-60db-4cc0-8ff9-c128e0638be0",
+                  "name": "Application successfully updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"published\",\n  \"category\": \"<string>\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"currentVersion\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-78e6fc72-60db-4cc0-8ff9-c128e0638be0"
+                },
+                {
+                  "id": "90a0b7e3-428f-4ca8-a1bc-698ed1f05fde",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-90a0b7e3-428f-4ca8-a1bc-698ed1f05fde"
+                },
+                {
+                  "id": "b9313c42-b819-4623-8976-56c43eb80464",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-b9313c42-b819-4623-8976-56c43eb80464"
+                },
+                {
+                  "id": "f1e0c6f4-8d22-4a23-bdeb-3613b550b1a4",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-f1e0c6f4-8d22-4a23-bdeb-3613b550b1a4"
+                },
+                {
+                  "id": "e1f854be-2c0b-4123-b5fa-b8028a9a9eac",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-e1f854be-2c0b-4123-b5fa-b8028a9a9eac"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-4c5a3a4d-d325-46e9-9d9e-3d102da06246"
+            },
+            {
+              "name": "Workday Extend Delete an Extend application",
+              "id": "64118e7a-0333-4440-8976-1c342a468a67",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps/:appId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps",
+                    ":appId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9d40dcfa-70dc-4b3c-bd1d-74798b0ed73b",
+                      "key": "appId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the Extend application"
+                    }
+                  ]
+                },
+                "description": "Removes a Workday Extend application registration from the tenant. The application must be undeployed before deletion."
+              },
+              "response": [
+                {
+                  "id": "cd64f8ba-34d8-497f-b36a-43820937c362",
+                  "name": "Application successfully deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-cd64f8ba-34d8-497f-b36a-43820937c362"
+                },
+                {
+                  "id": "a478d0a7-3c40-484c-81c5-6b2e496a00e4",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-a478d0a7-3c40-484c-81c5-6b2e496a00e4"
+                },
+                {
+                  "id": "60d60b2e-b58c-4354-ac2f-c9ffc4c19813",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-60d60b2e-b58c-4354-ac2f-c9ffc4c19813"
+                },
+                {
+                  "id": "f13bb285-8430-4a9d-b896-0705e10223bf",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apps/:appId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apps",
+                        ":appId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:21:32.000Z",
+                  "updatedAt": "2026-06-05T15:21:32.000Z",
+                  "uid": "35240-f13bb285-8430-4a9d-b896-0705e10223bf"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-64118e7a-0333-4440-8976-1c342a468a67"
+            }
+          ],
+          "id": "7fb30961-6211-4f30-a5cd-197c5fa757f8",
+          "createdAt": "2026-06-05T15:21:32.000Z",
+          "updatedAt": "2026-06-05T15:21:32.000Z",
+          "uid": "35240-7fb30961-6211-4f30-a5cd-197c5fa757f8"
+        },
+        {
+          "name": "Workday Extend List Extend applications",
+          "id": "dcde83d2-f655-4d4a-893e-c61a6177f779",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/apps?limit=20&offset=0&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "apps"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Search term to filter results",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of Workday Extend applications registered within the tenant. Supports filtering by status, name, and other attributes."
+          },
+          "response": [
+            {
+              "id": "04ef107c-9235-49ce-a500-0a23ad50779a",
+              "name": "Successful response with a collection of applications",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"deployed\",\n      \"category\": \"<string>\",\n      \"owner\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"currentVersion\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"createdOn\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"deployed\",\n      \"category\": \"<string>\",\n      \"owner\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"currentVersion\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"createdOn\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-04ef107c-9235-49ce-a500-0a23ad50779a"
+            },
+            {
+              "id": "18806ab5-8110-465e-aa28-59db1f3d219f",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-18806ab5-8110-465e-aa28-59db1f3d219f"
+            },
+            {
+              "id": "ef37f72b-00dd-49e4-89db-98c3174a3808",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apps?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-ef37f72b-00dd-49e4-89db-98c3174a3808"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:32.000Z",
+          "updatedAt": "2026-06-05T15:21:32.000Z",
+          "uid": "35240-dcde83d2-f655-4d4a-893e-c61a6177f779"
+        },
+        {
+          "name": "Workday Extend Register a new Extend application",
+          "id": "b8d19df6-ea02-4950-93af-387b6a4f41cf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/apps",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "apps"
+              ]
+            },
+            "description": "Registers a new Workday Extend application within the tenant. The app definition includes metadata, permissions, and configuration schema."
+          },
+          "response": [
+            {
+              "id": "eeba147b-6d80-4b79-9692-f30b6d71002f",
+              "name": "Application successfully created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"published\",\n  \"category\": \"<string>\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"currentVersion\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-eeba147b-6d80-4b79-9692-f30b6d71002f"
+            },
+            {
+              "id": "13ba785c-0cda-4aff-80b8-d9dd9d44d0d8",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-13ba785c-0cda-4aff-80b8-d9dd9d44d0d8"
+            },
+            {
+              "id": "19f8a080-af01-4b78-b7d8-49673f5fef6e",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-19f8a080-af01-4b78-b7d8-49673f5fef6e"
+            },
+            {
+              "id": "3ca6e0e5-3f38-4e9b-900d-f2862d24d644",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apps",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apps"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:32.000Z",
+              "updatedAt": "2026-06-05T15:21:32.000Z",
+              "uid": "35240-3ca6e0e5-3f38-4e9b-900d-f2862d24d644"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:32.000Z",
+          "updatedAt": "2026-06-05T15:21:32.000Z",
+          "uid": "35240-b8d19df6-ea02-4950-93af-387b6a4f41cf"
+        }
+      ],
+      "id": "be37508d-d398-4823-8e8a-9c62f71b7158",
+      "createdAt": "2026-06-05T15:21:32.000Z",
+      "updatedAt": "2026-06-05T15:21:32.000Z",
+      "uid": "35240-be37508d-d398-4823-8e8a-9c62f71b7158"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "extend:apps extend:apps:read",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "api.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

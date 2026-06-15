@@ -1,0 +1,4150 @@
+{
+  "info": {
+    "_postman_id": "1c30d423-c23e-4646-9554-47522364640f",
+    "name": "Workday Extend Workday Orchestration API",
+    "description": "APIs for creating and managing orchestrations that automate business processes and integrate with external systems. Developers visually build orchestrations using the Orchestration Builder to define flows, map data, and perform transformations. Orchestrations can be triggered from Extend apps, business processes, integration systems, or external systems via API triggers.\n\nContact Support:\n Name: Workday Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:21:33.000Z",
+    "updatedAt": "2026-06-05T15:21:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c30d423-c23e-4646-9554-47522364640f"
+  },
+  "item": [
+    {
+      "name": "orchestrations",
+      "item": [
+        {
+          "name": "{orchestrationId}",
+          "item": [
+            {
+              "name": "activate",
+              "item": [
+                {
+                  "name": "Workday Extend Activate an orchestration",
+                  "id": "c2272071-8d04-4094-90b8-122963ce7a1b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId/activate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9e3f0da3-9dda-4c45-9830-b58e2c79b53c",
+                          "key": "orchestrationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the orchestration"
+                        }
+                      ]
+                    },
+                    "description": "Activates a draft or inactive orchestration, making it available for triggering and execution."
+                  },
+                  "response": [
+                    {
+                      "id": "0f1eee81-f54f-4b24-9ddd-fdea60c42170",
+                      "name": "Orchestration successfully activated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"inactive\",\n  \"triggerType\": \"event\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"app\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"stepCount\": \"<integer>\",\n  \"lastExecutedOn\": \"<dateTime>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-0f1eee81-f54f-4b24-9ddd-fdea60c42170"
+                    },
+                    {
+                      "id": "c385cfef-a0c9-45b5-b27f-c71c0b1c7481",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-c385cfef-a0c9-45b5-b27f-c71c0b1c7481"
+                    },
+                    {
+                      "id": "bb3d0888-66e7-41ad-b061-30dbbd24eaad",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-bb3d0888-66e7-41ad-b061-30dbbd24eaad"
+                    },
+                    {
+                      "id": "1b44e1b1-30f3-4925-9eb7-9570b4c0274e",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-1b44e1b1-30f3-4925-9eb7-9570b4c0274e"
+                    },
+                    {
+                      "id": "80c7af3c-9533-464e-840a-d71bad7ce67c",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-80c7af3c-9533-464e-840a-d71bad7ce67c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-c2272071-8d04-4094-90b8-122963ce7a1b"
+                }
+              ],
+              "id": "9e529f10-8f2a-485b-8e31-5599133220cf",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-9e529f10-8f2a-485b-8e31-5599133220cf"
+            },
+            {
+              "name": "deactivate",
+              "item": [
+                {
+                  "name": "Workday Extend Deactivate an orchestration",
+                  "id": "ce2fd6e8-9ae8-402e-92b8-461fdc4c0e61",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId/deactivate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId",
+                        "deactivate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5272c504-9bd7-4f3c-9fb2-7a145ce54c8e",
+                          "key": "orchestrationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the orchestration"
+                        }
+                      ]
+                    },
+                    "description": "Deactivates an active orchestration, preventing new executions from being triggered. In-flight executions are allowed to complete."
+                  },
+                  "response": [
+                    {
+                      "id": "bbf45596-6a34-4a56-90a0-25a3ee7d44b5",
+                      "name": "Orchestration successfully deactivated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"inactive\",\n  \"triggerType\": \"event\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"app\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"stepCount\": \"<integer>\",\n  \"lastExecutedOn\": \"<dateTime>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-bbf45596-6a34-4a56-90a0-25a3ee7d44b5"
+                    },
+                    {
+                      "id": "f4394c5c-14d0-444e-9ddf-5581102beab9",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-f4394c5c-14d0-444e-9ddf-5581102beab9"
+                    },
+                    {
+                      "id": "94ff48ea-c7f7-469f-9fcb-28305b42324f",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-94ff48ea-c7f7-469f-9fcb-28305b42324f"
+                    },
+                    {
+                      "id": "4c1ba1d3-6444-4344-acf3-5c1fe80f3f89",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-4c1ba1d3-6444-4344-acf3-5c1fe80f3f89"
+                    },
+                    {
+                      "id": "f1472c2e-dec1-4f90-b7ea-960eb13dc11b",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-f1472c2e-dec1-4f90-b7ea-960eb13dc11b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-ce2fd6e8-9ae8-402e-92b8-461fdc4c0e61"
+                }
+              ],
+              "id": "a6f49f1c-cebf-4a55-abe0-cee94b209161",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-a6f49f1c-cebf-4a55-abe0-cee94b209161"
+            },
+            {
+              "name": "executions",
+              "item": [
+                {
+                  "name": "{executionId}",
+                  "item": [
+                    {
+                      "name": "cancel",
+                      "item": [
+                        {
+                          "name": "Workday Extend Cancel an orchestration execution",
+                          "id": "b11be1f6-5753-4a3d-88e0-48fb6e8b1a4c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orchestrations",
+                                ":orchestrationId",
+                                "executions",
+                                ":executionId",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "325895fb-1445-45cc-9141-862b5e7b46ba",
+                                  "key": "orchestrationId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the orchestration"
+                                },
+                                {
+                                  "id": "531c3238-eeef-4267-86a5-9bf9959e439b",
+                                  "key": "executionId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the orchestration execution"
+                                }
+                              ]
+                            },
+                            "description": "Cancels a running orchestration execution. Steps that are currently in progress may complete before cancellation takes effect."
+                          },
+                          "response": [
+                            {
+                              "id": "5913228e-7a71-4fe4-ba35-074b5fa7a8ad",
+                              "name": "Execution cancellation initiated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "orchestrations",
+                                    ":orchestrationId",
+                                    "executions",
+                                    ":executionId",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orchestrationId"
+                                    },
+                                    {
+                                      "key": "executionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"orchestration\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"status\": \"running\",\n  \"triggeredBy\": \"schedule\",\n  \"input\": {\n    \"esse5\": false\n  },\n  \"output\": {\n    \"reprehenderitb\": false,\n    \"dolore_4fb\": 97054436\n  },\n  \"startedOn\": \"<dateTime>\",\n  \"completedOn\": \"<dateTime>\",\n  \"durationMs\": \"<integer>\",\n  \"stepsCompleted\": \"<integer>\",\n  \"stepsTotal\": \"<integer>\",\n  \"errorMessage\": \"<string>\",\n  \"href\": \"<uri>\"\n}",
+                              "createdAt": "2026-06-05T15:21:33.000Z",
+                              "updatedAt": "2026-06-05T15:21:33.000Z",
+                              "uid": "35240-5913228e-7a71-4fe4-ba35-074b5fa7a8ad"
+                            },
+                            {
+                              "id": "cfcf6dc3-0b3d-4ffd-bcdf-478caae2934d",
+                              "name": "Invalid request parameters",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "orchestrations",
+                                    ":orchestrationId",
+                                    "executions",
+                                    ":executionId",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orchestrationId"
+                                    },
+                                    {
+                                      "key": "executionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:21:33.000Z",
+                              "updatedAt": "2026-06-05T15:21:33.000Z",
+                              "uid": "35240-cfcf6dc3-0b3d-4ffd-bcdf-478caae2934d"
+                            },
+                            {
+                              "id": "b0834f37-779f-4f9e-b058-af644a7bedb6",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "orchestrations",
+                                    ":orchestrationId",
+                                    "executions",
+                                    ":executionId",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orchestrationId"
+                                    },
+                                    {
+                                      "key": "executionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:21:33.000Z",
+                              "updatedAt": "2026-06-05T15:21:33.000Z",
+                              "uid": "35240-b0834f37-779f-4f9e-b058-af644a7bedb6"
+                            },
+                            {
+                              "id": "b7e5c76f-66ad-466d-9613-8f567242e19e",
+                              "name": "Insufficient permissions",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "orchestrations",
+                                    ":orchestrationId",
+                                    "executions",
+                                    ":executionId",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orchestrationId"
+                                    },
+                                    {
+                                      "key": "executionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:21:33.000Z",
+                              "updatedAt": "2026-06-05T15:21:33.000Z",
+                              "uid": "35240-b7e5c76f-66ad-466d-9613-8f567242e19e"
+                            },
+                            {
+                              "id": "83978f3f-98ee-42f5-9060-fc6e78f9ae5d",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "orchestrations",
+                                    ":orchestrationId",
+                                    "executions",
+                                    ":executionId",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orchestrationId"
+                                    },
+                                    {
+                                      "key": "executionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:21:33.000Z",
+                              "updatedAt": "2026-06-05T15:21:33.000Z",
+                              "uid": "35240-83978f3f-98ee-42f5-9060-fc6e78f9ae5d"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:21:33.000Z",
+                          "updatedAt": "2026-06-05T15:21:33.000Z",
+                          "uid": "35240-b11be1f6-5753-4a3d-88e0-48fb6e8b1a4c"
+                        }
+                      ],
+                      "id": "c68cd128-879c-4100-9cae-812064a61f47",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-c68cd128-879c-4100-9cae-812064a61f47"
+                    },
+                    {
+                      "name": "Workday Extend Retrieve an orchestration execution",
+                      "id": "ca1bd654-1c71-4b10-bf95-67b5573384b4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions",
+                            ":executionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "40f20c4d-c783-4eb9-8c7e-2d4751f041fc",
+                              "key": "orchestrationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the orchestration"
+                            },
+                            {
+                              "id": "9fc049fa-02f2-4227-ad57-1c02e78a23d0",
+                              "key": "executionId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the orchestration execution"
+                            }
+                          ]
+                        },
+                        "description": "Returns the details of a specific orchestration execution including its status, step results, input and output data, and timing information."
+                      },
+                      "response": [
+                        {
+                          "id": "50577109-b222-4e83-bbc6-fcfd7c993a78",
+                          "name": "Successful response with execution details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orchestrations",
+                                ":orchestrationId",
+                                "executions",
+                                ":executionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orchestrationId"
+                                },
+                                {
+                                  "key": "executionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"orchestration\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"status\": \"running\",\n  \"triggeredBy\": \"schedule\",\n  \"input\": {\n    \"esse5\": false\n  },\n  \"output\": {\n    \"reprehenderitb\": false,\n    \"dolore_4fb\": 97054436\n  },\n  \"startedOn\": \"<dateTime>\",\n  \"completedOn\": \"<dateTime>\",\n  \"durationMs\": \"<integer>\",\n  \"stepsCompleted\": \"<integer>\",\n  \"stepsTotal\": \"<integer>\",\n  \"errorMessage\": \"<string>\",\n  \"href\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T15:21:33.000Z",
+                          "updatedAt": "2026-06-05T15:21:33.000Z",
+                          "uid": "35240-50577109-b222-4e83-bbc6-fcfd7c993a78"
+                        },
+                        {
+                          "id": "8c365e0d-ad85-4102-92f2-87b40af91d6b",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orchestrations",
+                                ":orchestrationId",
+                                "executions",
+                                ":executionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orchestrationId"
+                                },
+                                {
+                                  "key": "executionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:33.000Z",
+                          "updatedAt": "2026-06-05T15:21:33.000Z",
+                          "uid": "35240-8c365e0d-ad85-4102-92f2-87b40af91d6b"
+                        },
+                        {
+                          "id": "ec60fc5c-abbd-4e4b-983b-7f5a452644e1",
+                          "name": "Insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orchestrations",
+                                ":orchestrationId",
+                                "executions",
+                                ":executionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orchestrationId"
+                                },
+                                {
+                                  "key": "executionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:33.000Z",
+                          "updatedAt": "2026-06-05T15:21:33.000Z",
+                          "uid": "35240-ec60fc5c-abbd-4e4b-983b-7f5a452644e1"
+                        },
+                        {
+                          "id": "34754ffb-02d4-4925-a2be-92e1a0b91868",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions/:executionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orchestrations",
+                                ":orchestrationId",
+                                "executions",
+                                ":executionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orchestrationId"
+                                },
+                                {
+                                  "key": "executionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:21:33.000Z",
+                          "updatedAt": "2026-06-05T15:21:33.000Z",
+                          "uid": "35240-34754ffb-02d4-4925-a2be-92e1a0b91868"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-ca1bd654-1c71-4b10-bf95-67b5573384b4"
+                    }
+                  ],
+                  "id": "dfdf51aa-2cfb-495e-a395-1ddbbae71a03",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-dfdf51aa-2cfb-495e-a395-1ddbbae71a03"
+                },
+                {
+                  "name": "Workday Extend List orchestration executions",
+                  "id": "b605d367-890b-4773-96ac-0706a4fc96f1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions?limit=20&offset=0&status=completed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId",
+                        "executions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter by execution status",
+                          "key": "status",
+                          "value": "completed"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "1422322b-4607-4d77-b3ff-72af68357116",
+                          "key": "orchestrationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the orchestration"
+                        }
+                      ]
+                    },
+                    "description": "Returns a collection of execution records for the specified orchestration, including completed, running, and failed executions."
+                  },
+                  "response": [
+                    {
+                      "id": "e7080566-0ed8-45dc-acb6-63e12dda710e",
+                      "name": "Successful response with execution records",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions?limit=20&offset=0&status=completed",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter by execution status",
+                              "key": "status",
+                              "value": "completed"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"orchestration\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"status\": \"completed\",\n      \"triggeredBy\": \"schedule\",\n      \"input\": {\n        \"nisi09\": 29828963,\n        \"eu_a16\": -68497936.96842688\n      },\n      \"output\": {\n        \"ex_ba\": 1677755.0575506836,\n        \"Lorem4d\": true\n      },\n      \"startedOn\": \"<dateTime>\",\n      \"completedOn\": \"<dateTime>\",\n      \"durationMs\": \"<integer>\",\n      \"stepsCompleted\": \"<integer>\",\n      \"stepsTotal\": \"<integer>\",\n      \"errorMessage\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"orchestration\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"status\": \"failed\",\n      \"triggeredBy\": \"schedule\",\n      \"input\": {\n        \"mollit_f04\": 43573924.78535184,\n        \"dolore_9a\": \"eu\"\n      },\n      \"output\": {\n        \"minim98c\": 77993022,\n        \"anim_a\": \"dolore\",\n        \"iddb\": -79428090\n      },\n      \"startedOn\": \"<dateTime>\",\n      \"completedOn\": \"<dateTime>\",\n      \"durationMs\": \"<integer>\",\n      \"stepsCompleted\": \"<integer>\",\n      \"stepsTotal\": \"<integer>\",\n      \"errorMessage\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-e7080566-0ed8-45dc-acb6-63e12dda710e"
+                    },
+                    {
+                      "id": "bda84ff9-ec46-4e37-b9ea-aad5c42ad0a3",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions?limit=20&offset=0&status=completed",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter by execution status",
+                              "key": "status",
+                              "value": "completed"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-bda84ff9-ec46-4e37-b9ea-aad5c42ad0a3"
+                    },
+                    {
+                      "id": "dd7a90e0-f00e-44bc-923f-749ffa2809cf",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions?limit=20&offset=0&status=completed",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter by execution status",
+                              "key": "status",
+                              "value": "completed"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-dd7a90e0-f00e-44bc-923f-749ffa2809cf"
+                    },
+                    {
+                      "id": "8f3eb2b1-3dde-4b25-9a7b-5979278d889e",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions?limit=20&offset=0&status=completed",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter by execution status",
+                              "key": "status",
+                              "value": "completed"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-8f3eb2b1-3dde-4b25-9a7b-5979278d889e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-b605d367-890b-4773-96ac-0706a4fc96f1"
+                },
+                {
+                  "name": "Workday Extend Launch an orchestration execution",
+                  "id": "162ac4eb-2318-412a-826a-1692216c3f13",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"input\": {\n    \"cupidatat391\": \"deserunt est elit minim\",\n    \"laboris_b\": \"et proident ve\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId",
+                        "executions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bd83a500-1551-4fe2-ab56-34e5b2560e6a",
+                          "key": "orchestrationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the orchestration"
+                        }
+                      ]
+                    },
+                    "description": "Triggers a new execution of the specified orchestration. Supports passing input parameters that are mapped to the orchestration's defined inputs. This endpoint can be called from external systems to remotely trigger orchestration workflows."
+                  },
+                  "response": [
+                    {
+                      "id": "1a9723cd-4809-4553-874b-702baf3bd408",
+                      "name": "Orchestration execution initiated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"input\": {\n    \"cupidatat391\": \"deserunt est elit minim\",\n    \"laboris_b\": \"et proident ve\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"orchestration\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"status\": \"running\",\n  \"triggeredBy\": \"schedule\",\n  \"input\": {\n    \"esse5\": false\n  },\n  \"output\": {\n    \"reprehenderitb\": false,\n    \"dolore_4fb\": 97054436\n  },\n  \"startedOn\": \"<dateTime>\",\n  \"completedOn\": \"<dateTime>\",\n  \"durationMs\": \"<integer>\",\n  \"stepsCompleted\": \"<integer>\",\n  \"stepsTotal\": \"<integer>\",\n  \"errorMessage\": \"<string>\",\n  \"href\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-1a9723cd-4809-4553-874b-702baf3bd408"
+                    },
+                    {
+                      "id": "8fbb7c74-170d-44b1-890b-5e8832d93bd5",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"input\": {\n    \"cupidatat391\": \"deserunt est elit minim\",\n    \"laboris_b\": \"et proident ve\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-8fbb7c74-170d-44b1-890b-5e8832d93bd5"
+                    },
+                    {
+                      "id": "824ccf3c-1f0e-4467-9514-7438a848aa6f",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"input\": {\n    \"cupidatat391\": \"deserunt est elit minim\",\n    \"laboris_b\": \"et proident ve\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-824ccf3c-1f0e-4467-9514-7438a848aa6f"
+                    },
+                    {
+                      "id": "8dad5e64-2520-4873-bc7f-d7233337bede",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"input\": {\n    \"cupidatat391\": \"deserunt est elit minim\",\n    \"laboris_b\": \"et proident ve\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-8dad5e64-2520-4873-bc7f-d7233337bede"
+                    },
+                    {
+                      "id": "0bd760ba-3c52-46e0-8334-ad0b0668e909",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"input\": {\n    \"cupidatat391\": \"deserunt est elit minim\",\n    \"laboris_b\": \"et proident ve\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/executions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "executions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-0bd760ba-3c52-46e0-8334-ad0b0668e909"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-162ac4eb-2318-412a-826a-1692216c3f13"
+                }
+              ],
+              "id": "fee23a93-8bb8-4e2b-bc6c-5e63532abff2",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-fee23a93-8bb8-4e2b-bc6c-5e63532abff2"
+            },
+            {
+              "name": "steps",
+              "item": [
+                {
+                  "name": "Workday Extend List orchestration steps",
+                  "id": "ed66cd67-7686-44ac-a072-1afc21317af2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId/steps",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId",
+                        "steps"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7593eee4-b2c4-43d3-aaf5-5494090890ef",
+                          "key": "orchestrationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the orchestration"
+                        }
+                      ]
+                    },
+                    "description": "Returns the collection of steps defined within the specified orchestration, including their order, type, and configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "98441e87-4924-405b-92ea-44e142faa9d9",
+                      "name": "Successful response with orchestration steps",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/steps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "steps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"transformation\",\n      \"order\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"configuration\": {\n        \"ea_375\": \"Ut laboris consequat aliqua\",\n        \"Lorem_abd\": false,\n        \"exercitation_1\": true,\n        \"dolor_8fc\": false\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"loop\",\n      \"order\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"configuration\": {\n        \"ullamco_14e\": 66959739.25235933,\n        \"consecteturd5a\": -13230385.186334059,\n        \"ina\": \"ut magna tempor eu ullamco\",\n        \"Lorem_2\": \"laboris occaecat\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-98441e87-4924-405b-92ea-44e142faa9d9"
+                    },
+                    {
+                      "id": "662bad69-6b49-4975-ba2e-7e83dbaf9bfb",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/steps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "steps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-662bad69-6b49-4975-ba2e-7e83dbaf9bfb"
+                    },
+                    {
+                      "id": "b975028b-ab43-4478-9408-f7e446b4ddcb",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/steps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "steps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-b975028b-ab43-4478-9408-f7e446b4ddcb"
+                    },
+                    {
+                      "id": "57a52090-b0e3-4554-9b47-617664bec4ac",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/steps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "steps"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-57a52090-b0e3-4554-9b47-617664bec4ac"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-ed66cd67-7686-44ac-a072-1afc21317af2"
+                }
+              ],
+              "id": "12173deb-8987-46de-ae62-8624a30e7bac",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-12173deb-8987-46de-ae62-8624a30e7bac"
+            },
+            {
+              "name": "triggers",
+              "item": [
+                {
+                  "name": "Workday Extend List orchestration triggers",
+                  "id": "628d272f-221c-4e12-9bff-4cfce4bcfe51",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId",
+                        "triggers"
+                      ],
+                      "variable": [
+                        {
+                          "id": "719c3506-4116-41ea-b1cd-b9f1a763d48f",
+                          "key": "orchestrationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the orchestration"
+                        }
+                      ]
+                    },
+                    "description": "Returns the collection of triggers configured for the specified orchestration, including event-based, scheduled, and API triggers."
+                  },
+                  "response": [
+                    {
+                      "id": "31222a88-5d5c-4c16-b556-9e5584e5af3a",
+                      "name": "Successful response with orchestration triggers",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"api\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isActive\": \"<boolean>\",\n      \"configuration\": {\n        \"consectetur__b\": true,\n        \"Duis_3\": 38294889\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"api\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isActive\": \"<boolean>\",\n      \"configuration\": {\n        \"Excepteur_7c4\": false\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-31222a88-5d5c-4c16-b556-9e5584e5af3a"
+                    },
+                    {
+                      "id": "b319b543-387b-44ef-ab88-1b5c8a67f771",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-b319b543-387b-44ef-ab88-1b5c8a67f771"
+                    },
+                    {
+                      "id": "6f027400-0ac0-4d5e-b10a-ddc2b45ae268",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-6f027400-0ac0-4d5e-b10a-ddc2b45ae268"
+                    },
+                    {
+                      "id": "fbf825b2-a549-41c4-b78b-7408d51b0046",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-fbf825b2-a549-41c4-b78b-7408d51b0046"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-628d272f-221c-4e12-9bff-4cfce4bcfe51"
+                },
+                {
+                  "name": "Workday Extend Create an orchestration trigger",
+                  "id": "24978b7e-93c1-4e3e-9b47-20374329ce2b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"api\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": {\n    \"anim85\": 49822551\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId",
+                        "triggers"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f3bc07d-6e1d-4149-a400-0cb60a6f18df",
+                          "key": "orchestrationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the orchestration"
+                        }
+                      ]
+                    },
+                    "description": "Adds a new trigger to the specified orchestration. Triggers define how and when the orchestration is executed, including event-based triggers from business processes and scheduled triggers."
+                  },
+                  "response": [
+                    {
+                      "id": "d09b32cc-265c-4e9f-a089-4e30360d78d0",
+                      "name": "Trigger successfully created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"api\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": {\n    \"anim85\": 49822551\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"business_process\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"configuration\": {\n    \"ullamco1\": true\n  }\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-d09b32cc-265c-4e9f-a089-4e30360d78d0"
+                    },
+                    {
+                      "id": "c0de10e2-a115-4d75-b146-c55883f96706",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"api\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": {\n    \"anim85\": 49822551\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-c0de10e2-a115-4d75-b146-c55883f96706"
+                    },
+                    {
+                      "id": "cb2a5f0d-df4d-4f7a-afc6-d60ffe62df3a",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"api\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": {\n    \"anim85\": 49822551\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-cb2a5f0d-df4d-4f7a-afc6-d60ffe62df3a"
+                    },
+                    {
+                      "id": "fac0cbe1-60ff-455a-a327-da10f30686dd",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"api\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": {\n    \"anim85\": 49822551\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-fac0cbe1-60ff-455a-a327-da10f30686dd"
+                    },
+                    {
+                      "id": "fe7c8856-dc8d-435d-8cf1-0002ce892dfd",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"api\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": {\n    \"anim85\": 49822551\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orchestrations/:orchestrationId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orchestrations",
+                            ":orchestrationId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orchestrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:21:33.000Z",
+                      "updatedAt": "2026-06-05T15:21:33.000Z",
+                      "uid": "35240-fe7c8856-dc8d-435d-8cf1-0002ce892dfd"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-24978b7e-93c1-4e3e-9b47-20374329ce2b"
+                }
+              ],
+              "id": "c449eaba-4988-49ff-94ce-593213db4ed7",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-c449eaba-4988-49ff-94ce-593213db4ed7"
+            },
+            {
+              "name": "Workday Extend Retrieve an orchestration",
+              "id": "5ef62fd2-1a96-4de7-bda6-eb79ab3b3492",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations",
+                    ":orchestrationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e9c7bdac-658c-43fb-a11b-170db5b6a75e",
+                      "key": "orchestrationId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the orchestration"
+                    }
+                  ]
+                },
+                "description": "Returns the details of a specific orchestration definition including its steps, triggers, configuration, and execution history summary."
+              },
+              "response": [
+                {
+                  "id": "23cffb76-fc78-46e4-b388-240c4e63353b",
+                  "name": "Successful response with orchestration details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"inactive\",\n  \"triggerType\": \"event\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"app\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"stepCount\": \"<integer>\",\n  \"lastExecutedOn\": \"<dateTime>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-23cffb76-fc78-46e4-b388-240c4e63353b"
+                },
+                {
+                  "id": "62fcba11-f4d9-46ca-a2ac-128a87e06fd9",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-62fcba11-f4d9-46ca-a2ac-128a87e06fd9"
+                },
+                {
+                  "id": "9d048aab-1be0-4fd4-a0ff-5a74302f7be1",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-9d048aab-1be0-4fd4-a0ff-5a74302f7be1"
+                },
+                {
+                  "id": "72ad8aad-fb9c-4fdb-ac2d-fea2afe9ef70",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-72ad8aad-fb9c-4fdb-ac2d-fea2afe9ef70"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-5ef62fd2-1a96-4de7-bda6-eb79ab3b3492"
+            },
+            {
+              "name": "Workday Extend Update an orchestration",
+              "id": "56506ead-c10f-4f6e-b959-d3c52a9f26a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations",
+                    ":orchestrationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f51ce48f-bc1b-432b-afd3-529effcd331d",
+                      "key": "orchestrationId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the orchestration"
+                    }
+                  ]
+                },
+                "description": "Updates the definition of an existing orchestration. Only the fields provided in the request body are updated. Active orchestrations must be deactivated before modification."
+              },
+              "response": [
+                {
+                  "id": "820a1377-6d55-4d3e-a682-9b1c4884e5d6",
+                  "name": "Orchestration successfully updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"inactive\",\n  \"triggerType\": \"event\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"app\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"stepCount\": \"<integer>\",\n  \"lastExecutedOn\": \"<dateTime>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-820a1377-6d55-4d3e-a682-9b1c4884e5d6"
+                },
+                {
+                  "id": "205377bd-6e4f-48ed-8b61-9410e73820bd",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-205377bd-6e4f-48ed-8b61-9410e73820bd"
+                },
+                {
+                  "id": "28847e08-956d-44a7-992b-9e55cddfe06f",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-28847e08-956d-44a7-992b-9e55cddfe06f"
+                },
+                {
+                  "id": "2502ddb9-5ece-4965-8e99-26364eeb50e6",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-2502ddb9-5ece-4965-8e99-26364eeb50e6"
+                },
+                {
+                  "id": "02d30032-1815-4e79-9ec4-babe21424bec",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-02d30032-1815-4e79-9ec4-babe21424bec"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-56506ead-c10f-4f6e-b959-d3c52a9f26a4"
+            },
+            {
+              "name": "Workday Extend Delete an orchestration",
+              "id": "a5abcfd2-d025-4668-aa8c-f40724e72d96",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations",
+                    ":orchestrationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1a5607e1-9922-473f-b223-de6f6b5e3a69",
+                      "key": "orchestrationId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the orchestration"
+                    }
+                  ]
+                },
+                "description": "Deletes an orchestration definition from the tenant. The orchestration must be inactive and have no pending executions before deletion."
+              },
+              "response": [
+                {
+                  "id": "b733ef04-6512-4a1e-b3cd-1b035b005183",
+                  "name": "Orchestration successfully deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-b733ef04-6512-4a1e-b3cd-1b035b005183"
+                },
+                {
+                  "id": "f8cf7885-a156-4fce-91c7-ec6bd319cc89",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-f8cf7885-a156-4fce-91c7-ec6bd319cc89"
+                },
+                {
+                  "id": "baa7c313-cfb0-44f0-9c95-746096cb7678",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-baa7c313-cfb0-44f0-9c95-746096cb7678"
+                },
+                {
+                  "id": "66ec124e-173b-4b6b-9aea-d5cd00f8c73c",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orchestrations/:orchestrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orchestrations",
+                        ":orchestrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orchestrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:21:33.000Z",
+                  "updatedAt": "2026-06-05T15:21:33.000Z",
+                  "uid": "35240-66ec124e-173b-4b6b-9aea-d5cd00f8c73c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-a5abcfd2-d025-4668-aa8c-f40724e72d96"
+            }
+          ],
+          "id": "eb300ae5-d8ad-4ce8-8d9a-8a1f4691f4e7",
+          "createdAt": "2026-06-05T15:21:33.000Z",
+          "updatedAt": "2026-06-05T15:21:33.000Z",
+          "uid": "35240-eb300ae5-d8ad-4ce8-8d9a-8a1f4691f4e7"
+        },
+        {
+          "name": "Workday Extend List orchestrations",
+          "id": "f0a07e8f-904c-481f-afc1-22d3744d53d9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orchestrations?limit=20&offset=0&search=<string>&status=active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orchestrations"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Number of results to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Search term to filter results",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by orchestration status",
+                  "key": "status",
+                  "value": "active"
+                }
+              ]
+            },
+            "description": "Returns a collection of orchestration definitions within the tenant. Supports filtering by status, name, and trigger type."
+          },
+          "response": [
+            {
+              "id": "63283da7-be49-41d7-bc3a-e68a8b9ffa7b",
+              "name": "Successful response with orchestration definitions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations?limit=20&offset=0&search=<string>&status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by orchestration status",
+                      "key": "status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"active\",\n      \"triggerType\": \"api\",\n      \"owner\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"app\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"stepCount\": \"<integer>\",\n      \"lastExecutedOn\": \"<dateTime>\",\n      \"createdOn\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"active\",\n      \"triggerType\": \"event\",\n      \"owner\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"app\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"stepCount\": \"<integer>\",\n      \"lastExecutedOn\": \"<dateTime>\",\n      \"createdOn\": \"<dateTime>\",\n      \"lastModified\": \"<dateTime>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-63283da7-be49-41d7-bc3a-e68a8b9ffa7b"
+            },
+            {
+              "id": "701fbf07-07cb-4c4a-b26c-6fd26bbf4280",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations?limit=20&offset=0&search=<string>&status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by orchestration status",
+                      "key": "status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-701fbf07-07cb-4c4a-b26c-6fd26bbf4280"
+            },
+            {
+              "id": "2801ef6b-4123-4dec-8cdf-9773ee5928eb",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations?limit=20&offset=0&search=<string>&status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Number of results to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search term to filter results",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by orchestration status",
+                      "key": "status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-2801ef6b-4123-4dec-8cdf-9773ee5928eb"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:33.000Z",
+          "updatedAt": "2026-06-05T15:21:33.000Z",
+          "uid": "35240-f0a07e8f-904c-481f-afc1-22d3744d53d9"
+        },
+        {
+          "name": "Workday Extend Create an orchestration",
+          "id": "9e11e8c1-6cc7-40bb-8c8d-70ddc2c5d617",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggerType\": \"business_process\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orchestrations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orchestrations"
+              ]
+            },
+            "description": "Creates a new orchestration definition in the tenant. The orchestration is created in draft status and must be activated before it can be triggered."
+          },
+          "response": [
+            {
+              "id": "126964c6-017e-4f79-ba0d-0874184cc510",
+              "name": "Orchestration successfully created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggerType\": \"business_process\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"inactive\",\n  \"triggerType\": \"event\",\n  \"owner\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"app\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"stepCount\": \"<integer>\",\n  \"lastExecutedOn\": \"<dateTime>\",\n  \"createdOn\": \"<dateTime>\",\n  \"lastModified\": \"<dateTime>\",\n  \"href\": \"<uri>\"\n}",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-126964c6-017e-4f79-ba0d-0874184cc510"
+            },
+            {
+              "id": "cfb7695f-6200-4846-9782-1461099b4299",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggerType\": \"business_process\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-cfb7695f-6200-4846-9782-1461099b4299"
+            },
+            {
+              "id": "b0a6174a-2da6-4673-a771-e2dbc42571dd",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggerType\": \"business_process\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-b0a6174a-2da6-4673-a771-e2dbc42571dd"
+            },
+            {
+              "id": "760a8916-ae51-4481-8f6a-80b1ae06ae90",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggerType\": \"business_process\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orchestrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orchestrations"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:21:33.000Z",
+              "updatedAt": "2026-06-05T15:21:33.000Z",
+              "uid": "35240-760a8916-ae51-4481-8f6a-80b1ae06ae90"
+            }
+          ],
+          "createdAt": "2026-06-05T15:21:33.000Z",
+          "updatedAt": "2026-06-05T15:21:33.000Z",
+          "uid": "35240-9e11e8c1-6cc7-40bb-8c8d-70ddc2c5d617"
+        }
+      ],
+      "id": "73eccc50-2569-472d-9165-d5598b1b0ff5",
+      "createdAt": "2026-06-05T15:21:33.000Z",
+      "updatedAt": "2026-06-05T15:21:33.000Z",
+      "uid": "35240-73eccc50-2569-472d-9165-d5598b1b0ff5"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "orchestrate:orchestrations orchestrate:orchestrations:read orchestrate:executions",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "api.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}
