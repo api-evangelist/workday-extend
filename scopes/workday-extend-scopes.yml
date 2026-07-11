@@ -1,0 +1,84 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/workday-extend-custom-objects-openapi.yml, openapi/workday-extend-graph-api-openapi.yml,
+  openapi/workday-extend-orchestration-openapi.yml, openapi/workday-extend-rest-api-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/workday-extend-custom-objects-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+- name: OAuth2
+  source: openapi/workday-extend-graph-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+- name: OAuth2
+  source: openapi/workday-extend-orchestration-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+- name: OAuth2
+  source: openapi/workday-extend-rest-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+scopes:
+- scope: customObjects:manage
+  description: Manage custom object definitions and instances
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-custom-objects-openapi.yml
+- scope: customObjects:read
+  description: Read custom object data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-custom-objects-openapi.yml
+- scope: extend:apps
+  description: Manage Extend applications
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-rest-api-openapi.yml
+- scope: extend:apps:read
+  description: Read Extend application data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-rest-api-openapi.yml
+- scope: graph:read
+  description: Query Workday data through the Graph API
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-graph-api-openapi.yml
+- scope: graph:schema
+  description: Access schema introspection
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-graph-api-openapi.yml
+- scope: orchestrate:executions
+  description: Execute orchestrations
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-orchestration-openapi.yml
+- scope: orchestrate:orchestrations
+  description: Manage orchestrations
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-orchestration-openapi.yml
+- scope: orchestrate:orchestrations:read
+  description: Read orchestration data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-extend-orchestration-openapi.yml

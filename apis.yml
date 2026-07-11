@@ -126,6 +126,10 @@ apis:
       - type: Documentation
         url: https://developer.workday.com/documentation
 common:
+  - type: Authentication
+    url: authentication/workday-extend-authentication.yml
+  - type: OAuthScopes
+    url: scopes/workday-extend-scopes.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/workday-extend/overview
   - type: Arazzo
