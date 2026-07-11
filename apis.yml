@@ -126,6 +126,10 @@ apis:
       - type: Documentation
         url: https://developer.workday.com/documentation
 common:
+  - type: TrustCenter
+    url: security/workday-extend-trust-center.yml
+  - type: DomainSecurity
+    url: security/workday-extend-domain-security.yml
   - type: Authentication
     url: authentication/workday-extend-authentication.yml
   - type: OAuthScopes

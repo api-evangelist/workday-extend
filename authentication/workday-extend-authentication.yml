@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/workday-extend-custom-objects-openapi.yml, openapi/workday-extend-graph-api-openapi.yml,
+  openapi/workday-extend-orchestration-openapi.yml, openapi/workday-extend-rest-api-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+    scopes: 2
+  sources:
+  - openapi/workday-extend-custom-objects-openapi.yml
+  - openapi/workday-extend-graph-api-openapi.yml
+  - openapi/workday-extend-orchestration-openapi.yml
+  - openapi/workday-extend-rest-api-openapi.yml
