@@ -2,13 +2,11 @@
   "repo": "workday-extend",
   "feeds": [
     {
-      "source": "https://blog.workday.com/en-us/introducing-workday-build-developer-platform-build-future-work-ai.html",
-      "feed_url": "",
-      "saved": 0,
-      "method": "agent-scrape"
+      "source": "https://doc.workday.com/extend/rate-limits/",
+      "error": "HTTPError"
     }
   ],
   "post_count": 1,
-  "fetched": "2026-06-27T13:21:34Z",
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
