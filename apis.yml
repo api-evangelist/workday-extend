@@ -126,6 +126,8 @@ apis:
       - type: Documentation
         url: https://developer.workday.com/documentation
 common:
+  - type: AgenticAccess
+    url: agentic-access/workday-extend-agentic-access.yml
   - type: TrustCenter
     url: security/workday-extend-trust-center.yml
   - type: DomainSecurity
