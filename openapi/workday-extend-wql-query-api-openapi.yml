@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Workday Extend Workday Custom Objects App Configurations WQL Query API
+  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/api/customObjects/v1/{tenant}
+  description: Workday Custom Objects API Server
+  variables:
+    baseUrl:
+      default: api.workday.com
+    tenant:
+      default: tenant
+security:
+- OAuth2:
+  - customObjects:manage
+tags:
+- name: WQL Query
+  description: Operations for executing Workday Query Language (WQL) queries against the Workday data model. WQL provides SQL-like syntax for complex data retrieval across business objects.
+paths:
+  /wql:
+    post:
+      operationId: executeWqlQuery
+      summary: Workday Extend Execute a WQL query
+      description: Executes a Workday Query Language (WQL) query for complex data retrieval. WQL uses SQL-like syntax to query business objects and supports filtering, sorting, aggregation, and relationship traversal. Results can be paginated using limit and offset parameters within the query.
+      tags:
+      - WQL Query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WqlQueryRequest'
+      responses:
+        '200':
+          description: Successful WQL query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WqlQueryResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request or query syntax error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    WqlQueryResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: Array of result rows matching the WQL query
+        total:
+          type: integer
+          description: Total number of matching records
+        columns:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Column name from the query
+              dataType:
+                type: string
+                description: Data type of the column values
+          description: Metadata about the result columns
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        location:
+          type: object
+          properties:
+            line:
+              type: integer
+              description: Line number in the query where the error occurred
+            column:
+              type: integer
+              description: Column number in the query where the error occurred
+    WqlQueryRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: 'The WQL query string using SQL-like syntax. Example: SELECT worker, fullName, businessTitle FROM workers WHERE isActive = true LIMIT 50 OFFSET 0'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            customObjects:manage: Manage custom object definitions and instances
+            customObjects:read: Read custom object data
+externalDocs:
+  description: Workday Custom Objects Documentation
+  url: https://doc.workday.com/extend/custom-objects/

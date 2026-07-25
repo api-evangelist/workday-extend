@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: Workday Extend Workday Custom Objects App Configurations Orchestration Triggers API
+  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/api/customObjects/v1/{tenant}
+  description: Workday Custom Objects API Server
+  variables:
+    baseUrl:
+      default: api.workday.com
+    tenant:
+      default: tenant
+security:
+- OAuth2:
+  - customObjects:manage
+tags:
+- name: Orchestration Triggers
+  description: Operations for configuring orchestration triggers including event-based, scheduled, and API-triggered orchestrations.
+paths:
+  /orchestrations/{orchestrationId}/triggers:
+    get:
+      operationId: listOrchestrationTriggers
+      summary: Workday Extend List orchestration triggers
+      description: Returns the collection of triggers configured for the specified orchestration, including event-based, scheduled, and API triggers.
+      tags:
+      - Orchestration Triggers
+      parameters:
+      - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '200':
+          description: Successful response with orchestration triggers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrchestrationTrigger'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createOrchestrationTrigger
+      summary: Workday Extend Create an orchestration trigger
+      description: Adds a new trigger to the specified orchestration. Triggers define how and when the orchestration is executed, including event-based triggers from business processes and scheduled triggers.
+      tags:
+      - Orchestration Triggers
+      parameters:
+      - $ref: '#/components/parameters/orchestrationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrchestrationTriggerCreate'
+      responses:
+        '201':
+          description: Trigger successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrchestrationTrigger'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    OrchestrationTrigger:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the trigger
+        type:
+          type: string
+          enum:
+          - event
+          - api
+          - schedule
+          - business_process
+          description: The type of trigger
+        name:
+          type: string
+          description: Name of the trigger
+        description:
+          type: string
+          description: Description of the trigger
+        isActive:
+          type: boolean
+          description: Whether the trigger is currently active
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Trigger-specific configuration
+    OrchestrationTriggerCreate:
+      type: object
+      required:
+      - type
+      - name
+      properties:
+        type:
+          type: string
+          enum:
+          - event
+          - api
+          - schedule
+          - business_process
+          description: The type of trigger
+        name:
+          type: string
+          description: Name for the trigger
+        description:
+          type: string
+          description: Description of the trigger
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Trigger-specific configuration parameters
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+  parameters:
+    orchestrationId:
+      name: orchestrationId
+      in: path
+      required: true
+      description: The unique identifier of the orchestration
+      schema:
+        type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            customObjects:manage: Manage custom object definitions and instances
+            customObjects:read: Read custom object data
+externalDocs:
+  description: Workday Custom Objects Documentation
+  url: https://doc.workday.com/extend/custom-objects/

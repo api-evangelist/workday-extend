@@ -1,0 +1,236 @@
+openapi: 3.1.0
+info:
+  title: Workday Extend Workday Custom Objects App Configurations App Versions API
+  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/api/customObjects/v1/{tenant}
+  description: Workday Custom Objects API Server
+  variables:
+    baseUrl:
+      default: api.workday.com
+    tenant:
+      default: tenant
+security:
+- OAuth2:
+  - customObjects:manage
+tags:
+- name: App Versions
+  description: Operations for managing application versions and release lifecycle.
+paths:
+  /apps/{appId}/versions:
+    get:
+      operationId: listAppVersions
+      summary: Workday Extend List application versions
+      description: Returns a collection of versions for the specified Extend application, including draft, published, and deprecated versions.
+      tags:
+      - App Versions
+      parameters:
+      - $ref: '#/components/parameters/appId'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Successful response with application versions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppVersion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAppVersion
+      summary: Workday Extend Create a new application version
+      description: Creates a new version of the specified Extend application. The new version is created in draft status and must be published before deployment.
+      tags:
+      - App Versions
+      parameters:
+      - $ref: '#/components/parameters/appId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppVersionCreate'
+      responses:
+        '201':
+          description: Application version successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apps/{appId}/versions/{versionId}:
+    get:
+      operationId: getAppVersion
+      summary: Workday Extend Retrieve a specific application version
+      description: Returns the details of a specific version of the Extend application, including its status, configuration schema, and changelog.
+      tags:
+      - App Versions
+      parameters:
+      - $ref: '#/components/parameters/appId'
+      - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          description: Successful response with the version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppVersion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    AppVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the application version
+        versionNumber:
+          type: string
+          description: Semantic version number of the application
+        status:
+          type: string
+          enum:
+          - draft
+          - published
+          - deprecated
+          description: Current status of this version
+        changelog:
+          type: string
+          description: Description of changes in this version
+        createdOn:
+          type: string
+          format: date-time
+          description: Timestamp when the version was created
+        publishedOn:
+          type: string
+          format: date-time
+          description: Timestamp when the version was published
+        href:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    AppVersionCreate:
+      type: object
+      required:
+      - versionNumber
+      properties:
+        versionNumber:
+          type: string
+          description: Semantic version number for the new version
+        changelog:
+          type: string
+          description: Description of changes in this version
+  parameters:
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the Extend application
+      schema:
+        type: string
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: The unique identifier of the application version
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            customObjects:manage: Manage custom object definitions and instances
+            customObjects:read: Read custom object data
+externalDocs:
+  description: Workday Custom Objects Documentation
+  url: https://doc.workday.com/extend/custom-objects/

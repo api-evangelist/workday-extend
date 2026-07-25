@@ -1,0 +1,219 @@
+openapi: 3.1.0
+info:
+  title: Workday Extend Workday Custom Objects App Configurations Custom Object Fields API
+  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/api/customObjects/v1/{tenant}
+  description: Workday Custom Objects API Server
+  variables:
+    baseUrl:
+      default: api.workday.com
+    tenant:
+      default: tenant
+security:
+- OAuth2:
+  - customObjects:manage
+tags:
+- name: Custom Object Fields
+  description: Operations for managing the fields and attributes defined within custom object schemas.
+paths:
+  /customObjectDefinitions/{definitionId}/fields:
+    get:
+      operationId: listCustomObjectFields
+      summary: Workday Extend List custom object fields
+      description: Returns the collection of fields defined in the specified custom object definition, including field types, validation rules, and constraints.
+      tags:
+      - Custom Object Fields
+      parameters:
+      - $ref: '#/components/parameters/definitionId'
+      responses:
+        '200':
+          description: Successful response with field definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomObjectField'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addCustomObjectField
+      summary: Workday Extend Add a field to a custom object definition
+      description: Adds a new field to the custom object definition. The field will be available on all new and existing instances of this custom object type.
+      tags:
+      - Custom Object Fields
+      parameters:
+      - $ref: '#/components/parameters/definitionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectFieldCreate'
+      responses:
+        '201':
+          description: Field successfully added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectField'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CustomObjectField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the field
+        name:
+          type: string
+          description: The API name of the field
+        displayName:
+          type: string
+          description: The display label for the field
+        dataType:
+          type: string
+          enum:
+          - text
+          - number
+          - decimal
+          - boolean
+          - date
+          - dateTime
+          - currency
+          - reference
+          - richText
+          description: The data type of the field
+        isRequired:
+          type: boolean
+          description: Whether the field is required
+        isReadOnly:
+          type: boolean
+          description: Whether the field is read-only
+        maxLength:
+          type: integer
+          description: Maximum length for text fields
+        precision:
+          type: integer
+          description: Decimal precision for numeric fields
+        referenceObjectType:
+          type: string
+          description: The Workday object type for reference fields
+        defaultValue:
+          type: string
+          description: Default value for the field
+    CustomObjectFieldCreate:
+      type: object
+      required:
+      - name
+      - dataType
+      properties:
+        name:
+          type: string
+          description: The API name of the field
+          maxLength: 128
+          pattern: ^[a-zA-Z][a-zA-Z0-9_]*$
+        displayName:
+          type: string
+          description: The display label for the field
+        dataType:
+          type: string
+          enum:
+          - text
+          - number
+          - decimal
+          - boolean
+          - date
+          - dateTime
+          - currency
+          - reference
+          - richText
+        isRequired:
+          type: boolean
+          default: false
+        maxLength:
+          type: integer
+          description: Maximum length for text fields
+        referenceObjectType:
+          type: string
+          description: Required for reference type fields
+        defaultValue:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+  parameters:
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the custom object definition
+      schema:
+        type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            customObjects:manage: Manage custom object definitions and instances
+            customObjects:read: Read custom object data
+externalDocs:
+  description: Workday Custom Objects Documentation
+  url: https://doc.workday.com/extend/custom-objects/

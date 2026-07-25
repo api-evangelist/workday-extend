@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: Workday Extend Workday Custom Objects App Configurations Orchestration Steps API
+  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/api/customObjects/v1/{tenant}
+  description: Workday Custom Objects API Server
+  variables:
+    baseUrl:
+      default: api.workday.com
+    tenant:
+      default: tenant
+security:
+- OAuth2:
+  - customObjects:manage
+tags:
+- name: Orchestration Steps
+  description: Operations for managing individual steps within an orchestration flow, including connectors, transformations, and conditions.
+paths:
+  /orchestrations/{orchestrationId}/steps:
+    get:
+      operationId: listOrchestrationSteps
+      summary: Workday Extend List orchestration steps
+      description: Returns the collection of steps defined within the specified orchestration, including their order, type, and configuration.
+      tags:
+      - Orchestration Steps
+      parameters:
+      - $ref: '#/components/parameters/orchestrationId'
+      responses:
+        '200':
+          description: Successful response with orchestration steps
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrchestrationStep'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    OrchestrationStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the step
+        name:
+          type: string
+          description: Name of the orchestration step
+        type:
+          type: string
+          enum:
+          - connector
+          - transformation
+          - condition
+          - loop
+          - subOrchestration
+          - notification
+          - workdayApi
+          - restApi
+          - soapApi
+          description: The type of step
+        order:
+          type: integer
+          description: Position of the step in the orchestration flow
+        description:
+          type: string
+          description: Description of what this step does
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Step-specific configuration parameters
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+  parameters:
+    orchestrationId:
+      name: orchestrationId
+      in: path
+      required: true
+      description: The unique identifier of the orchestration
+      schema:
+        type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            customObjects:manage: Manage custom object definitions and instances
+            customObjects:read: Read custom object data
+externalDocs:
+  description: Workday Custom Objects Documentation
+  url: https://doc.workday.com/extend/custom-objects/

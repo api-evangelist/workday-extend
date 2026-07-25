@@ -1,0 +1,273 @@
+openapi: 3.1.0
+info:
+  title: Workday Extend Workday Custom Objects App Configurations Custom Object Instances API
+  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
+  version: v1
+  contact:
+    name: Workday Developer Support
+    url: https://support.developer.workday.com/s/
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/api/customObjects/v1/{tenant}
+  description: Workday Custom Objects API Server
+  variables:
+    baseUrl:
+      default: api.workday.com
+    tenant:
+      default: tenant
+security:
+- OAuth2:
+  - customObjects:manage
+tags:
+- name: Custom Object Instances
+  description: Operations for creating, reading, updating, and deleting custom object data instances attached to Workday business objects.
+paths:
+  /workers/{workerId}/customObjects/{customObjectName}:
+    get:
+      operationId: getWorkerCustomObject
+      summary: Workday Extend Retrieve custom object data for a worker
+      description: Returns the custom object instance data attached to the specified worker. Supports both single-instance and multi-instance custom objects. For multi-instance objects, returns a collection of instances.
+      tags:
+      - Custom Object Instances
+      parameters:
+      - $ref: '#/components/parameters/workerId'
+      - $ref: '#/components/parameters/customObjectName'
+      responses:
+        '200':
+          description: Successful response with custom object data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWorkerCustomObject
+      summary: Workday Extend Create or update custom object data for a worker
+      description: Creates or updates the custom object instance data attached to the specified worker. If the custom object does not exist for the worker, it is created. Otherwise, the existing data is updated with the provided values.
+      tags:
+      - Custom Object Instances
+      parameters:
+      - $ref: '#/components/parameters/workerId'
+      - $ref: '#/components/parameters/customObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectData'
+      responses:
+        '200':
+          description: Custom object data successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '201':
+          description: Custom object data successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWorkerCustomObject
+      summary: Workday Extend Delete custom object data for a worker
+      description: Deletes the custom object instance data attached to the specified worker.
+      tags:
+      - Custom Object Instances
+      parameters:
+      - $ref: '#/components/parameters/workerId'
+      - $ref: '#/components/parameters/customObjectName'
+      responses:
+        '204':
+          description: Custom object data successfully deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/{organizationId}/customObjects/{customObjectName}:
+    get:
+      operationId: getOrganizationCustomObject
+      summary: Workday Extend Retrieve custom object data for an organization
+      description: Returns the custom object instance data attached to the specified organization. Supports both single-instance and multi-instance custom objects.
+      tags:
+      - Custom Object Instances
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/customObjectName'
+      responses:
+        '200':
+          description: Successful response with custom object data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateOrganizationCustomObject
+      summary: Workday Extend Create or update custom object data for an organization
+      description: Creates or updates the custom object instance data attached to the specified organization.
+      tags:
+      - Custom Object Instances
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/customObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomObjectData'
+      responses:
+        '200':
+          description: Custom object data successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '201':
+          description: Custom object data successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomObjectInstance'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CustomObjectData:
+      type: object
+      additionalProperties: true
+      description: Custom object field values as key-value pairs. Keys must match the field API names defined in the custom object definition. Values must conform to the field data types.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
+    CustomObjectInstance:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the custom object instance
+        definition:
+          $ref: '#/components/schemas/ResourceReference'
+        parentObject:
+          $ref: '#/components/schemas/ResourceReference'
+        data:
+          type: object
+          additionalProperties: true
+          description: The custom object field values as key-value pairs where keys are field API names and values match the field data types
+        createdOn:
+          type: string
+          format: date-time
+          description: Timestamp when the instance was created
+        lastModified:
+          type: string
+          format: date-time
+          description: Timestamp when the instance was last modified
+        href:
+          type: string
+          format: uri
+  parameters:
+    workerId:
+      name: workerId
+      in: path
+      required: true
+      description: The unique Workday identifier of the worker
+      schema:
+        type: string
+    customObjectName:
+      name: customObjectName
+      in: path
+      required: true
+      description: The name of the custom object type
+      schema:
+        type: string
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The unique Workday identifier of the organization
+      schema:
+        type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            customObjects:manage: Manage custom object definitions and instances
+            customObjects:read: Read custom object data
+externalDocs:
+  description: Workday Custom Objects Documentation
+  url: https://doc.workday.com/extend/custom-objects/
