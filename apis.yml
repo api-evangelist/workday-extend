@@ -3,6 +3,19 @@ description: >-
   Workday Extend is a platform that enables developers to build custom applications that integrate seamlessly with
   Workday. It provides APIs, development tools, and a runtime environment for creating tailored solutions that extend
   Workday's core functionality.
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
 url: https://www.workday.com/en-us/products/platform-product-extensions/app-development.html
 type: Index
@@ -10,121 +23,492 @@ created: 2025-03-14T00:00:00.000Z
 modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
-  - name: Workday Extend REST API
-    description: >-
-      RESTful APIs for building and managing Workday Extend applications, including orchestrations, integrations, and
-      custom objects.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanURL: https://doc.workday.com/extend/
-    baseURL: https://api.workday.com/extend/v1
-    tags:
-      - Custom Applications
-      - Extensions
-      - Integration
-      - Orchestrations
-    properties:
-      - type: Documentation
-        url: https://doc.workday.com/extend/
-      - type: OpenAPI
-        url: https://api.workday.com/extend/openapi.json
-      - type: Authentication
-        url: https://doc.workday.com/extend/reference/authentication.html
-      - type: Reference
-        url: https://developer.workday.com/rest-api-explorer
-      - type: OpenAPI
-        url: openapi/workday-extend-rest-api-openapi.yml
-  - name: Workday Orchestration API
-    description: >-
-      APIs for creating and managing orchestrations that automate business processes and integrate with external
-      systems. Developers visually build orchestrations using an intuitive drag-and-drop Orchestration Builder to define
-      flows, map data, and perform transformations.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanURL: https://doc.workday.com/extend/orchestrations/
-    baseURL: https://api.workday.com/orchestrate/v1
-    tags:
-      - Automation
-      - Business Processes
-      - Orchestrations
-      - Workflows
-    properties:
-      - type: Documentation
-        url: https://doc.workday.com/extend/orchestrations/
-      - type: Tutorials
-        url: https://doc.workday.com/extend/tutorials/orchestrations/
-      - type: Reference
-        url: https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
-      - type: OpenAPI
-        url: openapi/workday-extend-orchestration-openapi.yml
-  - name: Workday Custom Objects API
-    description: >-
-      APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. As
-      new objects and business processes are built, a public REST API is automatically created for other developers and
-      processes to use.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanURL: https://doc.workday.com/extend/custom-objects/
-    baseURL: https://api.workday.com/customObjects/v1
-    tags:
-      - Custom Fields
-      - Custom Objects
-      - Data Model
-      - Schema
-    properties:
-      - type: Documentation
-        url: https://doc.workday.com/extend/custom-objects/
-      - type: Examples
-        url: https://doc.workday.com/extend/examples/custom-objects/
-      - type: OpenAPI
-        url: openapi/workday-extend-custom-objects-openapi.yml
-  - name: Workday Graph API
-    description: >-
-      Graph API for querying and traversing Workday data using a graph-based approach. Provides a flexible query
-      interface for accessing interconnected Workday business objects and their relationships across the platform.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanURL: https://developer.workday.com/graph-api-explorer
-    baseURL: https://api.workday.com/
-    tags:
-      - Business Objects
-      - Data Query
-      - Graph API
-      - Relationships
-    properties:
-      - type: Documentation
-        url: https://developer.workday.com/graph-api-explorer
-      - type: Reference
-        url: https://developer.workday.com/graph-api-explorer
-      - type: OpenAPI
-        url: openapi/workday-extend-graph-api-openapi.yml
-  - name: Workday Orchestrate Insights API
-    description: >-
-      API for accessing orchestration execution data and monitoring information. Provides insights into orchestration
-      performance, run history, and operational metrics for troubleshooting and optimization.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanURL: https://api.workday.com/orchestrate/insights
-    baseURL: https://api.workday.com/orchestrate/insights
-    tags:
-      - Analytics
-      - Insights
-      - Monitoring
-      - Orchestrations
-    properties:
-      - type: Documentation
-        url: https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
-  - name: Workday Illuminate AI API
-    description: >-
-      AI-powered APIs within Workday Illuminate that provide skills and sentiment analysis, document intelligence,
-      natural language WQL queries, and machine learning forecasting capabilities. Enables developers to build
-      intelligent Extend applications leveraging Workday AI services.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanURL: https://www.workday.com/en-us/products/platform-product-extensions/app-development.html
-    baseURL: https://api.workday.com/
-    tags:
-      - Artificial Intelligence
-      - Document Intelligence
-      - Machine Learning
-      - Natural Language Processing
-    properties:
-      - type: Documentation
-        url: https://developer.workday.com/documentation
+- name: Workday Orchestrate Insights API
+  description: >-
+    API for accessing orchestration execution data and monitoring information. Provides insights into
+    orchestration performance, run history, and operational metrics for troubleshooting and optimization.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanURL: https://api.workday.com/orchestrate/insights
+  baseURL: https://api.workday.com/orchestrate/insights
+  tags:
+  - Analytics
+  - Insights
+  - Monitoring
+  - Orchestrations
+  properties:
+  - type: Documentation
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+- name: Workday Illuminate AI API
+  description: >-
+    AI-powered APIs within Workday Illuminate that provide skills and sentiment analysis, document intelligence,
+    natural language WQL queries, and machine learning forecasting capabilities. Enables developers to
+    build intelligent Extend applications leveraging Workday AI services.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanURL: https://www.workday.com/en-us/products/platform-product-extensions/app-development.html
+  baseURL: https://api.workday.com/
+  tags:
+  - Artificial Intelligence
+  - Document Intelligence
+  - Machine Learning
+  - Natural Language Processing
+  properties:
+  - type: Documentation
+    url: https://developer.workday.com/documentation
+- aid: workday-extend:workday-extend-app-configurations-api
+  name: Workday Extend App Configurations API
+  description: >-
+    Operations for managing application configuration settings and environment-specific parameters.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - App Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-app-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-app-deployments-api
+  name: Workday Extend App Deployments API
+  description: Operations for deploying and managing Extend application instances within a tenant.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - App Deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-app-deployments-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-app-versions-api
+  name: Workday Extend App Versions API
+  description: Operations for managing application versions and release lifecycle.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - App Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-app-versions-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-apps-api
+  name: Workday Extend Apps API
+  description: >-
+    Operations for managing Extend applications including registration, deployment, and configuration.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-apps-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-custom-object-definitions-api
+  name: Workday Extend Custom Object Definitions API
+  description: >-
+    Operations for defining and managing custom object types including their schemas, attributes, and
+    relationships to standard Workday objects.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Custom Object Definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-custom-object-definitions-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-custom-object-fields-api
+  name: Workday Extend Custom Object Fields API
+  description: Operations for managing the fields and attributes defined within custom object schemas.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Custom Object Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-custom-object-fields-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-custom-object-instances-api
+  name: Workday Extend Custom Object Instances API
+  description: >-
+    Operations for creating, reading, updating, and deleting custom object data instances attached to
+    Workday business objects.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Custom Object Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-custom-object-instances-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-graph-query-api
+  name: Workday Extend Graph Query API
+  description: >-
+    Operations for querying Workday business objects using the Graph API. Supports flexible field selection
+    and relationship traversal.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Graph Query
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-graph-query-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-orchestration-executions-api
+  name: Workday Extend Orchestration Executions API
+  description: >-
+    Operations for triggering orchestration runs, monitoring execution status, and retrieving execution
+    results.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Orchestration Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-orchestration-executions-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-orchestration-steps-api
+  name: Workday Extend Orchestration Steps API
+  description: >-
+    Operations for managing individual steps within an orchestration flow, including connectors, transformations,
+    and conditions.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Orchestration Steps
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-orchestration-steps-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-orchestration-triggers-api
+  name: Workday Extend Orchestration Triggers API
+  description: >-
+    Operations for configuring orchestration triggers including event-based, scheduled, and API-triggered
+    orchestrations.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Orchestration Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-orchestration-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-orchestrations-api
+  name: Workday Extend Orchestrations API
+  description: >-
+    Operations for managing orchestration definitions including creation, configuration, versioning, and
+    lifecycle management.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Orchestrations
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-orchestrations-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-schema-introspection-api
+  name: Workday Extend Schema Introspection API
+  description: >-
+    Operations for discovering available business objects, their fields, relationships, and query capabilities
+    through the Graph API.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - Schema Introspection
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-schema-introspection-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
+- aid: workday-extend:workday-extend-wql-query-api
+  name: Workday Extend WQL Query API
+  description: >-
+    Operations for executing Workday Query Language (WQL) queries against the Workday data model. WQL
+    provides SQL-like syntax for complex data retrieval across business objects.
+  humanURL: https://doc.workday.com/extend/
+  baseURL: https://api.workday.com/extend/v1
+  tags:
+  - WQL Query
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-extend-wql-query-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/extend/
+  - type: Authentication
+    url: https://doc.workday.com/extend/reference/authentication.html
+  - type: Reference
+    url: https://developer.workday.com/rest-api-explorer
+  - type: Documentation
+    url: https://doc.workday.com/extend/orchestrations/
+  - type: Tutorials
+    url: https://doc.workday.com/extend/tutorials/orchestrations/
+  - type: Reference
+    url: >-
+      https://developer.workday.com/documentation/GUID-1293c9bb-ea02-48cd-a523-254b5060b3a6-enHYPHENus
+  - type: Documentation
+    url: https://doc.workday.com/extend/custom-objects/
+  - type: Examples
+    url: https://doc.workday.com/extend/examples/custom-objects/
+  - type: Documentation
+    url: https://developer.workday.com/graph-api-explorer
+  - type: Reference
+    url: https://developer.workday.com/graph-api-explorer
 common:
   - type: AgenticAccess
     url: agentic-access/workday-extend-agentic-access.yml
