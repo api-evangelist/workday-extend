@@ -1,0 +1,40 @@
+{
+  "provider": "workday-extend",
+  "sources": [
+    "workday-extend-app-configurations-api-openapi.yml",
+    "workday-extend-app-deployments-api-openapi.yml",
+    "workday-extend-app-versions-api-openapi.yml",
+    "workday-extend-apps-api-openapi.yml",
+    "workday-extend-custom-object-definitions-api-openapi.yml",
+    "workday-extend-custom-object-fields-api-openapi.yml",
+    "workday-extend-custom-object-instances-api-openapi.yml",
+    "workday-extend-graph-query-api-openapi.yml",
+    "workday-extend-orchestration-executions-api-openapi.yml",
+    "workday-extend-orchestration-steps-api-openapi.yml",
+    "workday-extend-orchestration-triggers-api-openapi.yml",
+    "workday-extend-orchestrations-api-openapi.yml",
+    "workday-extend-schema-introspection-api-openapi.yml",
+    "workday-extend-wql-query-api-openapi.yml"
+  ],
+  "outputs": [
+    "workday-extend-app-configurations-api-openapi.yml",
+    "workday-extend-app-deployments-api-openapi.yml",
+    "workday-extend-app-versions-api-openapi.yml",
+    "workday-extend-apps-api-openapi.yml",
+    "workday-extend-custom-object-definitions-api-openapi.yml",
+    "workday-extend-custom-object-fields-api-openapi.yml",
+    "workday-extend-custom-object-instances-api-openapi.yml",
+    "workday-extend-graph-query-api-openapi.yml",
+    "workday-extend-orchestration-executions-api-openapi.yml",
+    "workday-extend-orchestration-steps-api-openapi.yml",
+    "workday-extend-orchestration-triggers-api-openapi.yml",
+    "workday-extend-orchestrations-api-openapi.yml",
+    "workday-extend-schema-introspection-api-openapi.yml",
+    "workday-extend-wql-query-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
