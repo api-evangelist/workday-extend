@@ -21,7 +21,7 @@ url: https://www.workday.com/en-us/products/platform-product-extensions/app-deve
 type: Index
 created: 2025-03-14T00:00:00.000Z
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - name: Workday Orchestrate Insights API
   description: >-
@@ -570,7 +570,7 @@ common:
     url: https://doc.workday.com/extend/reference/
   - type: SDKs
     url: https://doc.workday.com/extend/sdk/
-  - type: Code Samples
+  - type: CodeExamples
     url: https://github.com/Workday/extend-js-example
   - type: Community
     url: https://forum.developer.workday.com
