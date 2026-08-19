@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Extend Workday Custom Objects App Configurations Orchestration Steps API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orchestration Steps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List orchestration steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/orchestrations/:orchestrationId/steps",
+            "params": [
+              {
+                "name": "orchestrationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the orchestration"
+              }
+            ]
+          },
+          "docs": "Returns the collection of steps defined within the specified orchestration, including their order, type, and configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

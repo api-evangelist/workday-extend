@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Extend Workday Custom Objects App Configurations Custom Object Fields API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Object Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend List custom object fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/customObjectDefinitions/:definitionId/fields",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the custom object definition"
+              }
+            ]
+          },
+          "docs": "Returns the collection of fields defined in the specified custom object definition, including field types, validation rules, and constraints."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Add a field to a custom object definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/customObjectDefinitions/:definitionId/fields",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the custom object definition"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new field to the custom object definition. The field will be available on all new and existing instances of this custom object type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Extend Workday Custom Objects App Configurations Custom Object Instances API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Object Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Extend Retrieve custom object data for a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/workers/:workerId/customObjects/:customObjectName",
+            "params": [
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique Workday identifier of the worker"
+              },
+              {
+                "name": "customObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom object type"
+              }
+            ]
+          },
+          "docs": "Returns the custom object instance data attached to the specified worker. Supports both single-instance and multi-instance custom objects. For multi-instance objects, returns a collection of instances."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Create or update custom object data for a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/workers/:workerId/customObjects/:customObjectName",
+            "params": [
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique Workday identifier of the worker"
+              },
+              {
+                "name": "customObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom object type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates the custom object instance data attached to the specified worker. If the custom object does not exist for the worker, it is created. Otherwise, the existing data is updated with the provided values."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Delete custom object data for a worker",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/workers/:workerId/customObjects/:customObjectName",
+            "params": [
+              {
+                "name": "workerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique Workday identifier of the worker"
+              },
+              {
+                "name": "customObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom object type"
+              }
+            ]
+          },
+          "docs": "Deletes the custom object instance data attached to the specified worker."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Retrieve custom object data for an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/organizations/:organizationId/customObjects/:customObjectName",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique Workday identifier of the organization"
+              },
+              {
+                "name": "customObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom object type"
+              }
+            ]
+          },
+          "docs": "Returns the custom object instance data attached to the specified organization. Supports both single-instance and multi-instance custom objects."
+        },
+        {
+          "info": {
+            "name": "Workday Extend Create or update custom object data for an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{baseUrl}/api/customObjects/v1/{tenant}/organizations/:organizationId/customObjects/:customObjectName",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique Workday identifier of the organization"
+              },
+              {
+                "name": "customObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the custom object type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates the custom object instance data attached to the specified organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
