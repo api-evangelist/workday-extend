@@ -50,6 +50,11 @@ apis:
   tags:
   - Artificial Intelligence
   - Document Intelligence
+  - Machine-Learning
+  - Natural Language Processing
+  tags_raw:
+  - Artificial Intelligence
+  - Document Intelligence
   - Machine Learning
   - Natural Language Processing
   properties:
@@ -156,6 +161,8 @@ apis:
   humanURL: https://doc.workday.com/extend/
   baseURL: https://api.workday.com/extend/v1
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -621,6 +628,15 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 tags:
+  - Automation
+  - Custom Applications
+  - Enterprise
+  - Extensions
+  - HCM
+  - Integration
+  - Orchestration
+  - Platform-as-a-Service
+tags_raw:
   - Automation
   - Custom Applications
   - Enterprise
