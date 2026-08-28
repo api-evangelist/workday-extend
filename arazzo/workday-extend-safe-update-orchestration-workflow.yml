@@ -10,8 +10,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: orchestrationApi
-  url: ../openapi/workday-extend-orchestration-openapi.yml
+- name: orchestrationsApi
+  url: ../openapi/workday-extend-orchestrations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: safe-update-orchestration

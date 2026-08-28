@@ -11,8 +11,11 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: customObjectsApi
-  url: ../openapi/workday-extend-custom-objects-openapi.yml
+- name: customObjectDefinitionsApi
+  url: ../openapi/workday-extend-custom-object-definitions-api-openapi.yml
+  type: openapi
+- name: customObjectInstancesApi
+  url: ../openapi/workday-extend-custom-object-instances-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: upsert-worker-custom-object

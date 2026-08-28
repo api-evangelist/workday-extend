@@ -11,8 +11,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: graphApi
-  url: ../openapi/workday-extend-graph-api-openapi.yml
+- name: graphQueryApi
+  url: ../openapi/workday-extend-graph-query-api-openapi.yml
+  type: openapi
+- name: schemaIntrospectionApi
+  url: ../openapi/workday-extend-schema-introspection-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: discover-schema-and-query

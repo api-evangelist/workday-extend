@@ -11,8 +11,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: orchestrationApi
-  url: ../openapi/workday-extend-orchestration-openapi.yml
+- name: orchestrationStepsApi
+  url: ../openapi/workday-extend-orchestration-steps-api-openapi.yml
+  type: openapi
+- name: orchestrationTriggersApi
+  url: ../openapi/workday-extend-orchestration-triggers-api-openapi.yml
+  type: openapi
+- name: orchestrationsApi
+  url: ../openapi/workday-extend-orchestrations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-orchestration

@@ -11,8 +11,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: orchestrationApi
-  url: ../openapi/workday-extend-orchestration-openapi.yml
+- name: orchestrationExecutionsApi
+  url: ../openapi/workday-extend-orchestration-executions-api-openapi.yml
+  type: openapi
+- name: orchestrationsApi
+  url: ../openapi/workday-extend-orchestrations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: launch-orchestration-and-poll

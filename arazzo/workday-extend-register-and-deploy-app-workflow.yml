@@ -10,8 +10,14 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: restApi
-  url: ../openapi/workday-extend-rest-api-openapi.yml
+- name: appDeploymentsApi
+  url: ../openapi/workday-extend-app-deployments-api-openapi.yml
+  type: openapi
+- name: appVersionsApi
+  url: ../openapi/workday-extend-app-versions-api-openapi.yml
+  type: openapi
+- name: appsApi
+  url: ../openapi/workday-extend-apps-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: register-and-deploy-app

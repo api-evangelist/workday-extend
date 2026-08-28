@@ -10,8 +10,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: orchestrationApi
-  url: ../openapi/workday-extend-orchestration-openapi.yml
+- name: orchestrationTriggersApi
+  url: ../openapi/workday-extend-orchestration-triggers-api-openapi.yml
+  type: openapi
+- name: orchestrationsApi
+  url: ../openapi/workday-extend-orchestrations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-and-activate-orchestration
