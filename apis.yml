@@ -3,6 +3,18 @@ description: >-
   Workday Extend is a platform that enables developers to build custom applications that integrate seamlessly with
   Workday. It provides APIs, development tools, and a runtime environment for creating tailored solutions that extend
   Workday's core functionality.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
