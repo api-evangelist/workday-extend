@@ -46,6 +46,11 @@ apis:
   - Analytics
   - Insights
   - Monitoring
+  - Orchestration
+  tags_raw:
+  - Analytics
+  - Insights
+  - Monitoring
   - Orchestrations
   properties:
   - type: Documentation
@@ -437,6 +442,8 @@ apis:
   humanURL: https://doc.workday.com/extend/
   baseURL: https://api.workday.com/extend/v1
   tags:
+  - Orchestration
+  tags_raw:
   - Orchestrations
   properties:
   - type: OpenAPI
