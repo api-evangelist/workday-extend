@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Workday Extend Workday Custom Objects App Configurations Schema Introspection API
-  description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
+  title: Workday Extend Workday Graph Schema Introspection API
+  description: Graph API for querying and traversing Workday data using a flexible, graph-based approach. Provides a unified query interface for accessing interconnected Workday business objects and their relationships. Supports Workday Query Language (WQL) for complex data retrieval and GraphQL-style queries across the Workday platform, enabling developers to efficiently access workers, organizations, positions, and other business objects.
   version: v1
   contact:
     name: Workday Developer Support
     url: https://support.developer.workday.com/s/
   termsOfService: https://www.workday.com/en-us/legal.html
 servers:
-- url: https://{baseUrl}/api/customObjects/v1/{tenant}
-  description: Workday Custom Objects API Server
+- url: https://{baseUrl}/api/graphql/v1/{tenant}
+  description: Workday Graph API Server
   variables:
     baseUrl:
       default: api.workday.com
@@ -17,7 +17,7 @@ servers:
       default: tenant
 security:
 - OAuth2:
-  - customObjects:manage
+  - graph:read
 tags:
 - name: Schema Introspection
   description: Operations for discovering available business objects, their fields, relationships, and query capabilities through the Graph API.
@@ -97,25 +97,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     SchemaField:
       type: object
@@ -135,6 +116,43 @@ components:
         isSortable:
           type: boolean
           description: Whether results can be sorted by this field
+    SchemaRelationship:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Relationship name
+        targetType:
+          type: string
+          description: The related business object type
+        cardinality:
+          type: string
+          enum:
+          - one-to-one
+          - one-to-many
+          - many-to-many
+          description: Relationship cardinality
+        description:
+          type: string
+          description: Description of the relationship
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        location:
+          type: object
+          properties:
+            line:
+              type: integer
+              description: Line number in the query where the error occurred
+            column:
+              type: integer
+              description: Column number in the query where the error occurred
     SchemaType:
       type: object
       properties:
@@ -157,25 +175,6 @@ components:
         isQueryable:
           type: boolean
           description: Whether this type can be directly queried
-    SchemaRelationship:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Relationship name
-        targetType:
-          type: string
-          description: The related business object type
-        cardinality:
-          type: string
-          enum:
-          - one-to-one
-          - one-to-many
-          - many-to-many
-          description: Relationship cardinality
-        description:
-          type: string
-          description: Description of the relationship
     GraphSchema:
       type: object
       properties:
@@ -187,24 +186,6 @@ components:
         version:
           type: string
           description: Schema version identifier
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        location:
-          type: object
-          properties:
-            line:
-              type: integer
-              description: Line number in the query where the error occurred
-            column:
-              type: integer
-              description: Column number in the query where the error occurred
   parameters:
     limit:
       name: limit
@@ -227,6 +208,25 @@ components:
       description: Search term to filter results
       schema:
         type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2:
       type: oauth2
@@ -235,8 +235,8 @@ components:
           authorizationUrl: https://{baseUrl}/authorize
           tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
           scopes:
-            customObjects:manage: Manage custom object definitions and instances
-            customObjects:read: Read custom object data
+            graph:read: Query Workday data through the Graph API
+            graph:schema: Access schema introspection
 externalDocs:
-  description: Workday Custom Objects Documentation
-  url: https://doc.workday.com/extend/custom-objects/
+  description: Workday Graph API Explorer
+  url: https://developer.workday.com/graph-api-explorer

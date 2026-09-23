@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Workday Extend Workday Custom Objects App Configurations Custom Object Instances API
+  title: Workday Extend Workday Custom Objects Custom Object…
   description: APIs for defining and managing custom objects that extend Workday's data model to meet specific business needs. When new custom objects and business processes are built, a public REST API is automatically created for other developers and processes to use. Supports both single-instance and multi-instance custom objects attached to standard Workday business objects such as workers and organizations.
   version: v1
   contact:
@@ -159,15 +159,37 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The unique Workday identifier of the organization
+      schema:
+        type: string
+    workerId:
+      name: workerId
+      in: path
+      required: true
+      description: The unique Workday identifier of the worker
+      schema:
+        type: string
+    customObjectName:
+      name: customObjectName
+      in: path
+      required: true
+      description: The name of the custom object type
+      schema:
+        type: string
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:
@@ -178,26 +200,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    CustomObjectData:
-      type: object
-      additionalProperties: true
-      description: Custom object field values as key-value pairs. Keys must match the field API names defined in the custom object definition. Values must conform to the field data types.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
     ResourceReference:
       type: object
       properties:
@@ -211,6 +220,19 @@ components:
           type: string
           format: uri
           description: The API resource URL
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+    CustomObjectData:
+      type: object
+      additionalProperties: true
+      description: Custom object field values as key-value pairs. Keys must match the field API names defined in the custom object definition. Values must conform to the field data types.
     CustomObjectInstance:
       type: object
       properties:
@@ -236,28 +258,6 @@ components:
         href:
           type: string
           format: uri
-  parameters:
-    workerId:
-      name: workerId
-      in: path
-      required: true
-      description: The unique Workday identifier of the worker
-      schema:
-        type: string
-    customObjectName:
-      name: customObjectName
-      in: path
-      required: true
-      description: The name of the custom object type
-      schema:
-        type: string
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The unique Workday identifier of the organization
-      schema:
-        type: string
   securitySchemes:
     OAuth2:
       type: oauth2

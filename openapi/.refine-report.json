@@ -1,40 +1,52 @@
 {
   "provider": "workday-extend",
   "sources": [
-    "workday-extend-app-configurations-api-openapi.yml",
-    "workday-extend-app-deployments-api-openapi.yml",
-    "workday-extend-app-versions-api-openapi.yml",
-    "workday-extend-apps-api-openapi.yml",
-    "workday-extend-custom-object-definitions-api-openapi.yml",
-    "workday-extend-custom-object-fields-api-openapi.yml",
-    "workday-extend-custom-object-instances-api-openapi.yml",
-    "workday-extend-graph-query-api-openapi.yml",
-    "workday-extend-orchestration-executions-api-openapi.yml",
-    "workday-extend-orchestration-steps-api-openapi.yml",
-    "workday-extend-orchestration-triggers-api-openapi.yml",
-    "workday-extend-orchestrations-api-openapi.yml",
-    "workday-extend-schema-introspection-api-openapi.yml",
-    "workday-extend-wql-query-api-openapi.yml"
+    "_original/workday-extend-custom-objects-openapi.yml",
+    "_original/workday-extend-graph-api-openapi.yml",
+    "_original/workday-extend-orchestration-openapi.yml",
+    "_original/workday-extend-rest-api-openapi.yml"
   ],
   "outputs": [
-    "workday-extend-app-configurations-api-openapi.yml",
-    "workday-extend-app-deployments-api-openapi.yml",
-    "workday-extend-app-versions-api-openapi.yml",
-    "workday-extend-apps-api-openapi.yml",
     "workday-extend-custom-object-definitions-api-openapi.yml",
     "workday-extend-custom-object-fields-api-openapi.yml",
     "workday-extend-custom-object-instances-api-openapi.yml",
     "workday-extend-graph-query-api-openapi.yml",
+    "workday-extend-schema-introspection-api-openapi.yml",
+    "workday-extend-wql-query-api-openapi.yml",
     "workday-extend-orchestration-executions-api-openapi.yml",
     "workday-extend-orchestration-steps-api-openapi.yml",
     "workday-extend-orchestration-triggers-api-openapi.yml",
     "workday-extend-orchestrations-api-openapi.yml",
-    "workday-extend-schema-introspection-api-openapi.yml",
-    "workday-extend-wql-query-api-openapi.yml"
+    "workday-extend-app-configurations-api-openapi.yml",
+    "workday-extend-app-deployments-api-openapi.yml",
+    "workday-extend-app-versions-api-openapi.yml",
+    "workday-extend-apps-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "workday-extend-custom-objects-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "workday-extend-graph-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "workday-extend-orchestration-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "workday-extend-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "workday-extend-app-configurations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-app-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-app-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-custom-object-definitions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-custom-object-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-custom-object-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-graph-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-orchestration-executions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-orchestration-steps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-orchestration-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-orchestrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-schema-introspection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-extend-wql-query-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
