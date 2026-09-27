@@ -167,6 +167,13 @@ components:
           type: string
           description: Description of changes in this version
   parameters:
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the Extend application
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -182,13 +189,6 @@ components:
       description: The unique identifier of the application version
       schema:
         type: string
-    appId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier of the Extend application
-      schema:
-        type: string
     offset:
       name: offset
       in: query
@@ -197,14 +197,14 @@ components:
         type: integer
         default: 0
   responses:
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
@@ -215,8 +215,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

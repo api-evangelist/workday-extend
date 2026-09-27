@@ -116,43 +116,6 @@ components:
         isSortable:
           type: boolean
           description: Whether results can be sorted by this field
-    SchemaRelationship:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Relationship name
-        targetType:
-          type: string
-          description: The related business object type
-        cardinality:
-          type: string
-          enum:
-          - one-to-one
-          - one-to-many
-          - many-to-many
-          description: Relationship cardinality
-        description:
-          type: string
-          description: Description of the relationship
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        location:
-          type: object
-          properties:
-            line:
-              type: integer
-              description: Line number in the query where the error occurred
-            column:
-              type: integer
-              description: Column number in the query where the error occurred
     SchemaType:
       type: object
       properties:
@@ -175,6 +138,24 @@ components:
         isQueryable:
           type: boolean
           description: Whether this type can be directly queried
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        location:
+          type: object
+          properties:
+            line:
+              type: integer
+              description: Line number in the query where the error occurred
+            column:
+              type: integer
+              description: Column number in the query where the error occurred
     GraphSchema:
       type: object
       properties:
@@ -186,6 +167,25 @@ components:
         version:
           type: string
           description: Schema version identifier
+    SchemaRelationship:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Relationship name
+        targetType:
+          type: string
+          description: The related business object type
+        cardinality:
+          type: string
+          enum:
+          - one-to-one
+          - one-to-many
+          - many-to-many
+          description: Relationship cardinality
+        description:
+          type: string
+          description: Description of the relationship
   parameters:
     limit:
       name: limit
@@ -195,6 +195,12 @@ components:
         type: integer
         default: 20
         maximum: 100
+    search:
+      name: search
+      in: query
+      description: Search term to filter results
+      schema:
+        type: string
     offset:
       name: offset
       in: query
@@ -202,19 +208,7 @@ components:
       schema:
         type: integer
         default: 0
-    search:
-      name: search
-      in: query
-      description: Search term to filter results
-      schema:
-        type: string
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Insufficient permissions
       content:
@@ -223,6 +217,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

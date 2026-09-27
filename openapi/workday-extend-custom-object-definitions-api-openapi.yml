@@ -146,66 +146,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    CustomObjectDefinitionCreate:
-      type: object
-      required:
-      - name
-      - instanceType
-      - parentObjectType
-      properties:
-        name:
-          type: string
-          description: The API name for the custom object type
-          maxLength: 128
-          pattern: ^[a-zA-Z][a-zA-Z0-9_]*$
-        description:
-          type: string
-          description: Description of the custom object type
-        instanceType:
-          type: string
-          enum:
-          - single
-          - multi
-          description: Whether instances are single or multi per parent object
-        parentObjectType:
-          type: string
-          enum:
-          - worker
-          - organization
-          - position
-          - jobProfile
-          description: The standard Workday object type to extend
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomObjectFieldCreate'
-          description: Initial fields for the custom object
     CustomObjectFieldCreate:
       type: object
       required:
@@ -243,15 +184,6 @@ components:
           description: Required for reference type fields
         defaultValue:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
     CustomObjectDefinitionUpdate:
       type: object
       properties:
@@ -261,6 +193,49 @@ components:
         isActive:
           type: boolean
           description: Whether the definition is active
+    CustomObjectDefinitionCreate:
+      type: object
+      required:
+      - name
+      - instanceType
+      - parentObjectType
+      properties:
+        name:
+          type: string
+          description: The API name for the custom object type
+          maxLength: 128
+          pattern: ^[a-zA-Z][a-zA-Z0-9_]*$
+        description:
+          type: string
+          description: Description of the custom object type
+        instanceType:
+          type: string
+          enum:
+          - single
+          - multi
+          description: Whether instances are single or multi per parent object
+        parentObjectType:
+          type: string
+          enum:
+          - worker
+          - organization
+          - position
+          - jobProfile
+          description: The standard Workday object type to extend
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomObjectFieldCreate'
+          description: Initial fields for the custom object
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
     CustomObjectDefinition:
       type: object
       properties:
@@ -353,6 +328,13 @@ components:
           type: string
           description: Default value for the field
   parameters:
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the custom object definition
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -361,13 +343,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    definitionId:
-      name: definitionId
-      in: path
-      required: true
-      description: The unique identifier of the custom object definition
-      schema:
-        type: string
     search:
       name: search
       in: query
@@ -381,6 +356,31 @@ components:
       schema:
         type: integer
         default: 0
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2:
       type: oauth2

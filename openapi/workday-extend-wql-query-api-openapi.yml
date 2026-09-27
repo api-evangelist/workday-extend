@@ -74,6 +74,14 @@ components:
                 type: string
                 description: Data type of the column values
           description: Metadata about the result columns
+    WqlQueryRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: 'The WQL query string using SQL-like syntax. Example: SELECT worker, fullName, businessTitle FROM workers WHERE isActive = true LIMIT 50 OFFSET 0'
     ErrorResponse:
       type: object
       properties:
@@ -92,14 +100,6 @@ components:
             column:
               type: integer
               description: Column number in the query where the error occurred
-    WqlQueryRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: 'The WQL query string using SQL-like syntax. Example: SELECT worker, fullName, businessTitle FROM workers WHERE isActive = true LIMIT 50 OFFSET 0'
   responses:
     Forbidden:
       description: Insufficient permissions

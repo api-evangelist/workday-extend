@@ -67,13 +67,14 @@ apis:
   tags:
   - Artificial Intelligence
   - Document Intelligence
-  - Machine-Learning
+  - Machine Learning
   - Natural Language Processing
   tags_raw:
   - Artificial Intelligence
   - Document Intelligence
   - Machine Learning
   - Natural Language Processing
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://developer.workday.com/documentation

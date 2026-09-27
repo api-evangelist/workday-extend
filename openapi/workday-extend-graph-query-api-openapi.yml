@@ -50,6 +50,24 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        location:
+          type: object
+          properties:
+            line:
+              type: integer
+              description: Line number in the query where the error occurred
+            column:
+              type: integer
+              description: Column number in the query where the error occurred
     GraphQueryRequest:
       type: object
       required:
@@ -84,24 +102,6 @@ components:
         hasMore:
           type: boolean
           description: Whether additional results are available beyond the current page
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        location:
-          type: object
-          properties:
-            line:
-              type: integer
-              description: Line number in the query where the error occurred
-            column:
-              type: integer
-              description: Column number in the query where the error occurred
   responses:
     Forbidden:
       description: Insufficient permissions
@@ -109,14 +109,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request or query syntax error
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    BadRequest:
+      description: Invalid request or query syntax error
       content:
         application/json:
           schema:

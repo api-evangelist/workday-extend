@@ -147,6 +147,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the Extend application
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -155,19 +162,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    appId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier of the Extend application
-      schema:
-        type: string
-    search:
-      name: search
-      in: query
-      description: Search term to filter results
-      schema:
-        type: string
     offset:
       name: offset
       in: query
@@ -175,7 +169,29 @@ components:
       schema:
         type: integer
         default: 0
+    search:
+      name: search
+      in: query
+      description: Search term to filter results
+      schema:
+        type: string
   schemas:
+    AppCreate:
+      type: object
+      required:
+      - name
+      - description
+      properties:
+        name:
+          type: string
+          description: The name of the Extend application
+          maxLength: 255
+        description:
+          type: string
+          description: Description of the application
+        category:
+          type: string
+          description: The application category
     App:
       type: object
       properties:
@@ -236,19 +252,6 @@ components:
                 type: string
               message:
                 type: string
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API resource URL
     AppUpdate:
       type: object
       properties:
@@ -262,31 +265,28 @@ components:
         category:
           type: string
           description: Updated application category
-    AppCreate:
+    ResourceReference:
       type: object
-      required:
-      - name
-      - description
       properties:
-        name:
+        id:
           type: string
-          description: The name of the Extend application
-          maxLength: 255
-        description:
+          description: The Workday ID of the referenced resource
+        descriptor:
           type: string
-          description: Description of the application
-        category:
+          description: The display name of the referenced resource
+        href:
           type: string
-          description: The application category
+          format: uri
+          description: The API resource URL
   responses:
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
@@ -297,8 +297,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
