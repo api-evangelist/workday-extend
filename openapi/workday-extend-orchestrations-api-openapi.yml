@@ -203,28 +203,55 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    orchestrationId:
+      name: orchestrationId
+      in: path
+      required: true
+      description: The unique identifier of the orchestration
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    search:
+      name: search
+      in: query
+      description: Search term to filter results
+      schema:
+        type: string
   schemas:
-    OrchestrationCreate:
+    OrchestrationUpdate:
       type: object
-      required:
-      - name
-      - description
       properties:
         name:
           type: string
-          description: Name of the orchestration
+          description: Updated orchestration name
           maxLength: 255
         description:
           type: string
-          description: Description of the orchestration
-        triggerType:
+          description: Updated orchestration description
+    ErrorResponse:
+      type: object
+      properties:
+        error:
           type: string
-          enum:
-          - event
-          - api
-          - schedule
-          - business_process
-          description: The primary trigger type
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
     Orchestration:
       type: object
       properties:
@@ -277,25 +304,6 @@ components:
         href:
           type: string
           format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-    OrchestrationUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated orchestration name
-          maxLength: 255
-        description:
-          type: string
-          description: Updated orchestration description
     ResourceReference:
       type: object
       properties:
@@ -309,38 +317,30 @@ components:
           type: string
           format: uri
           description: The API resource URL
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of results to return
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-    orchestrationId:
-      name: orchestrationId
-      in: path
-      required: true
-      description: The unique identifier of the orchestration
-      schema:
-        type: string
-    search:
-      name: search
-      in: query
-      description: Search term to filter results
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of results to skip for pagination
-      schema:
-        type: integer
-        default: 0
+    OrchestrationCreate:
+      type: object
+      required:
+      - name
+      - description
+      properties:
+        name:
+          type: string
+          description: Name of the orchestration
+          maxLength: 255
+        description:
+          type: string
+          description: Description of the orchestration
+        triggerType:
+          type: string
+          enum:
+          - event
+          - api
+          - schedule
+          - business_process
+          description: The primary trigger type
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -357,8 +357,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

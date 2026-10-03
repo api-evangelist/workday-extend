@@ -82,6 +82,39 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    OrchestrationTriggerCreate:
+      type: object
+      required:
+      - type
+      - name
+      properties:
+        type:
+          type: string
+          enum:
+          - event
+          - api
+          - schedule
+          - business_process
+          description: The type of trigger
+        name:
+          type: string
+          description: Name for the trigger
+        description:
+          type: string
+          description: Description of the trigger
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Trigger-specific configuration parameters
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
     OrchestrationTrigger:
       type: object
       properties:
@@ -109,48 +142,9 @@ components:
           type: object
           additionalProperties: true
           description: Trigger-specific configuration
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-    OrchestrationTriggerCreate:
-      type: object
-      required:
-      - type
-      - name
-      properties:
-        type:
-          type: string
-          enum:
-          - event
-          - api
-          - schedule
-          - business_process
-          description: The type of trigger
-        name:
-          type: string
-          description: Name for the trigger
-        description:
-          type: string
-          description: Description of the trigger
-        configuration:
-          type: object
-          additionalProperties: true
-          description: Trigger-specific configuration parameters
   responses:
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -161,8 +155,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

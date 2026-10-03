@@ -50,6 +50,24 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        location:
+          type: object
+          properties:
+            line:
+              type: integer
+              description: Line number in the query where the error occurred
+            column:
+              type: integer
+              description: Column number in the query where the error occurred
     WqlQueryResponse:
       type: object
       properties:
@@ -82,31 +100,7 @@ components:
         query:
           type: string
           description: 'The WQL query string using SQL-like syntax. Example: SELECT worker, fullName, businessTitle FROM workers WHERE isActive = true LIMIT 50 OFFSET 0'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        location:
-          type: object
-          properties:
-            line:
-              type: integer
-              description: Line number in the query where the error occurred
-            column:
-              type: integer
-              description: Column number in the query where the error occurred
   responses:
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request or query syntax error
       content:
@@ -115,6 +109,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

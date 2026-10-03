@@ -68,6 +68,19 @@ components:
             column:
               type: integer
               description: Column number in the query where the error occurred
+    GraphQueryResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: The query result data organized by the queried business object types
+        total:
+          type: integer
+          description: Total number of matching records
+        hasMore:
+          type: boolean
+          description: Whether additional results are available beyond the current page
     GraphQueryRequest:
       type: object
       required:
@@ -89,22 +102,9 @@ components:
           type: integer
           default: 0
           description: Number of results to skip for pagination
-    GraphQueryResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-          description: The query result data organized by the queried business object types
-        total:
-          type: integer
-          description: Total number of matching records
-        hasMore:
-          type: boolean
-          description: Whether additional results are available beyond the current page
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    BadRequest:
+      description: Invalid request or query syntax error
       content:
         application/json:
           schema:
@@ -115,8 +115,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request or query syntax error
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

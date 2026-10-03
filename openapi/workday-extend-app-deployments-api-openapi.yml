@@ -107,13 +107,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    appId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier of the Extend application
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -122,6 +115,13 @@ components:
         type: integer
         default: 20
         maximum: 100
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the Extend application
+      schema:
+        type: string
     deploymentId:
       name: deploymentId
       in: path
@@ -137,38 +137,6 @@ components:
         type: integer
         default: 0
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    AppDeploymentCreate:
-      type: object
-      required:
-      - versionId
-      properties:
-        versionId:
-          type: string
-          description: The ID of the application version to deploy
-        environment:
-          type: string
-          enum:
-          - sandbox
-          - production
-          description: Target deployment environment
     AppDeployment:
       type: object
       properties:
@@ -203,6 +171,24 @@ components:
         href:
           type: string
           format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     ResourceReference:
       type: object
       properties:
@@ -216,9 +202,23 @@ components:
           type: string
           format: uri
           description: The API resource URL
+    AppDeploymentCreate:
+      type: object
+      required:
+      - versionId
+      properties:
+        versionId:
+          type: string
+          description: The ID of the application version to deploy
+        environment:
+          type: string
+          enum:
+          - sandbox
+          - production
+          description: Target deployment environment
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -235,8 +235,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

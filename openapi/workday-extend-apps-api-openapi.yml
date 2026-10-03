@@ -147,13 +147,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    appId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier of the Extend application
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -162,6 +155,13 @@ components:
         type: integer
         default: 20
         maximum: 100
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the Extend application
+      schema:
+        type: string
     offset:
       name: offset
       in: query
@@ -176,6 +176,50 @@ components:
       schema:
         type: string
   schemas:
+    AppUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated application name
+          maxLength: 255
+        description:
+          type: string
+          description: Updated application description
+        category:
+          type: string
+          description: Updated application category
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
     AppCreate:
       type: object
       required:
@@ -234,59 +278,9 @@ components:
           type: string
           format: uri
           description: The API resource URL for this application
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    AppUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated application name
-          maxLength: 255
-        description:
-          type: string
-          description: Updated application description
-        category:
-          type: string
-          description: Updated application category
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API resource URL
   responses:
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -297,8 +291,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

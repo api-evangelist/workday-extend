@@ -97,6 +97,28 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    search:
+      name: search
+      in: query
+      description: Search term to filter results
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
   schemas:
     SchemaField:
       type: object
@@ -116,28 +138,25 @@ components:
         isSortable:
           type: boolean
           description: Whether results can be sorted by this field
-    SchemaType:
+    SchemaRelationship:
       type: object
       properties:
         name:
           type: string
-          description: The name of the business object type
+          description: Relationship name
+        targetType:
+          type: string
+          description: The related business object type
+        cardinality:
+          type: string
+          enum:
+          - one-to-one
+          - one-to-many
+          - many-to-many
+          description: Relationship cardinality
         description:
           type: string
-          description: Description of the business object type
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchemaField'
-          description: Fields available on this type
-        relationships:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchemaRelationship'
-          description: Relationships to other business object types
-        isQueryable:
-          type: boolean
-          description: Whether this type can be directly queried
+          description: Description of the relationship
     ErrorResponse:
       type: object
       properties:
@@ -167,50 +186,31 @@ components:
         version:
           type: string
           description: Schema version identifier
-    SchemaRelationship:
+    SchemaType:
       type: object
       properties:
         name:
           type: string
-          description: Relationship name
-        targetType:
-          type: string
-          description: The related business object type
-        cardinality:
-          type: string
-          enum:
-          - one-to-one
-          - one-to-many
-          - many-to-many
-          description: Relationship cardinality
+          description: The name of the business object type
         description:
           type: string
-          description: Description of the relationship
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: Maximum number of results to return
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-    search:
-      name: search
-      in: query
-      description: Search term to filter results
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of results to skip for pagination
-      schema:
-        type: integer
-        default: 0
+          description: Description of the business object type
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaField'
+          description: Fields available on this type
+        relationships:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaRelationship'
+          description: Relationships to other business object types
+        isQueryable:
+          type: boolean
+          description: Whether this type can be directly queried
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -221,8 +221,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:
