@@ -537,6 +537,9 @@ apis:
   - type: Reference
     url: https://developer.workday.com/graph-api-explorer
 common:
+  - type: CapabilityMap
+    url: capabilities/workday-extend-capability-edges.yml
+    name: Workday Extend Business Capability Map
   - type: AgenticAccess
     url: agentic-access/workday-extend-agentic-access.yml
   - type: TrustCenter
