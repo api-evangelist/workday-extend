@@ -81,24 +81,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    definitionId:
-      name: definitionId
-      in: path
-      required: true
-      description: The unique identifier of the custom object definition
-      schema:
-        type: string
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
     CustomObjectField:
       type: object
       properties:
@@ -142,6 +125,15 @@ components:
         defaultValue:
           type: string
           description: Default value for the field
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
     CustomObjectFieldCreate:
       type: object
       required:
@@ -180,20 +172,14 @@ components:
         defaultValue:
           type: string
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -204,6 +190,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the custom object definition
+      schema:
+        type: string
   securitySchemes:
     OAuth2:
       type: oauth2

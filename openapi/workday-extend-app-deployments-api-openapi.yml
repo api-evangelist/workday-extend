@@ -107,14 +107,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    limit:
-      name: limit
+    offset:
+      name: offset
       in: query
-      description: Maximum number of results to return
+      description: Number of results to skip for pagination
       schema:
         type: integer
-        default: 20
-        maximum: 100
+        default: 0
     appId:
       name: appId
       in: path
@@ -129,14 +128,46 @@ components:
       description: The unique identifier of the deployment record
       schema:
         type: string
-    offset:
-      name: offset
+    limit:
+      name: limit
       in: query
-      description: Number of results to skip for pagination
+      description: Maximum number of results to return
       schema:
         type: integer
-        default: 0
+        default: 20
+        maximum: 100
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
     AppDeployment:
       type: object
       properties:
@@ -171,37 +202,6 @@ components:
         href:
           type: string
           format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API resource URL
     AppDeploymentCreate:
       type: object
       required:
@@ -217,26 +217,26 @@ components:
           - production
           description: Target deployment environment
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:

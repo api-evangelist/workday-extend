@@ -98,6 +98,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
     limit:
       name: limit
       in: query
@@ -112,32 +119,25 @@ components:
       description: Search term to filter results
       schema:
         type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of results to skip for pagination
-      schema:
-        type: integer
-        default: 0
   schemas:
-    SchemaField:
+    ErrorResponse:
       type: object
       properties:
-        name:
+        error:
           type: string
-          description: Field name
-        dataType:
+          description: Error code identifying the type of error
+        message:
           type: string
-          description: Data type of the field
-        description:
-          type: string
-          description: Description of the field
-        isFilterable:
-          type: boolean
-          description: Whether this field can be used in filters
-        isSortable:
-          type: boolean
-          description: Whether results can be sorted by this field
+          description: Human-readable error message
+        location:
+          type: object
+          properties:
+            line:
+              type: integer
+              description: Line number in the query where the error occurred
+            column:
+              type: integer
+              description: Column number in the query where the error occurred
     SchemaRelationship:
       type: object
       properties:
@@ -157,35 +157,6 @@ components:
         description:
           type: string
           description: Description of the relationship
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error
-        message:
-          type: string
-          description: Human-readable error message
-        location:
-          type: object
-          properties:
-            line:
-              type: integer
-              description: Line number in the query where the error occurred
-            column:
-              type: integer
-              description: Column number in the query where the error occurred
-    GraphSchema:
-      type: object
-      properties:
-        types:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchemaType'
-          description: All available business object types
-        version:
-          type: string
-          description: Schema version identifier
     SchemaType:
       type: object
       properties:
@@ -208,6 +179,35 @@ components:
         isQueryable:
           type: boolean
           description: Whether this type can be directly queried
+    SchemaField:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Field name
+        dataType:
+          type: string
+          description: Data type of the field
+        description:
+          type: string
+          description: Description of the field
+        isFilterable:
+          type: boolean
+          description: Whether this field can be used in filters
+        isSortable:
+          type: boolean
+          description: Whether results can be sorted by this field
+    GraphSchema:
+      type: object
+      properties:
+        types:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaType'
+          description: All available business object types
+        version:
+          type: string
+          description: Schema version identifier
   responses:
     NotFound:
       description: Resource not found
@@ -215,14 +215,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:

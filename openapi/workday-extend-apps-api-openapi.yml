@@ -147,6 +147,20 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
+    appId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier of the Extend application
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -155,20 +169,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    appId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier of the Extend application
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of results to skip for pagination
-      schema:
-        type: integer
-        default: 0
     search:
       name: search
       in: query
@@ -176,19 +176,6 @@ components:
       schema:
         type: string
   schemas:
-    AppUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated application name
-          maxLength: 255
-        description:
-          type: string
-          description: Updated application description
-        category:
-          type: string
-          description: Updated application category
     ErrorResponse:
       type: object
       properties:
@@ -207,19 +194,6 @@ components:
                 type: string
               message:
                 type: string
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API resource URL
     AppCreate:
       type: object
       required:
@@ -278,6 +252,32 @@ components:
           type: string
           format: uri
           description: The API resource URL for this application
+    AppUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated application name
+          maxLength: 255
+        description:
+          type: string
+          description: Updated application description
+        category:
+          type: string
+          description: Updated application category
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
   responses:
     NotFound:
       description: Resource not found
@@ -291,14 +291,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:

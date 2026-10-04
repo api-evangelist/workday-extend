@@ -142,6 +142,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    offset:
+      name: offset
+      in: query
+      description: Number of results to skip for pagination
+      schema:
+        type: integer
+        default: 0
     limit:
       name: limit
       in: query
@@ -150,13 +157,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    executionId:
-      name: executionId
-      in: path
-      required: true
-      description: The unique identifier of the orchestration execution
-      schema:
-        type: string
     orchestrationId:
       name: orchestrationId
       in: path
@@ -164,13 +164,13 @@ components:
       description: The unique identifier of the orchestration
       schema:
         type: string
-    offset:
-      name: offset
-      in: query
-      description: Number of results to skip for pagination
+    executionId:
+      name: executionId
+      in: path
+      required: true
+      description: The unique identifier of the orchestration execution
       schema:
-        type: integer
-        default: 0
+        type: string
   schemas:
     ErrorResponse:
       type: object
@@ -181,26 +181,6 @@ components:
         message:
           type: string
           description: Human-readable error message
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API resource URL
-    OrchestrationLaunch:
-      type: object
-      properties:
-        input:
-          type: object
-          additionalProperties: true
-          description: Input parameters to pass to the orchestration. The keys must match the orchestration's defined input parameter names.
     OrchestrationExecution:
       type: object
       properties:
@@ -257,27 +237,47 @@ components:
         href:
           type: string
           format: uri
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API resource URL
+    OrchestrationLaunch:
+      type: object
+      properties:
+        input:
+          type: object
+          additionalProperties: true
+          description: Input parameters to pass to the orchestration. The keys must match the orchestration's defined input parameter names.
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:

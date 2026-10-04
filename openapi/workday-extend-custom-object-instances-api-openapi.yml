@@ -160,10 +160,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    CustomObjectData:
-      type: object
-      additionalProperties: true
-      description: Custom object field values as key-value pairs. Keys must match the field API names defined in the custom object definition. Values must conform to the field data types.
     CustomObjectInstance:
       type: object
       properties:
@@ -198,6 +194,10 @@ components:
         message:
           type: string
           description: Human-readable error message
+    CustomObjectData:
+      type: object
+      additionalProperties: true
+      description: Custom object field values as key-value pairs. Keys must match the field API names defined in the custom object definition. Values must conform to the field data types.
     ResourceReference:
       type: object
       properties:
@@ -212,13 +212,6 @@ components:
           format: uri
           description: The API resource URL
   parameters:
-    customObjectName:
-      name: customObjectName
-      in: path
-      required: true
-      description: The name of the custom object type
-      schema:
-        type: string
     workerId:
       name: workerId
       in: path
@@ -233,27 +226,34 @@ components:
       description: The unique Workday identifier of the organization
       schema:
         type: string
+    customObjectName:
+      name: customObjectName
+      in: path
+      required: true
+      description: The name of the custom object type
+      schema:
+        type: string
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
