@@ -537,6 +537,10 @@ apis:
   - type: Reference
     url: https://developer.workday.com/graph-api-explorer
 common:
+  - type: Plans
+    url: plans/workday-extend-plans-pricing.yml
+  - type: FinOps
+    url: finops/workday-extend-finops.yml
   - type: CapabilityMap
     url: capabilities/workday-extend-capability-edges.yml
     name: Workday Extend Business Capability Map
